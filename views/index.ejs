@@ -7,11 +7,33 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <meta name="author" content="Julian Yaman">
     <meta name="description" content="A tool for Discord.js bot developers to manage their bot for development and final release usages.">
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
-<h1>Name of the Bot: <%= data.user.username %></h1>
-<h3>Current game status: <%= data.user.localPresence.game.name %></h3>
-
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">Discord Bot Dashboard</span>
+            <div class="mdl-layout-spacer"></div>
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a class="mdl-navigation__link" href="/">Home</a>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Discord Bot Dashboard</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Home</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <!-- page content -->
+        <div class="page-content">
+            <h1>Name of the Bot: <%= data.user.username %></h1>
+            <h3>Current game status: <%= data.user.localPresence.game.name %></h3>
+        </div>
+    </main>
+</div>
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 </html>
