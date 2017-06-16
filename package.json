@@ -1,0 +1,25 @@
+{
+  "name": "discord-bot-dashboard",
+  "version": "0.0.1",
+  "description": "A tool for Discord.js bot developers to manage their bot for development and final release usages.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon api/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julianYaman/discord-bot-dashboard.git"
+  },
+  "author": "Julian Yaman <julianyaman@gmx.de>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/julianYaman/discord-bot-dashboard/issues"
+  },
+  "homepage": "https://github.com/julianYaman/discord-bot-dashboard#readme",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "express": "^4.15.3",
+    "jquery": "^3.2.1",
+    "nodemon": "^1.11.0"
+  }
+}
