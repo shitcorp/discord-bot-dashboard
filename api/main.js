@@ -1,3 +1,5 @@
+var exports = module.exports = {};
+
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./../config.json");
@@ -20,3 +22,12 @@ client.on('ready', () => {
 // To use prv_config, create a file called "private_config.json" inside the main directory.
 // .gitignore will ignore this file when you want to commit and push.
 client.login(prv_config.token);
+
+exports.setGameStatus = function (game) {
+    client.user.setGame(game);
+    console.log("\n>> Bot Changes > Game status set to: " + game + "\n");
+};
+
+exports.sendClientObject = function () {
+  return client;
+};
