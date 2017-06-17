@@ -15,6 +15,7 @@ exports.startApp = function (client) {
     // console.log(client)
 
     app.set('view engine', 'ejs');
+
     app.use('/api', express.static('api'));
     app.use('/lib', express.static('lib'));
     app.use('/styles', express.static('src'));
@@ -25,6 +26,8 @@ exports.startApp = function (client) {
         extended: true
     }));
 
+    // ---- GET
+
     app.get("/", function (req, res) {
         res.render("index", {data: client});
     });
@@ -34,19 +37,30 @@ exports.startApp = function (client) {
         console.log(bot.sendClientObject());
     });
 
-    app.post("/change-game-status" ,function (req, res) {
-        console.log(req.body);
+    // ---- POST
 
+    app.post("/change-game-status" ,function (req, res) {
+
+        // For writing it into the config file.
         config.bot_game = req.body.gameStatus;
 
+        // Using the exports function from the required "./main" module to set the game
         bot.setGameStatus(req.body.gameStatus);
 
         // TODO: Updating the config.json with the new bot_game value to get the new game value when restarting the bot.
 
         res.render("index", {data: bot.sendClientObject(), successAction: "game-status"});
-
     });
 
+    app.post("/change-status", function (req,res) {
+
+        bot.setBotStatus(req.body.status);
+
+        res.render("index", {data: bot.sendClientObject(), successAction: "bot-status"});
+    });
+
+
+    // ---- 404 Page
     app.use(function (req, res, next) {
         res.status(404).render("404");
     });

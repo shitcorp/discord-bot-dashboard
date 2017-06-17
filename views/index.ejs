@@ -47,25 +47,39 @@
                             </button>
                         </form>
                         <hr>
-                        <b>Sending a quick message:</b>
-                        <form method="post" action="/">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" name="quickMessage"></textarea>
-                                <label class="mdl-textfield__label" for="sample5">Write here your quick message..</label>
-                            </div><br>
+                        <b>Change Status:</b>
+                        <form method="post" action="/change-status">
+                            <select name="status" class="botStatusSelection">
+                                <option value="<%= data.user.localPresence.status %>">Current status: <%= data.user.localPresence.status %></option>
+                                <option value="online">Online</option>
+                                <option value="idle">Idle</option>
+                                <option value="dnd">Do not Disturb</option>
+                                <option value="invisible">Invisible</option>
+                            </select>
                             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                Send message
+                                Change Status
                             </button>
                         </form>
                         <hr>
                         <b>Development:</b><br><br>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="+">Output Client Object</button>
+                        <button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Output Client Object</button>
                     </div>
                     <div class="botWidget botWidget_botStatus">
                         <h4><b>Bot Status</b></h4>
                         <hr>
                         <p class="bot_username"><b>Name:</b> <%= data.user.username %></p>
                         <p class="bot_game"><b>Current game:</b> <%= data.user.localPresence.game.name %></p>
+                        <span class="bot_status"><b>Status:</b>
+                            <% if(data.user.localPresence.status === "online"){ %>
+                                <div class="statusSymbol statusSymbolOnline"></div> Online
+                            <% }else if(data.user.localPresence.status === "idle"){ %>
+                                <div class="statusSymbol statusSymbolIdle"></div> Idle
+                            <% }else if(data.user.localPresence.status === "dnd"){ %>
+                                <div class="statusSymbol statusSymbolDND"></div> Do Not Disturb
+                            <% }else if(data.user.localPresence.status === "invisible"){ %>
+                                <div class="statusSymbol statusSymbolInvisible"></div> Invisible
+                            <% }%>
+                        </span>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--3-col">

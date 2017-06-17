@@ -14,6 +14,8 @@ client.on('ready', () => {
     console.log('>> Running on version ' + config.bot_version);
     client.user.setGame(config.bot_game);
 
+    client.user.setStatus(config.bot_status);
+
     app.startApp(client);
 });
 
@@ -25,7 +27,17 @@ client.login(prv_config.token);
 
 exports.setGameStatus = function (game) {
     client.user.setGame(game);
-    console.log("\n>> Bot Changes > Game status set to: " + game + "\n");
+    console.log("\n>> Bot Change > Game status set to: " + game + "\n");
+};
+
+exports.setBotStatus = function (status) {
+    if(status != "online" && status != "idle" && status != "invisible" && status != "dnd" ){
+        console.error("\n>> Bot Error: Invalid status to set! Use only the 4 vaild ones!" +
+            "\n>> PresenceStatus: https://discord.js.org/#/docs/main/stable/typedef/PresenceStatus")
+    }else{
+        client.user.setStatus(status);
+        console.log("\n>> Bot Change > Status set to: " + status + "\n");
+    }
 };
 
 exports.sendClientObject = function () {
