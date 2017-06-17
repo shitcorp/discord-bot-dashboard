@@ -49,14 +49,16 @@ exports.startApp = function (client) {
 
         // TODO: Updating the config.json with the new bot_game value to get the new game value when restarting the bot.
 
-        res.render("index", {data: bot.sendClientObject(), successAction: "game-status"});
+        res.redirect("/");
+        console.log("\n>> Redirecting to /");
     });
 
     app.post("/change-status", function (req,res) {
 
         bot.setBotStatus(req.body.status);
 
-        res.render("index", {data: bot.sendClientObject(), successAction: "bot-status"});
+        res.redirect("/");
+        console.log("\n>> Redirecting to /");
     });
 
 
