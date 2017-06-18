@@ -9,8 +9,13 @@ const app = express();
 
 var exports = module.exports = {};
 
-
-exports.startApp = function (client) {
+/**
+ * @param client - Discord.js Client Object
+ * @description Required for starting the web server and to load the express app.
+ * @version 0.0.1
+ * @since 0.0.1
+ */
+exports.startApp = function (/**Object*/ client) {
 
     // console.log(client)
 
@@ -60,6 +65,7 @@ exports.startApp = function (client) {
         res.redirect("/");
         console.log("\n>> Redirecting to /");
     });
+
 
 
     // ---- 404 Page

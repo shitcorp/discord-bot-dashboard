@@ -25,16 +25,26 @@ client.on('ready', () => {
 // .gitignore will ignore this file when you want to commit and push.
 client.login(prv_config.token);
 
-// This function set a new game status for the bot
 
-exports.setGameStatus = function (game) {
+/**
+ * @function
+ * @param game - Game to be set for the bot.
+ * @description Set a game status for the bot.
+ * @since 0.0.1
+ */
+exports.setGameStatus = function (/**String*/ game) {
     client.user.setGame(game);
     console.log("\n>> Bot Change > Game status set to: " + game);
 };
 
-// This function set a new status for the bot (like the green icon for online, etc.)
 
-exports.setBotStatus = function (status) {
+/**
+ * @function
+ * @param status - Status of the bot.
+ * @description Set a status for the bot (online | idle | dnd | invisible)
+ * @since 0.0.1
+ */
+exports.setBotStatus = function (/**String*/ status) {
     if(status != "online" && status != "idle" && status != "invisible" && status != "dnd" ){
         console.error("\n>> Bot Error: Invalid status to set! Use only the 4 vaild ones!" +
             "\n>> PresenceStatus: https://discord.js.org/#/docs/main/stable/typedef/PresenceStatus" +
@@ -45,9 +55,13 @@ exports.setBotStatus = function (status) {
     }
 };
 
-// For development usage to get the client object to look
-// all properties etc.
 
+/**
+ * @function
+ * @description Returns the client object. Mainly for development.
+ * @since 0.0.1
+ * @returns {Object}
+ */
 exports.sendClientObject = function () {
   return client;
 };
