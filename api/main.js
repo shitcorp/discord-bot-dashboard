@@ -33,22 +33,43 @@ client.on('ready', () => {
 client.login(prv_config.token);
 
 /**
- * @function
+ * Set a game status for the bot.
+ *
  * @param game - Game to be set for the bot.
- * @description Set a game status for the bot.
  * @since 0.0.1
+ *
+ * @public
  */
 exports.setGameStatus = function (/**String*/ game) {
     client.user.setGame(game);
     console.log("\n>> Bot Change > Game status set to: " + game);
 };
 
+/**
+ * Writing a message to the administrators of a server. (testing)
+ *
+ * @param message - Message string which will be sent to the administrator.
+ * @since 0.0.2-beta
+ *
+ * @public
+ */
+exports.sendAdminMessage = function (/**String*/ message) {
+    var guilds = client.guilds;
+
+    guilds.map(function (a) {
+        a.owner.send(message);
+    })
+};
+
 
 /**
- * @function
+ * Set a status for the bot (online | idle | dnd | invisible)
+ *
  * @param status - Status of the bot.
- * @description Set a status for the bot (online | idle | dnd | invisible)
+ * @see {@link https://discord.js.org/#/docs/main/stable/typedef/PresenceStatus|Discord.js Docs -> PresenceStatus}
  * @since 0.0.1
+ *
+ * @public
  */
 exports.setBotStatus = function (/**String*/ status) {
     if(status != "online" && status != "idle" && status != "invisible" && status != "dnd" ){
@@ -62,10 +83,12 @@ exports.setBotStatus = function (/**String*/ status) {
 };
 
 /**
- * @function
- * @description Returns the client object. Mainly for development.
+ * Returns the client object. Mainly for development.
+ *
  * @since 0.0.1
- * @returns {Object}
+ * @return {Object} The Client object.
+ *
+ * @public
  */
 exports.sendClientObject = function () {
   return client;

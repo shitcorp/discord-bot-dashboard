@@ -10,10 +10,16 @@ const app = express();
 var exports = module.exports = {};
 
 /**
+ * Required for starting the web server and to load the express app.
+ * Version shows the current version of this project, not of the bot.
+ *
+ * Last update - {@link https://goo.gl/3DDL2y Commit 06/24/2017}
+ *
+ * Check out and contribute to the project {@link https://goo.gl/DVJQem on GitHub}.
+ *
  * @param client - Discord.js Client Object
- * @description Required for starting the web server and to load the express app.
- * @version 0.0.1
- * @since 0.0.1
+ * @version 0.0.2-beta
+ * @public
  */
 exports.startApp = function (/**Object*/ client) {
 
@@ -40,6 +46,17 @@ exports.startApp = function (/**Object*/ client) {
     app.get("/outputClient", function (req, res) {
         res.render("index", {data: client});
         console.log(bot.sendClientObject());
+    });
+
+    /* This GET route is for development usage only.
+     * With this route, you can test new functions for your fork
+     * when you want to make a pull request and want to check if this function you´ve made works.
+     */
+    app.get("/testingNewFunction", function (req, res) {
+        res.render("index", {data: client});
+
+        // Here you´re writing the new function or calling a new function.
+        console.log(bot.sendAdminMessage("This is a test message for test usages by the bot " + client.user.username + "."));
     });
 
     // ---- POST

@@ -2,9 +2,21 @@
 
 $("#outputClientObjBtn").click(function () {
 
-    var xmlhttp = new XMLHttpRequest();
+    var httpRequestClientObject = new XMLHttpRequest();
 
-    xmlhttp.open("GET","/outputClient",true);
-    xmlhttp.send();
+    httpRequestClientObject.open("GET","/outputClient",true);
+    httpRequestClientObject.send();
+
+});
+
+// Try a new function with this request.
+// Mainly for development usages.
+
+$("#testNewFunctionBtn").click(function () {
+
+    var httpRequestTestingNewFunction = new XMLHttpRequest();
+
+    httpRequestTestingNewFunction.open("GET","/testingNewFunction",true);
+    httpRequestTestingNewFunction.send();
 
 });
