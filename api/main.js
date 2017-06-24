@@ -3,8 +3,7 @@ var exports = module.exports = {};
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./../config.json");
-
-// You can delete this line when you are forking this project
+// Delete this line when you´re using this project for public usages.
 const prv_config = require("./../private_config.json");
 
 const app = require("./app");
@@ -26,10 +25,15 @@ client.on('ready', () => {
     app.startApp(client);
 });
 
-// Change it to config.token
-// prv_config is only for personal usage when you don´t want that others have your token!
+// Change it to config.token when you want to use this project for public usages.
+//
+// prv_config is only for personal usage or when youre forking this project,
+// testing some functions with the and make a pull request to the repo.
+// Warning: When you´re making a pull request, check that you didn´t wrote your token inside the config.json.
+//
 // To use prv_config, create a file called "private_config.json" inside the main directory.
 // .gitignore will ignore this file when you want to commit and push.
+// So nobody can get your bot token.
 client.login(prv_config.token);
 
 /**
