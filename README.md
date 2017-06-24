@@ -1,6 +1,12 @@
 # discord-bot-dashboard
 
-## About
+###
+* [Welcome](https://github.com/julianYaman/discord-bot-dashboard#welcome)
+* [**Important Information**](https://github.com/julianYaman/discord-bot-dashboard#important-information)
+* [Dependencies](https://github.com/julianYaman/discord-bot-dashboard#dependencies)
+##
+
+## Welcome
 
 Welcome to this new project.
 
@@ -20,7 +26,7 @@ Write your bot token from [**the Discord Applications Page**](https://discordapp
 
 ## Important Information:
 
-**main.js:**
+**api/main.js:**
 
 ```
 Currently:
