@@ -13,7 +13,7 @@ var exports = module.exports = {};
  * Required for starting the web server and to load the express app.
  * Version shows the current version of this project, not of the bot.
  *
- * Last update - {@link https://goo.gl/3DDL2y Commit 06/24/2017}
+ * Last updates: {@link https://goo.gl/yDFywF Commits from master branch}
  *
  * Check out and contribute to the project {@link https://goo.gl/DVJQem on GitHub}.
  *
@@ -43,6 +43,14 @@ exports.startApp = function (/**Object*/ client) {
         res.render("index", {data: client});
     });
 
+    app.get("/home", function (req, res) {
+        res.render("index", {data: client});
+    });
+
+    app.get("/dashboard", function (req, res) {
+        res.render("index", {data: client});
+    });
+
     app.get("/outputClient", function (req, res) {
         res.render("index", {data: client});
         console.log(bot.sendClientObject());
@@ -56,7 +64,8 @@ exports.startApp = function (/**Object*/ client) {
         res.render("index", {data: client});
 
         // Here you´re writing the new function or calling a new function.
-        console.log(bot.sendAdminMessage("This is a test message for test usages by the bot " + client.user.username + "."));
+        bot.sendAdminMessage("This is a test message by " + client.user.username + ". " +
+            "You get the message because we´re currently testing an new feature for sending messages to server administrators and you are one. Believe me.")
     });
 
     // ---- POST
