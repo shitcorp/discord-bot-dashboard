@@ -20,3 +20,11 @@ $("#testNewFunctionBtn").click(function () {
     httpRequestTestingNewFunction.send();
 
 });
+
+
+// Sending Server Admins a message -> button
+
+$(".sendServerAdminMessageToActivateButton").click(function () {
+   $(".sendServerAdminMessageConfirmButton").removeAttr("disabled");
+    $(".sendServerAdminMessageToActivateButton").attr("disabled");
+});

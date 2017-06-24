@@ -18,7 +18,7 @@ var exports = module.exports = {};
  * Check out and contribute to the project {@link https://goo.gl/DVJQem on GitHub}.
  *
  * @param client - Discord.js Client Object
- * @version 0.0.2-beta
+ * @version 0.0.3
  * @public
  */
 exports.startApp = function (/**Object*/ client) {
@@ -27,10 +27,10 @@ exports.startApp = function (/**Object*/ client) {
 
     app.set('view engine', 'ejs');
 
-    app.use('/api', express.static('api'));
-    app.use('/lib', express.static('lib'));
-    app.use('/styles', express.static('src'));
-    app.use('/scripts', express.static('src'));
+    app.use('/api', express.static('api', { redirect : false }));
+    app.use('/lib', express.static('lib', { redirect : false }));
+    app.use('/styles', express.static('src', { redirect : false }));
+    app.use('/scripts', express.static('src', { redirect : false }));
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
@@ -51,9 +51,14 @@ exports.startApp = function (/**Object*/ client) {
         res.render("index", {data: client});
     });
 
+    app.get("/messages", function (req, res) {
+        res.render("messages", {data: client});
+    });
+
     app.get("/outputClient", function (req, res) {
-        res.render("index", {data: client});
         console.log(bot.sendClientObject());
+
+        res.redirect("/");
     });
 
     /* This GET route is for development usage only.
@@ -61,11 +66,12 @@ exports.startApp = function (/**Object*/ client) {
      * when you want to make a pull request and want to check if this function you´ve made works.
      */
     app.get("/testingNewFunction", function (req, res) {
-        res.render("index", {data: client});
 
         // Here you´re writing the new function or calling a new function.
-        bot.sendAdminMessage("This is a test message by " + client.user.username + ". " +
-            "You get the message because we´re currently testing an new feature for sending messages to server administrators and you are one. Believe me.")
+        bot.sendInvitesOfServers();
+
+        res.redirect("/");
+        console.log("\n>> Redirecting to /");
     });
 
     // ---- POST
@@ -90,6 +96,14 @@ exports.startApp = function (/**Object*/ client) {
 
         res.redirect("/");
         console.log("\n>> Redirecting to /");
+    });
+
+    app.post("/send-serveradmin-dm-message", function (req,res) {
+
+        bot.sendAdminMessage(req.body.message);
+
+        res.redirect("/messages");
+        console.log("\n>> Redirecting to /messages");
     });
 
 

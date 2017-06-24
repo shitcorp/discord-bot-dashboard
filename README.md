@@ -1,6 +1,7 @@
 # discord-bot-dashboard
 
 ###
+* Downloading (coming soon)
 * [Welcome](https://github.com/julianYaman/discord-bot-dashboard#welcome)
 * [**Important Information**](https://github.com/julianYaman/discord-bot-dashboard#important-information)
 * [Dependencies](https://github.com/julianYaman/discord-bot-dashboard#dependencies)

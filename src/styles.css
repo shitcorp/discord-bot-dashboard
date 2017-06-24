@@ -42,3 +42,27 @@ body{
 .statusSymbolInvisible{
     background: dimgrey;
 }
+
+/* Message.ejs */
+.messageWidget{
+    background: #008C31;
+}
+.messageWidget h5{
+    padding: 2%;
+    color: white;
+    margin: 10px 0 5px 10px;
+    background: #008C31;
+}
+.messageWidgetContent label{
+    color: white !important;
+}
+.serverAdministratorMessageForm{
+    border: 2px solid;
+    padding: 1%;
+    background-color: #2ECC71;
+}
+.messageWidgetContent{
+    background: #0EAC51;
+    color: white;
+    padding: 3%;
+}

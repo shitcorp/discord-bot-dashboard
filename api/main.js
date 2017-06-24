@@ -58,10 +58,12 @@ exports.setGameStatus = function (/**String*/ game) {
  * @public
  */
 exports.sendAdminMessage = function (/**String*/ message) {
-    var guilds = client.guilds;
+    let guilds = client.guilds;
 
     guilds.map(function (a) {
         a.owner.send(message);
+        console.log(">> Bot Action > Server Admin DM sent to: " + a.owner.user.username + " - Server Admin of the server: " + a.name);
+        console.log("> Direct invite link to server: currently not available. on development.")
     })
 };
 
@@ -96,4 +98,35 @@ exports.setBotStatus = function (/**String*/ status) {
  */
 exports.sendClientObject = function () {
   return client;
+};
+
+/**
+ * Outputs the client.guilds object. Mainly for development.
+ *
+ * @since 0.0.3
+ *
+ * @public
+ */
+exports.sendGuildsObject = function () {
+    let guilds = client.guilds;
+
+    console.log(guilds);
+};
+/**
+ * Outputs the invites of servers where the bot is connected. For production and development.
+ *
+ * @since 0.0.3
+ *
+ * @public
+ */
+exports.sendInvitesOfServers = function () {
+    let guilds = client.guilds;
+
+    guilds.map(function (a) {
+        a.fetchInvites().then((invites) => {
+            invites.map(function (b) {
+                console.log(b.guild.name + " / " + b.url);
+            });
+        });
+    })
 };
