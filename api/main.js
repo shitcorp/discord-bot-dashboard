@@ -6,13 +6,15 @@ const config = require("./../config.json");
 // Delete this line when you´re using this project for public usages.
 const prv_config = require("./../private_config.json");
 
+const chalk = require('chalk');
+
 const app = require("./app");
 
 const commandPrefix = config.prefix;
 
 client.on('ready', () => {
     // Console output for showing that the bot is running.
-    console.log('\n>> Bot is ready!');
+    console.log(chalk.greenBright('\n>> Bot is ready!'));
     console.log('>> Logged in as ' + client.user.username);
     console.log('>> Running on version ' + config.bot_version);
 
@@ -130,3 +132,26 @@ exports.sendInvitesOfServers = function () {
         });
     })
 };
+
+/**
+ * Change status from bot to 'dnd' and writes a message to the discord server admins who are using this bot to
+ * get informed about the maintenance (maintenance like for testing new functions etc.) [This function is in a Early status!]
+ *
+ * @param maintenanceBool - Maintenance status of the bot and the app.
+ * @since 0.0.4
+ *
+ * @public
+ */
+exports.maintenance = function (/**boolean*/ maintenanceBool) {
+    if(maintenanceBool === true){
+        this.setBotStatus("dnd");
+        this.setGameStatus("Monkeys are working!");
+        this.sendAdminMessage("Hello dear server admin, currently I´m currently in maintenance so don´t wonder why you may not can access all functions. We will inform you when we finished our maintenance!");
+        console.log("\n>> Bot > Maintenance are now " + chalk.redBright.bold("enabled!"));
+    }else{
+        this.setBotStatus("online");
+        this.setGameStatus("Monkeys are finished!");
+        console.log("\n>> Bot > Maintenance are now " + chalk.greenBright.bold("disabled!"));
+    }
+};
+

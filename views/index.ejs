@@ -14,7 +14,11 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
+            <% if(maintenanceStatus == false){ %>
             <span class="mdl-layout-title">Discord Bot Dashboard</span>
+            <% }else{ %>
+            <span class="mdl-layout-title">Discord Bot Dashboard <span class="maintenanceActive">Maintenance is active!</span></span>
+            <% } %>
             <div class="mdl-layout-spacer"></div>
             <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <a class="mdl-navigation__link" href="/">Home</a>
@@ -82,6 +86,14 @@
                                 <div class="statusSymbol statusSymbolInvisible"></div> Invisible
                             <% }%>
                         </span>
+                        <hr>
+                        <h4><b>Maintenance (Early status):</b></h4>
+                        <% if(maintenanceStatus == false){ %>
+                        <button id="enableButtonForMaintanance" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Activate Maintenance</button><br class="brMaintenance"><br class="brMaintenance">
+                        <a href="/activateMaintenance"><button id="maintenanceActivatingButton" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Confirming Maintenance</button></a>
+                        <% }else{ %>
+                        <a href="/deactivateMaintenance"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Deactivate Maintenance</button></a>
+                        <% } %>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--3-col">

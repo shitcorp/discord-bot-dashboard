@@ -1,9 +1,12 @@
-const configFileName = "./../config.json";
-const config = require(configFileName);
+const config = require("./../config.json");
 const express = require('express');
+const session = require('express-session');
 const bot = require("./main");
 const fs = require("fs");
 const bodyParser = require('body-parser');
+
+const chalk = require('chalk');
+const ctx = new chalk.constructor({level: 3});
 
 const app = express();
 
@@ -18,12 +21,13 @@ var exports = module.exports = {};
  * Check out and contribute to the project {@link https://goo.gl/DVJQem on GitHub}.
  *
  * @param client - Discord.js Client Object
- * @version 0.0.3
+ * @version 0.0.4
  * @public
  */
 exports.startApp = function (/**Object*/ client) {
 
-    // console.log(client)
+
+    let maintenanceStatus;
 
     app.set('view engine', 'ejs');
 
@@ -31,6 +35,9 @@ exports.startApp = function (/**Object*/ client) {
     app.use('/lib', express.static('lib', { redirect : false }));
     app.use('/styles', express.static('src', { redirect : false }));
     app.use('/scripts', express.static('src', { redirect : false }));
+    app.use('/src', express.static('src', { redirect : false }));
+
+    app.use(session({secret: 'ssshhhhh'}));
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
@@ -40,25 +47,88 @@ exports.startApp = function (/**Object*/ client) {
     // ---- GET
 
     app.get("/", function (req, res) {
-        res.render("index", {data: client});
+
+        // Checking if session variable is set. If, then it will set the status,
+        // if undefined it will set an new session variable. You will see this checking method in each get function.
+
+        if(req.session.maintenanceStatus){
+            maintenanceStatus = true;
+        }else if(req.session.maintenanceStatus === undefined){
+            req.session.maintenanceStatus = false;
+            maintenanceStatus = false;
+        }else{
+            maintenanceStatus = false;
+        }
+
+        res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
     app.get("/home", function (req, res) {
-        res.render("index", {data: client});
+        if(req.session.maintenanceStatus){
+            maintenanceStatus = true;
+        }else if(req.session.maintenanceStatus === undefined){
+            req.session.maintenanceStatus = false;
+            maintenanceStatus = false;
+        }else{
+            maintenanceStatus = false;
+        }
+        res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
     app.get("/dashboard", function (req, res) {
-        res.render("index", {data: client});
+        if(req.session.maintenanceStatus){
+            maintenanceStatus = true;
+        }else if(req.session.maintenanceStatus === undefined){
+            req.session.maintenanceStatus = false;
+            maintenanceStatus = false;
+        }else{
+            maintenanceStatus = false;
+        }
+        res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
     app.get("/messages", function (req, res) {
-        res.render("messages", {data: client});
+        if(req.session.maintenanceStatus){
+            maintenanceStatus = true;
+        }else if(req.session.maintenanceStatus === undefined){
+            req.session.maintenanceStatus = false;
+            maintenanceStatus = false;
+        }else{
+            maintenanceStatus = false;
+        }
+        res.render("messages", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
     app.get("/outputClient", function (req, res) {
         console.log(bot.sendClientObject());
 
-        res.redirect("/");
+        if(req.session.maintenanceStatus){
+            maintenanceStatus = true;
+        }else if(req.session.maintenanceStatus === undefined){
+            req.session.maintenanceStatus = false;
+            maintenanceStatus = false;
+        }else{
+            maintenanceStatus = false;
+        }
+        res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
+    });
+
+    app.get("/activateMaintenance", function (req, res) {
+        bot.maintenance(true);
+        // Set the session variable to the maintenance status. (here for example to true)
+        req.session.maintenanceStatus = true;
+        maintenanceStatus = true;
+
+        res.redirect("/dashboard");
+    });
+
+    app.get("/deactivateMaintenance", function (req, res) {
+        bot.maintenance(false);
+
+        req.session.maintenanceStatus = false;
+        maintenanceStatus = false;
+
+        res.redirect("/dashboard");
     });
 
     /* This GET route is for development usage only.
@@ -113,7 +183,14 @@ exports.startApp = function (/**Object*/ client) {
         res.status(404).render("404");
     });
 
+    // You may not heard about the package 'chalk'..
+    // It is a package for coloring console output. Colors in outputs are important to give a output more attention when its needed.
 
-    app.listen(config.LISTENING_PORT);
+    // You can look inside the repository of chalk to understand how it works and how to use it.
+    // Repository: https://goo.gl/qfQ4Pv
+
+    app.listen(config.LISTENING_PORT, function () {
+        console.log(chalk.cyanBright('>> Dashboard is online and running on port ' + config.LISTENING_PORT + '!\n'));
+    });
 
 };

@@ -1,6 +1,12 @@
 body{
     font-family: "Roboto", sans-serif;
 }
+.maintenanceActive{
+    background: #E74C3C;
+    padding: 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
 .botWidget{
     width: 30%;
     padding: 1% 1%;

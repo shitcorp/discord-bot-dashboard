@@ -1,6 +1,6 @@
 {
   "LISTENING_PORT": 3000,
-  "bot_version" : "0.0.1",
+  "bot_version" : "0.0.4",
   "bot_name" : "On Development",
   "bot_game" : "working",
   "bot_status" : "online",
