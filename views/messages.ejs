@@ -15,9 +15,9 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <% if(maintenanceStatus == false){ %>
-            <span class="mdl-layout-title">Discord Bot Dashboard</span>
+            <span class="mdl-layout-title">Discord Bot Dashboard &raquo; Messages</span>
             <% }else{ %>
-            <span class="mdl-layout-title">Discord Bot Dashboard <span class="maintenanceActive">Maintenance is active!</span></span>
+            <span class="mdl-layout-title">Discord Bot Dashboard &raquo; Messages <span class="maintenanceActive">Maintenance is active!</span></span>
             <% } %>
             <div class="mdl-layout-spacer"></div>
             <nav class="mdl-navigation mdl-layout--large-screen-only">
@@ -45,7 +45,7 @@
                         <div class="messageWidgetContent">
                             <form class="serverAdministratorMessageForm" method="post" action="/send-serveradmin-dm-message">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-                                    <b>Write here your message to the server admins who have the bot on their server. (NOTE: Use this function only for important issues or for own purposes!)</b>
+                                    <b>Write here your message to the server admins who have the bot on their server. (<i>NOTE:</i> Use this function only for important issues (like changelogs, maintenance notifications and some other critical information) or for own purposes!)</b>
                                     <hr color="white">
                                     <textarea class="mdl-textfield__input" name="message" rows="4" id="serveradmin_message" placeholder="Write here your message..."></textarea>
                                 </div>

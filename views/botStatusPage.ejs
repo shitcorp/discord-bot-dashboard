@@ -27,14 +27,14 @@
                         <% if(data.user.localPresence.status === "online"){ %>
                         <div class="statusPage_botStatus botStatusOnline"> All systems are working! </div>
                         <% }else if(data.user.localPresence.status === "idle"){ %>
-                        <div class="statusPage_botStatus botStatusIdle"> Bot is currently in idle mode (looks that everything working anyway) </div>
+                        <div class="statusPage_botStatus botStatusOnline"> All systems are working! </div>
                         <% }else if(data.user.localPresence.status === "dnd"){ %>
-                        <div class="statusPage_botStatus botStatusDND"> Bot is currently under maintenance</div>
+                        <div class="statusPage_botStatus botStatusDND"> Bot is currently under maintenance (this message will be removed and only be shown where there is really a maintenance, normal change to dnd will be shown too)</div>
                         <% }else if(data.user.localPresence.status === "invisible"){ %>
                         <div class="statusPage_botStatus botStatusInvisible"> Invisible (Bot is invisible in the member list)</div>
                         <% }%>
                     <div class="statusPageSection statusPage_botInformation">
-                        <h4>Bot: <b><%= data.user.username %></b></h4>
+                        <h4><img src="<%= data.user.avatarURL %>" width="64px" class="statusPageBotInforamtion_avatar"> Bot: <b><%= data.user.username %></b></h4>
                         <h5><span class="bot_status"><b>Status:</b>
                             <% if(data.user.localPresence.status === "online"){ %>
                             <div class="statusSymbolStatusPage statusSymbolOnline"></div> Online
@@ -47,6 +47,7 @@
                             <% }%>
                         </span></h5>
                         <h5><b>Game:</b> <%= data.user.localPresence.game.name %></h5>
+                        <h5><b>Up since:</b><br> <%= data.readyAt %></h5>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--3-col">

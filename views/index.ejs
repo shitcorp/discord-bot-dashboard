@@ -15,9 +15,9 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <% if(maintenanceStatus == false){ %>
-            <span class="mdl-layout-title">Discord Bot Dashboard</span>
+            <span class="mdl-layout-title">Discord Bot Dashboard &raquo; Dashboard</span>
             <% }else{ %>
-            <span class="mdl-layout-title">Discord Bot Dashboard <span class="maintenanceActive">Maintenance is active!</span></span>
+            <span class="mdl-layout-title">Discord Bot Dashboard &raquo; Dashboard <span class="maintenanceActive">Maintenance is active!</span></span>
             <% } %>
             <div class="mdl-layout-spacer"></div>
             <nav class="mdl-navigation mdl-layout--large-screen-only">
@@ -68,8 +68,8 @@
                         </form>
                         <hr>
                         <b>Development:</b><br><br>
-                        <button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Output Client Object</button>
-                        <button id="testNewFunctionBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Testing a new function</button>
+                        <a href="/outputClient"><button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Output Client Object</button></a>
+                        <a href="/testingNewFunction"><button id="testNewFunctionBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Testing a new function</button></a>
                     </div>
                     <div class="botWidget botWidget_botStatus">
                         <h4><b>Bot Status</b></h4>

@@ -114,8 +114,6 @@ exports.startApp = function (/**Object*/ client) {
     });
 
     app.get("/botStatus", function (req, res) {
-        console.log(bot.sendClientObject());
-
         if(req.session.maintenanceStatus){
             maintenanceStatus = true;
         }else if(req.session.maintenanceStatus === undefined){
