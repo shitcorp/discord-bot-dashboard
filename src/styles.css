@@ -72,3 +72,44 @@ body{
     color: white;
     padding: 3%;
 }
+
+/* ===== Status Page (public) ===== */
+.statusPageSection{
+    padding: 1%;
+    border: 1px solid;
+    width: 50%;
+    background: #f9f9f9;
+}
+.statusSymbolStatusPage{
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+    float: left;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.statusPage_botStatus{
+    padding: 2%;
+    margin-bottom: 1%;
+    font-weight: bold;
+    color: white;
+    font-size: large;
+}
+
+.botStatusOnline{
+    background: limegreen;
+    border-left: 5px solid green;
+}
+.botStatusIdle{
+    background: #F39C12;
+    border-left: 5px solid #D87400;
+}
+.botStatusDND{
+    background: #E74C3C;
+    border-left: 5px solid #C0392B;
+}
+.botStatusInvisible{
+    background: dimgrey;
+    border-left: 5px solid #3d3d3d;
+}
