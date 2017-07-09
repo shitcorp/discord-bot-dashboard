@@ -64,4 +64,6 @@ For more information: _Read the comments above the client.login function in main
 - nodemon
 - discord.js
 - body-parser
+- chalk
+- express-session
 ```
