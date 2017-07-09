@@ -111,7 +111,9 @@ exports.sendClientObject = function () {
  */
 exports.sendGuildsObject = function () {
     let guilds = client.guilds;
-
+    // guilds.map(function (a) {
+    //     console.log(a.name);
+    // })
     console.log(guilds);
 };
 /**

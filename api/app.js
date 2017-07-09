@@ -110,7 +110,21 @@ exports.startApp = function (/**Object*/ client) {
         }else{
             maintenanceStatus = false;
         }
-        res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
+        res.redirect("/dashboard");
+    });
+
+    app.get("/outputGuilds", function (req, res) {
+        console.log(bot.sendGuildsObject());
+
+        if(req.session.maintenanceStatus){
+            maintenanceStatus = true;
+        }else if(req.session.maintenanceStatus === undefined){
+            req.session.maintenanceStatus = false;
+            maintenanceStatus = false;
+        }else{
+            maintenanceStatus = false;
+        }
+        res.redirect("/dashboard");
     });
 
     app.get("/botStatus", function (req, res) {

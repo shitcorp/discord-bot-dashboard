@@ -33,6 +33,16 @@
                         <% }else if(data.user.localPresence.status === "invisible"){ %>
                         <div class="statusPage_botStatus botStatusInvisible"> Invisible (Bot is invisible in the member list)</div>
                         <% }%>
+                    <div class="statusPageSection statusPage_botGuildsInformation">
+                        <h4><b>Bot in online in this guilds:</b></h4>
+                        <%  let guilds = data.guilds;
+                        guilds.map(function (a) {
+                        %>
+                        <p>&raquo; <b><%= a.name %></b></p>
+                        <%
+                        })
+                        %>
+                    </div>
                     <div class="statusPageSection statusPage_botInformation">
                         <h4><img src="<%= data.user.avatarURL %>" width="64px" class="statusPageBotInforamtion_avatar"> Bot: <b><%= data.user.username %></b></h4>
                         <h5><span class="bot_status"><b>Status:</b>

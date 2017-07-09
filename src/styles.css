@@ -117,3 +117,8 @@ body{
     border-radius: 400px;
     box-shadow: 2px 2px 4px 2px rgba(0,0,0,.2);
 }
+
+.statusPage_botGuildsInformation{
+    float: right;
+    width: 44%;
+}
