@@ -113,6 +113,32 @@ exports.startApp = function (/**Object*/ client) {
         res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
+    app.get("/botStatus", function (req, res) {
+        console.log(bot.sendClientObject());
+
+        if(req.session.maintenanceStatus){
+            maintenanceStatus = true;
+        }else if(req.session.maintenanceStatus === undefined){
+            req.session.maintenanceStatus = false;
+            maintenanceStatus = false;
+        }else{
+            maintenanceStatus = false;
+        }
+        res.render("botStatus", {data: client, maintenanceStatus: maintenanceStatus});
+    });
+
+    app.get("/status", function (req, res) {
+        if(req.session.maintenanceStatus){
+            maintenanceStatus = true;
+        }else if(req.session.maintenanceStatus === undefined){
+            req.session.maintenanceStatus = false;
+            maintenanceStatus = false;
+        }else{
+            maintenanceStatus = false;
+        }
+        res.render("botStatusPage", {data: client, maintenanceStatus: maintenanceStatus});
+    });
+
     app.get("/activateMaintenance", function (req, res) {
         bot.maintenance(true);
         // Set the session variable to the maintenance status. (here for example to true)
