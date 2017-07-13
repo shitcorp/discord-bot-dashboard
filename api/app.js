@@ -21,7 +21,7 @@ var exports = module.exports = {};
  * Check out and contribute to the project {@link https://goo.gl/DVJQem on GitHub}.
  *
  * @param client - Discord.js Client Object
- * @version 0.0.4
+ * @version 0.0.5
  * @public
  */
 exports.startApp = function (/**Object*/ client) {
@@ -30,7 +30,7 @@ exports.startApp = function (/**Object*/ client) {
     let maintenanceStatus;
 
     app.set('view engine', 'ejs');
-    
+
     app.use('/lib', express.static('lib', { redirect : false }));
     app.use('/styles', express.static('src', { redirect : false }));
     app.use('/scripts', express.static('src', { redirect : false }));
@@ -230,4 +230,72 @@ exports.startApp = function (/**Object*/ client) {
         console.log(chalk.cyanBright('>> Dashboard is online and running on port ' + config.LISTENING_PORT + '!\n'));
     });
 
+};
+
+/**
+ * This function sends a notification to the discord bot dashboard user
+ * to get the information that a user sent a message to him.
+ * This can be disabled in a future update.
+ *
+ * @todo Give the possibility to disable DM notifications.
+ * @param user - Username from message.author which sent the DM
+ * @param content - Content of the DM.
+ * @param timestamp - Timestamp when the message was sent.
+ * @since 0.0.5
+ * @public
+ */
+exports.dmNotification = function (/**String*/user,/**String*/content,/**Integer*/timestamp) {
+    console.log(chalk.yellowBright('>> Bot: You´ve got a DM by ' +  user + " with following content:"));
+    console.log(chalk.yellow(content));
+
+    let date = new Date(timestamp);
+    let day = this.convertingGetDay(date.getDay());
+
+    // To understand converting timestamps to a normal known date
+    // look at this question in StackOverflow -> https://goo.gl/Lb2Nxa
+    // MDN Documentation about Date -> https://goo.gl/rT25GW
+
+    // Minutes part from the timestamp
+    let minutes = "0" + date.getMinutes();
+    // Seconds part from the timestamp
+    let seconds = "0" + date.getSeconds();
+
+    console.log(chalk.greenBright('Message sent at ' + day + ", " + date.getMonth() +  "/" + date.getDate() + "/" + date.getFullYear() + ", " + date.getHours() + ':' + minutes.substr(-2) + ":" + seconds.substr(-2) + ' \n'));
+};
+
+/**
+ * Converting the integer from Date.getDay() to a string which contains the day.
+ *
+ * @param getDay - Date.getDay integer
+ * @since 0.0.5
+ * @private
+ */
+exports.convertingGetDay = function (getDay) {
+    let day;
+    switch (getDay){
+        case 0:
+            day = "Sunday";
+            break;
+        case 1:
+            day = "Monday";
+            break;
+        case 2:
+            day = "Tuesday";
+            break;
+        case 3:
+            day = "Wednesday";
+            break;
+        case 4:
+            day = "Thursday";
+            break;
+        case 5:
+            day = "Friday";
+            break;
+        case 6:
+            day = "Saturday";
+            break;
+        default:
+            day = "A problem occurred when trying to convert the Date.getDay() integer to a string \n";
+    }
+    return day;
 };

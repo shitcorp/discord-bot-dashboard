@@ -3,8 +3,10 @@ var exports = module.exports = {};
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("../config.json");
+const botcommands = require("./bot-commands.json");
 // Delete this line when you´re using this project for public usages.
 const prv_config = require("../private_config.json");
+
 
 const chalk = require('chalk');
 
@@ -12,6 +14,7 @@ const app = require("./../api/app");
 
 const commandPrefix = config.prefix;
 
+// Executed when the bot is ready!
 client.on('ready', () => {
     // Console output for showing that the bot is running.
     console.log(chalk.greenBright('\n>> Bot is ready!'));
@@ -25,6 +28,23 @@ client.on('ready', () => {
 
     // This is starting the app.
     app.startApp(client);
+});
+
+// If your code editor says that () => is an error, change it to function()
+// Executed when message event
+client.on('message', (message) => {
+    let commands = botcommands;
+    if(message.author.bot) return;
+
+    let sender = message.author;
+    let senderUsername = sender.username;
+    let senderID = sender.id;
+    let content = message.content;
+
+    if(message.channel.type === "dm"){
+        let time = Date.now();
+        app.dmNotification(senderUsername, content, time);
+    }
 });
 
 // Change it to config.token when you want to use this project for public usages.
