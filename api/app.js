@@ -1,7 +1,7 @@
 const config = require("./../config.json");
 const express = require('express');
 const session = require('express-session');
-const bot = require("./main");
+const bot = require("./../discord-bot-sourcefiles/main");
 const fs = require("fs");
 const bodyParser = require('body-parser');
 
@@ -30,8 +30,7 @@ exports.startApp = function (/**Object*/ client) {
     let maintenanceStatus;
 
     app.set('view engine', 'ejs');
-
-    app.use('/api', express.static('api', { redirect : false }));
+    
     app.use('/lib', express.static('lib', { redirect : false }));
     app.use('/styles', express.static('src', { redirect : false }));
     app.use('/scripts', express.static('src', { redirect : false }));

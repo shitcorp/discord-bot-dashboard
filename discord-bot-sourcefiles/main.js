@@ -2,13 +2,13 @@ var exports = module.exports = {};
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const config = require("./../config.json");
+const config = require("../config.json");
 // Delete this line when you´re using this project for public usages.
-const prv_config = require("./../private_config.json");
+const prv_config = require("../private_config.json");
 
 const chalk = require('chalk');
 
-const app = require("./app");
+const app = require("./../api/app");
 
 const commandPrefix = config.prefix;
 
