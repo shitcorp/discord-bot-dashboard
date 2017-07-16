@@ -1,4 +1,5 @@
 const config = require("./../config.json");
+const botData = require("./../botData.json");
 const express = require('express');
 const session = require('express-session');
 const bot = require("./../discord-bot-sourcefiles/main");
@@ -26,8 +27,7 @@ var exports = module.exports = {};
  */
 exports.startApp = function (/**Object*/ client) {
 
-
-    let maintenanceStatus;
+    let maintenanceStatus = botData.maintenance;
 
     app.set('view engine', 'ejs');
 
@@ -46,125 +46,48 @@ exports.startApp = function (/**Object*/ client) {
     // ---- GET
 
     app.get("/", function (req, res) {
-
-        // Checking if session variable is set. If, then it will set the status,
-        // if undefined it will set an new session variable. You will see this checking method in each get function.
-
-        if(req.session.maintenanceStatus){
-            maintenanceStatus = true;
-        }else if(req.session.maintenanceStatus === undefined){
-            req.session.maintenanceStatus = false;
-            maintenanceStatus = false;
-        }else{
-            maintenanceStatus = false;
-        }
-
         res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
     app.get("/home", function (req, res) {
-        if(req.session.maintenanceStatus){
-            maintenanceStatus = true;
-        }else if(req.session.maintenanceStatus === undefined){
-            req.session.maintenanceStatus = false;
-            maintenanceStatus = false;
-        }else{
-            maintenanceStatus = false;
-        }
         res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
     app.get("/dashboard", function (req, res) {
-        if(req.session.maintenanceStatus){
-            maintenanceStatus = true;
-        }else if(req.session.maintenanceStatus === undefined){
-            req.session.maintenanceStatus = false;
-            maintenanceStatus = false;
-        }else{
-            maintenanceStatus = false;
-        }
         res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
     app.get("/messages", function (req, res) {
-        if(req.session.maintenanceStatus){
-            maintenanceStatus = true;
-        }else if(req.session.maintenanceStatus === undefined){
-            req.session.maintenanceStatus = false;
-            maintenanceStatus = false;
-        }else{
-            maintenanceStatus = false;
-        }
         res.render("messages", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
     app.get("/outputClient", function (req, res) {
         console.log(bot.sendClientObject());
-
-        if(req.session.maintenanceStatus){
-            maintenanceStatus = true;
-        }else if(req.session.maintenanceStatus === undefined){
-            req.session.maintenanceStatus = false;
-            maintenanceStatus = false;
-        }else{
-            maintenanceStatus = false;
-        }
         res.redirect("/dashboard");
     });
 
     app.get("/outputGuilds", function (req, res) {
         console.log(bot.sendGuildsObject());
-
-        if(req.session.maintenanceStatus){
-            maintenanceStatus = true;
-        }else if(req.session.maintenanceStatus === undefined){
-            req.session.maintenanceStatus = false;
-            maintenanceStatus = false;
-        }else{
-            maintenanceStatus = false;
-        }
         res.redirect("/dashboard");
     });
 
     app.get("/botStatus", function (req, res) {
-        if(req.session.maintenanceStatus){
-            maintenanceStatus = true;
-        }else if(req.session.maintenanceStatus === undefined){
-            req.session.maintenanceStatus = false;
-            maintenanceStatus = false;
-        }else{
-            maintenanceStatus = false;
-        }
         res.render("botStatus", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
     app.get("/status", function (req, res) {
-        if(req.session.maintenanceStatus){
-            maintenanceStatus = true;
-        }else if(req.session.maintenanceStatus === undefined){
-            req.session.maintenanceStatus = false;
-            maintenanceStatus = false;
-        }else{
-            maintenanceStatus = false;
-        }
-        res.render("botStatusPage", {data: client, maintenanceStatus: maintenanceStatus});
+        res.render("botStatusPage", {data: client, botData: botData});
     });
 
     app.get("/activateMaintenance", function (req, res) {
         bot.maintenance(true);
-        // Set the session variable to the maintenance status. (here for example to true)
-        req.session.maintenanceStatus = true;
         maintenanceStatus = true;
-
         res.redirect("/dashboard");
     });
 
     app.get("/deactivateMaintenance", function (req, res) {
         bot.maintenance(false);
-
-        req.session.maintenanceStatus = false;
         maintenanceStatus = false;
-
         res.redirect("/dashboard");
     });
 
@@ -185,11 +108,8 @@ exports.startApp = function (/**Object*/ client) {
 
     app.post("/change-game-status" ,function (req, res) {
 
-        // For writing it into the config file.
-        config.bot_game = req.body.gameStatus;
-
         // Using the exports function from the required "./main" module to set the game
-        bot.setGameStatus(req.body.gameStatus);
+        bot.setGameStatus(req.body.gameStatus, false);
 
         // TODO: Updating the config.json with the new bot_game value to get the new game value when restarting the bot.
 
@@ -199,7 +119,7 @@ exports.startApp = function (/**Object*/ client) {
 
     app.post("/change-status", function (req,res) {
 
-        bot.setBotStatus(req.body.status);
+        bot.setBotStatus(req.body.status, false);
 
         res.redirect("/");
         console.log("\n>> Redirecting to /");

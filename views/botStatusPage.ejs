@@ -24,12 +24,14 @@
                     <p><i>Currently I´m looking for a something to provide a non-database (no MySQL and no MongoDB storage system) solution to save data into to be able to giving other users data about specific things.
                             Now, I´m giving data about the bot status and some other details that you see what I´ve planned for later... (maybe it will become later a public analytics page but you can decide if this will be public or not)</i></p>
                     <hr>
-                        <% if(data.user.localPresence.status === "online"){ %>
+                        <% if(botData.maintenance === true){ %>
+                        <div class="statusPage_botStatus botStatusDND"> Currently the bot is under maintenance!</div>
+                        <% }else if(data.user.localPresence.status === "online"){ %>
                         <div class="statusPage_botStatus botStatusOnline"> All systems are working! </div>
                         <% }else if(data.user.localPresence.status === "idle"){ %>
                         <div class="statusPage_botStatus botStatusOnline"> All systems are working! </div>
                         <% }else if(data.user.localPresence.status === "dnd"){ %>
-                        <div class="statusPage_botStatus botStatusDND"> Bot is currently under maintenance (this message will be removed and only be shown where there is really a maintenance, normal change to dnd will be shown too)</div>
+                        <div class="statusPage_botStatus botStatusOnline"> All systems are working!</div>
                         <% }else if(data.user.localPresence.status === "invisible"){ %>
                         <div class="statusPage_botStatus botStatusInvisible"> Invisible (Bot is invisible in the member list)</div>
                         <% }%>
@@ -58,6 +60,7 @@
                         </span></h5>
                         <h5><b>Game:</b> <%= data.user.localPresence.game.name %></h5>
                         <h5><b>Up since:</b><br> <%= data.readyAt %></h5>
+                        <h5><b>Version:</b> <%= botData.bot_version %></h5>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--3-col">

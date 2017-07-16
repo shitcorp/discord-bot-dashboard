@@ -1,9 +1,5 @@
 {
   "LISTENING_PORT": 3000,
-  "bot_version" : "0.0.5",
-  "bot_name" : "On Development",
-  "bot_game" : "working",
-  "bot_status" : "online",
   "prefix": "!",
   "token": "BOT_TOKEN"
 }
