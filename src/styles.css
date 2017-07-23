@@ -50,14 +50,10 @@ body{
 }
 
 /* Message.ejs */
-.messageWidget{
-    background: #008C31;
-}
 .messageWidget h5{
     padding: 2%;
     color: white;
     margin: 10px 0 5px 10px;
-    background: #008C31;
 }
 .messageWidgetContent label{
     color: white !important;
@@ -68,9 +64,28 @@ body{
     background-color: #2ECC71;
 }
 .messageWidgetContent{
+    padding: 3%;
+}
+
+.respondToDM{
+    background: #004790;
+}
+.respondToDM h5{
+    background: #004790;
+}
+.respondToDM .messageWidgetContent{
+    background: #0057A0;
+}
+
+.sendAdminMessage{
+    background: #008C31;
+}
+.sendAdminMessage h5{
+    background: #008C31;
+}
+.sendAdminMessage .messageWidgetContent{
     background: #0EAC51;
     color: white;
-    padding: 3%;
 }
 
 /* ===== Status Page (public) ===== */
