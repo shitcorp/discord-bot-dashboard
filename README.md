@@ -15,6 +15,8 @@ In this project I develop a Dashboard Tool for developers which are using Discor
 
 You can use this for projects where you are releasing new bots for public and want to manage them, for example, to give the discord server administrators a status update in the game status like when you´re having a maintenance.
 
+Install all dependencies with ``npm install``!
+
 To run this project, run the command `npm start`.
 It will automatically listening to the _port 3000_.
 
