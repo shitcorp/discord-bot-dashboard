@@ -46,15 +46,15 @@ exports.startApp = function (/**Object*/ client) {
     // ---- GET
 
     app.get("/", function (req, res) {
-        res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
+        res.render("index", {data: client, maintenanceStatus: maintenanceStatus, botData: botData});
     });
 
     app.get("/home", function (req, res) {
-        res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
+        res.render("index", {data: client, maintenanceStatus: maintenanceStatus, botData: botData});
     });
 
     app.get("/dashboard", function (req, res) {
-        res.render("index", {data: client, maintenanceStatus: maintenanceStatus});
+        res.render("index", {data: client, maintenanceStatus: maintenanceStatus, botData: botData});
     });
 
     app.get("/messages", function (req, res) {

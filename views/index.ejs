@@ -37,12 +37,12 @@
         <!-- page content -->
         <div class="page-content">
             <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--3-col"></div>
-                <div class="mdl-cell mdl-cell--6-col">
+                <div class="mdl-cell mdl-cell--2-col"></div>
+                <div class="mdl-cell mdl-cell--8-col">
                     <h1><b>Home</b></h1>
                     <hr>
                     <div class="botFunctionWidget botFunctionWidget_quickFunctions">
-                        <b>Game Status:</b>
+                        <h4><b>Game Status:</b></h4>
                         <form method="post" class="changeGame" action="/change-game-status">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input " type="text" name="gameStatus" id="gameChangeInput">
@@ -53,7 +53,7 @@
                             </button>
                         </form>
                         <hr>
-                        <b>Change Status:</b>
+                        <h4><b>Change Status:</b></h4>
                         <form method="post" action="/change-status">
                             <select name="status" class="botStatusSelection">
                                 <option value="<%= data.user.localPresence.status %>">Current status: <%= data.user.localPresence.status %></option>
@@ -67,7 +67,7 @@
                             </button>
                         </form>
                         <hr>
-                        <b>Development:</b><br><br>
+                        <h4><b>Development:</b></h4>
                         <a href="/outputClient"><button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Output Client</button></a>
                         <a href="/outputGuilds"><button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Output Guilds</button></a>
                         <a href="/testingNewFunction"><button id="testNewFunctionBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Testing a new function</button></a>
@@ -89,16 +89,27 @@
                             <% }%>
                         </span>
                         <hr>
-                        <h4><b>Maintenance (Early status):</b></h4>
+                        <h4><b>Maintenance:</b></h4>
+                        <p class="warning"><b>Warning! &raquo; </b>This function is in a early status!</p>
                         <% if(maintenanceStatus == false){ %>
-                        <button id="enableButtonForMaintanance" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Activate Maintenance</button><br class="brMaintenance"><br class="brMaintenance">
-                        <a href="/activateMaintenance"><button id="maintenanceActivatingButton" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Confirming Maintenance</button></a>
+                        <button id="enableButtonForMaintanance" style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Activate Maintenance</button><br class="brMaintenance"><br class="brMaintenance">
+                        <a href="/activateMaintenance"><button style="width: 100%;" id="maintenanceActivatingButton" disabled class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Confirming Maintenance</button></a>
                         <% }else{ %>
-                        <a href="/deactivateMaintenance"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Deactivate Maintenance</button></a>
+                        <a href="/deactivateMaintenance"><button style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Deactivate Maintenance</button></a>
                         <% } %>
                     </div>
+                    <br>
+                    <div class="botWidget botVersionWidget">
+                        <h4><b>Version: <%= botData.bot_version %></b></h4>
+                        <hr>
+                        <p><b>TODO List:</b></p>
+                        <small>// TODO: Add function to change bot_version</small><br>
+                        <small>// TODO: Adding ToDO List for developers (new page)</small><br>
+                        <small>// TODO: Improving Development Section</small><br>
+                        <small>// TODO: Adding Status Log for the status page</small><br>
+                    </div>
                 </div>
-                <div class="mdl-cell mdl-cell--3-col">
+                <div class="mdl-cell mdl-cell--2-col">
                 </div>
             </div>
         </div>
