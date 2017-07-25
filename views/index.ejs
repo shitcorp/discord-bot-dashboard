@@ -23,6 +23,8 @@
             <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <a class="mdl-navigation__link" href="/">Home</a>
                 <a class="mdl-navigation__link" href="/messages">Messages</a>
+                <a class="mdl-navigation__link" href="/log">Bot Log</a>
+                <a class="mdl-navigation__link" href="/development"></a>
                 <a class="mdl-navigation__link" href="/botStatus">Status</a>
             </nav>
         </div>
@@ -30,7 +32,11 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Dashboard</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Home</a>
+            <a class="mdl-navigation__link" href="/">Home</a>
+            <a class="mdl-navigation__link" href="/messages">Messages</a>
+            <a class="mdl-navigation__link" href="/log">Bot Log</a>
+            <a class="mdl-navigation__link" href="/development"></a>
+            <a class="mdl-navigation__link" href="/botStatus">Status</a>
         </nav>
     </div>
     <main class="mdl-layout__content">
@@ -42,7 +48,7 @@
                     <h1><b>Home</b></h1>
                     <hr>
                     <div class="botFunctionWidget botFunctionWidget_quickFunctions">
-                        <h4><b>Game Status:</b></h4>
+                        <h4><b>Game Status:</b><br><small>Change here the game from your bot.</small></h4>
                         <form method="post" class="changeGame" action="/change-game-status">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input " type="text" name="gameStatus" id="gameChangeInput">
@@ -53,7 +59,7 @@
                             </button>
                         </form>
                         <hr>
-                        <h4><b>Change Status:</b></h4>
+                        <h4><b>Change Status:</b><br><small>Change status of your bot.</small></h4>
                         <form method="post" action="/change-status">
                             <select name="status" class="botStatusSelection">
                                 <option value="<%= data.user.localPresence.status %>">Current status: <%= data.user.localPresence.status %></option>
@@ -67,9 +73,9 @@
                             </button>
                         </form>
                         <hr>
-                        <h4><b>Development:</b></h4>
-                        <a href="/outputClient"><button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Output Client</button></a>
-                        <a href="/outputGuilds"><button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Output Guilds</button></a>
+                        <h4><b>Development:</b><br><small>Here you can add some test features for your own project. I added some functions which may be helpful for you!</small></h4>
+                        <a href="/outputClient"><button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Output Client Object</button></a>
+                        <a href="/outputGuilds"><button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Output Guilds Object</button></a>
                         <a href="/testingNewFunction"><button id="testNewFunctionBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Testing a new function</button></a>
                     </div>
                     <div class="botWidget botWidget_botStatus">
@@ -107,6 +113,7 @@
                         <small>// TODO: Adding ToDO List for developers (new page)</small><br>
                         <small>// TODO: Improving Development Section</small><br>
                         <small>// TODO: Adding Status Log for the status page</small><br>
+                        <small>// TODO: Adding Log In</small>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--2-col">
