@@ -45,47 +45,51 @@ exports.startApp = function (/**Object*/ client) {
 
     // ---- GET
 
-    app.get("/", function (req, res) {
+    app.get("/", (req, res) => {
         res.render("index", {data: client, maintenanceStatus: maintenanceStatus, botData: botData});
     });
 
-    app.get("/home", function (req, res) {
+    app.get("/home", (req, res) => {
         res.render("index", {data: client, maintenanceStatus: maintenanceStatus, botData: botData});
     });
 
-    app.get("/dashboard", function (req, res) {
+    app.get("/dashboard", (req, res) => {
         res.render("index", {data: client, maintenanceStatus: maintenanceStatus, botData: botData});
     });
 
-    app.get("/messages", function (req, res) {
+    app.get("/messages", (req, res) => {
         res.render("messages", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
-    app.get("/outputClient", function (req, res) {
+    app.get("/outputClient", (req, res) => {
         console.log(bot.sendClientObject());
         res.redirect("/dashboard");
     });
 
-    app.get("/outputGuilds", function (req, res) {
+    app.get("/outputGuilds", (req, res) => {
         console.log(bot.sendGuildsObject());
         res.redirect("/dashboard");
     });
 
-    app.get("/botStatus", function (req, res) {
+    app.get("/log", (req, res) => {
+
+    });
+
+    app.get("/botStatus", (req, res) => {
         res.render("botStatus", {data: client, maintenanceStatus: maintenanceStatus});
     });
 
-    app.get("/status", function (req, res) {
+    app.get("/status", (req, res) => {
         res.render("botStatusPage", {data: client, botData: botData});
     });
 
-    app.get("/activateMaintenance", function (req, res) {
+    app.get("/activateMaintenance", (req, res) => {
         bot.maintenance(true);
         maintenanceStatus = true;
         res.redirect("/dashboard");
     });
 
-    app.get("/deactivateMaintenance", function (req, res) {
+    app.get("/deactivateMaintenance", (req, res) => {
         bot.maintenance(false);
         maintenanceStatus = false;
         res.redirect("/dashboard");
@@ -95,7 +99,7 @@ exports.startApp = function (/**Object*/ client) {
      * With this route, you can test new functions for your fork
      * when you want to make a pull request and want to check if this function you´ve made works.
      */
-    app.get("/testingNewFunction", function (req, res) {
+    app.get("/testingNewFunction", (req, res) => {
 
         // Here you´re writing the new function or calling a new function.
         bot.sendInvitesOfServers();
@@ -106,7 +110,7 @@ exports.startApp = function (/**Object*/ client) {
 
     // ---- POST
 
-    app.post("/change-game-status" ,function (req, res) {
+    app.post("/change-game-status" ,(req, res) => {
 
         // Using the exports function from the required "./main" module to set the game
         bot.setGameStatus(req.body.gameStatus, false);
@@ -117,7 +121,7 @@ exports.startApp = function (/**Object*/ client) {
         console.log("\n>> Redirecting to /");
     });
 
-    app.post("/change-status", function (req,res) {
+    app.post("/change-status", (req, res) => {
 
         bot.setBotStatus(req.body.status, false);
 
@@ -125,7 +129,7 @@ exports.startApp = function (/**Object*/ client) {
         console.log("\n>> Redirecting to /");
     });
 
-    app.post("/send-serveradmin-dm-message", function (req,res) {
+    app.post("/send-serveradmin-dm-message", (req, res) => {
 
         bot.sendAdminMessage(req.body.message);
 
