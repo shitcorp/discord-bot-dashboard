@@ -166,3 +166,21 @@ body{
     float: right;
     width: 44%;
 }
+
+/* ===== Log Page ===== */
+.logContainer{
+    background: #d8dfe3;
+    padding: 2%;
+}
+.logContainer ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.logContainer ul li{
+    padding: 1%;
+    border-radius: 0 4px 4px 0;
+    background: #BDC3C7;
+    margin-bottom: 5px;
+    font-size: 16px;
+}

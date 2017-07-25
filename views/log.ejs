@@ -47,6 +47,63 @@
                 <div class="mdl-cell mdl-cell--8-col">
                     <h1><b>Bot Log</b></h1>
                     <hr>
+                    <div class="logContainer">
+                        <ul>
+                            <% log.forEach((log) => {%>
+                                <li>
+                                    <%
+
+                                        let convertingGetDay = function (getDay) {
+                                            let day;
+                                            switch (getDay){
+                                                case 0:
+                                                    day = "Sunday";
+                                                    break;
+                                                case 1:
+                                                    day = "Monday";
+                                                    break;
+                                                case 2:
+                                                    day = "Tuesday";
+                                                    break;
+                                                case 3:
+                                                    day = "Wednesday";
+                                                    break;
+                                                case 4:
+                                                    day = "Thursday";
+                                                    break;
+                                                case 5:
+                                                    day = "Friday";
+                                                    break;
+                                                case 6:
+                                                    day = "Saturday";
+                                                    break;
+                                                default:
+                                                    day = "A problem occurred when trying to convert the Date.getDay() integer to a string \n";
+                                            }
+                                            return day;
+                                        };
+
+                                        let date = new Date(log.log_date);
+                                        let day = convertingGetDay(date.getDay());
+
+                                        // To understand converting timestamps to a normal known date
+                                        // look at this question in StackOverflow -> https://goo.gl/Lb2Nxa
+                                        // MDN Documentation about Date -> https://goo.gl/rT25GW
+
+                                        // Minutes part from the timestamp
+                                        let minutes = "0" + date.getMinutes();
+                                        // Seconds part from the timestamp
+                                        let seconds = "0" + date.getSeconds();
+
+                                    %>
+                                    [<%= day + ", " + date.getMonth() +  "/" + date.getDate() + "/" + date.getFullYear() + ", " + date.getHours() + ':' + minutes.substr(-2) + ":" + seconds.substr(-2) %>]
+                                    <b><%= log.log_message %></b><br>
+                                    <small><%= log.log_action %></small>
+
+                                </li>
+                            <% });%>
+                        </ul>
+                    </div>
                 </div>
                 <div class="mdl-cell mdl-cell--2-col">
                 </div>

@@ -3,6 +3,7 @@ const botData = require("./../botData.json");
 const express = require('express');
 const session = require('express-session');
 const bot = require("./../discord-bot-sourcefiles/main");
+const log = require("./../log.json");
 const fs = require("fs");
 const bodyParser = require('body-parser');
 
@@ -72,7 +73,11 @@ exports.startApp = function (/**Object*/ client) {
     });
 
     app.get("/log", (req, res) => {
-
+        res.render("log", {
+            data: client,
+            maintenanceStatus: maintenanceStatus,
+            log: log
+        })
     });
 
     app.get("/botStatus", (req, res) => {
