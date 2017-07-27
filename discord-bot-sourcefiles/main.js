@@ -68,11 +68,12 @@ client.login(prv_config.token);
  *
  * @param game - Game to be set for the bot.
  * @param maintenanceChange - Default: false. Set it to true when this function here is used for maintenance function
+ * @param t0 - Number of milliseconds of the process is running. Use for that the function now() (npm module performance-now, added in 0.0.6.1)
  * @since 0.0.1
  *
  * @public
  */
-exports.setGameStatus = function (/**String*/ game,/**boolean*/maintenanceChange) {
+exports.setGameStatus = function (/**String*/ game,/**boolean*/maintenanceChange,/**Number*/ t0) {
 
     // Short explanation why I´m using this boolean maintenanceChange
     // Currently we´re saving all data from the bot into the file botData.json
@@ -103,8 +104,36 @@ exports.setGameStatus = function (/**String*/ game,/**boolean*/maintenanceChange
                 if (err) throw err;
                 console.log(chalk.greenBright(">> Successfully edited botData.json. Followed values were changed in botData.json:"));
                 console.log(chalk.yellowBright(">> game: ") + chalk.redBright(gameBeforeChanging) + " -> " + chalk.greenBright.bold(game));
+
+                setTimeout(() =>{
+                    app.addLog({
+                        "log_type" : "info",
+                        "log_message" : "Successfully edited botData.json.",
+                        "log_date" : Date.now(),
+                        "log_action" : "Changed value: game"
+                    });
+                }, 50);
+
             })
         });
+
+        let t1 = now();
+        setTimeout(() =>{
+            app.addLog({
+                "log_type" : "info",
+                "log_message" : "Changed game status value",
+                "log_date" : Date.now(),
+                "log_action" : "function call took " + (t1-t0).toFixed(3) + "ms"
+            });
+        }, 70);
+        setTimeout(() =>{
+            app.addLog({
+                "log_type" : "success",
+                "log_message" : "Successfully changed game status of bot.",
+                "log_date" : Date.now(),
+                "log_action" : "Changed it from " + gameBeforeChanging + " to " + game + "."
+            });
+        }, 90);
 
     }
 };
