@@ -23,7 +23,7 @@ var exports = module.exports = {};
  * Check out and contribute to the project {@link https://goo.gl/DVJQem on GitHub}.
  *
  * @param client - Discord.js Client Object
- * @version 0.0.5
+ * @version 0.0.6
  * @public
  */
 exports.startApp = function (/**Object*/ client) {
@@ -68,7 +68,8 @@ exports.startApp = function (/**Object*/ client) {
     });
 
     app.get("/outputGuilds", (req, res) => {
-        console.log(bot.sendGuildsObject());
+        let t0 = Performance.now();
+        console.log(bot.sendGuildsObject(t0));
         res.redirect("/dashboard");
     });
 
@@ -227,4 +228,30 @@ exports.convertingGetDay = function (getDay) {
             day = "A problem occurred when trying to convert the Date.getDay() integer to a string \n";
     }
     return day;
+};
+
+/**
+ * Adding data to log.
+ *
+ * @param logData - In logData, your giving an object which will be added to the log.
+ * @since 0.0.6
+ * @public
+ */
+exports.addLog = (/**Object*/logData) => {
+
+    fs.readFile("./log.json", "utf-8" , (err, data) => {
+
+        if (err) { throw err; }
+        let log = JSON.parse(data);
+        console.log(data);
+
+        log.push(logData);
+
+        fs.writeFile("./log.json", JSON.stringify(log, null, 3), (err) => {
+            if(err) throw err;
+            console.log(log);
+        })
+
+    })
+
 };

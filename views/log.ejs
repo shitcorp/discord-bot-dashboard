@@ -50,7 +50,7 @@
                     <div class="logContainer">
                         <ul>
                             <% log.forEach((log) => {%>
-                                <li>
+                                <li class="<%= "log_" + log.log_type %>">
                                     <%
 
                                         let convertingGetDay = function (getDay) {

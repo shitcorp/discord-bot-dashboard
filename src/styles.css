@@ -169,7 +169,7 @@ body{
 
 /* ===== Log Page ===== */
 .logContainer{
-    background: #d8dfe3;
+    background: #e3eaee;
     padding: 2%;
 }
 .logContainer ul{
@@ -177,10 +177,23 @@ body{
     margin: 0;
     padding: 0;
 }
-.logContainer ul li{
+.logContainer ul li {
     padding: 1%;
     border-radius: 0 4px 4px 0;
-    background: #BDC3C7;
+    background: #cbd2d6;
     margin-bottom: 5px;
     font-size: 16px;
+}
+.logContainer ul li.log_normal{
+    border-left: 6px solid #2ECC71;
+}
+.logContainer ul li.log_info{
+    border-left: 6px solid #3498DB;
+}
+.logContainer ul li.log_error {
+    border-left: 6px solid #E74C3C;
+}
+.logContainer ul li.log_maintenance{
+    border-left: 6px solid #C0392B;
+    background: #E74C3C;
 }

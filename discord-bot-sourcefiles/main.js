@@ -183,8 +183,15 @@ exports.sendAdminMessage = function (/**String*/ message) {
  *
  * @public
  */
-exports.sendClientObject = function () {
-  return client;
+exports.sendClientObject = function (t0) {
+    let t1 = Performance.now();
+    app.addLog({
+        "log_type" : "info",
+        "log_message" : "Output the Client object",
+        "log_date" : Date.now(),
+        "log_action" : "executed by function bot.sendClientObject, function call took " + t1 - t0 + "ms"
+    });
+    return client;
 };
 
 /**
