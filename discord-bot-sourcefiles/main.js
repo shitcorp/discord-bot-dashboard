@@ -8,6 +8,7 @@ const botDataJson = require("./../botData.json");
 const botcommands = require("./bot-commands.json");
 // Delete this line when you´re using this project for public usages.
 const prv_config = require("../private_config.json");
+const now = require("performance-now");
 
 
 const chalk = require('chalk');
@@ -180,16 +181,16 @@ exports.sendAdminMessage = function (/**String*/ message) {
  *
  * @since 0.0.1
  * @return {Object} The Client object.
- *
+ * @param t0 - Number of milliseconds of the process is running. Use for that the function now() (npm module performance-now, added in 0.0.6.1)
  * @public
  */
-exports.sendClientObject = function (t0) {
-    let t1 = Performance.now();
+exports.sendClientObject = (/**Number*/t0) => {
+    let t1 = now();
     app.addLog({
         "log_type" : "info",
-        "log_message" : "Output the Client object",
+        "log_message" : "Output the client object",
         "log_date" : Date.now(),
-        "log_action" : "executed by function bot.sendClientObject, function call took " + t1 - t0 + "ms"
+        "log_action" : "function call took " + (t1-t0).toFixed(3) + "ms"
     });
     return client;
 };
@@ -198,15 +199,22 @@ exports.sendClientObject = function (t0) {
  * Outputs the client.guilds object. Mainly for development.
  *
  * @since 0.0.3
- *
+ * @param t0 - Number of milliseconds of the process is running. Use for that the function now() (npm module performance-now, added in 0.0.6.1)
  * @public
  */
-exports.sendGuildsObject = function () {
+exports.sendGuildsObject = (/**Number*/t0) => {
     let guilds = client.guilds;
     // guilds.map(function (a) {
     //     console.log(a.name);
     // })
-    console.log(guilds);
+    let t1 = now();
+    app.addLog({
+        "log_type" : "info",
+        "log_message" : "Output the guilds (client.guilds) object",
+        "log_date" : Date.now(),
+        "log_action" : "function call took " + (t1-t0).toFixed(3) + "ms"
+    });
+    return guilds;
 };
 /**
  * Outputs the invites of servers where the bot is connected. For production and development.
@@ -232,11 +240,12 @@ exports.sendInvitesOfServers = function () {
  * get informed about the maintenance (maintenance like for testing new functions etc.) [This function is in a Early status!]
  *
  * @param maintenanceBool - Maintenance status of the bot and the app.
+ * @param t0 - Number of milliseconds of the process is running. Use for that the function now() (npm module performance-now, added in 0.0.6.1)
  * @since 0.0.4
  *
  * @public
  */
-exports.maintenance = function (/**boolean*/ maintenanceBool) {
+exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
     if(maintenanceBool === true){
         // localPresence values before the maintenance starts
         let statusBeforeChanging  = client.user.localPresence.status;
@@ -246,6 +255,22 @@ exports.maintenance = function (/**boolean*/ maintenanceBool) {
         this.setBotStatus("dnd", true);
         this.setGameStatus("Monkeys are working!", true);
         this.sendAdminMessage("Hello dear server admin, currently I´m currently in maintenance so don´t wonder why you may not can access all functions. We will inform you when we finished our maintenance!");
+
+        app.addLog({
+            "log_type" : "info",
+            "log_message" : "Server admins got an message which contains information that maintenance was enabled!",
+            "log_date" : Date.now(),
+            "log_action" : ""
+        });
+
+        setTimeout(function(){
+            app.addLog({
+                "log_type" : "info",
+                "log_message" : "Values of bot client changed!",
+                "log_date" : Date.now(),
+                "log_action" : "Changed values: client.user.localPresence.status , client.user.localPresence.game.name"
+            });
+        }, 60);
 
         // Reading the file and replace property values to new ones
 
@@ -270,13 +295,35 @@ exports.maintenance = function (/**boolean*/ maintenanceBool) {
                 console.log(chalk.yellowBright(">> maintenance: ") + chalk.redBright("false") + " -> " + chalk.greenBright.bold("true"));
                 console.log(chalk.yellowBright(">> status: ") + chalk.redBright(statusBeforeChanging) + " -> " + chalk.greenBright.bold("dnd"));
                 console.log(chalk.yellowBright(">> bot_game: ") + chalk.redBright(gameBeforeChanging) + " -> " + chalk.greenBright.bold("Monkeys are working!"));
+                setTimeout(function() {
+                    app.addLog({
+                        "log_type": "info",
+                        "log_message": "Values in botData.json changed!",
+                        "log_date": Date.now(),
+                        "log_action": "Changed property values: maintenance, status, bot_game"
+                    });
+                }, 80)
+
             })
         });
 
         // Output the notification
 
+        // I added a timeout cause when I call this function too many times, it cause an error or it doesn´t add all lob entries.
+        // Maybe there is an solution but currently I didn´t found one.
+        let t1 = now();
+        setTimeout(function() {
+            app.addLog({
+                "log_type": "maintenance",
+                "log_message": "Maintenance was enabled!",
+                "log_date": Date.now(),
+                "log_action": "Enabling maintenance took " + (t1 - t0).toFixed(3) + "ms"
+            });
+        }, 100);
+
         console.log("\n>> Bot > Maintenance are now " + chalk.redBright.bold("enabled!"));
         console.log(">> Bot > Notification Message was sent to server admins.");
+
 
 
     }else{
@@ -287,6 +334,15 @@ exports.maintenance = function (/**boolean*/ maintenanceBool) {
         // Set new values to the bot user
         this.setBotStatus("online", true);
         this.setGameStatus("Monkeys are finished!", true);
+
+        setTimeout(function(){
+            app.addLog({
+                "log_type" : "info",
+                "log_message" : "Values of bot client changed!",
+                "log_date" : Date.now(),
+                "log_action" : "Changed values: client.user.localPresence.status , client.user.localPresence.game.name"
+            });
+        }, 60);
 
         // Reading the file and replace property values to new ones
         fs.readFile("./botData.json", "utf-8", function (err, data) {
@@ -310,12 +366,30 @@ exports.maintenance = function (/**boolean*/ maintenanceBool) {
                 console.log(chalk.yellowBright(">> maintenance: ") + chalk.redBright("true") + " -> " + chalk.greenBright.bold("false"));
                 console.log(chalk.yellowBright(">> status: ") + chalk.redBright(statusBeforeChanging) + " -> " + chalk.greenBright.bold("online"));
                 console.log(chalk.yellowBright(">> bot_game: ") + chalk.redBright(gameBeforeChanging) + " -> " + chalk.greenBright.bold("Monkeys are finished!"));
+                setTimeout(function() {
+                    app.addLog({
+                        "log_type": "info",
+                        "log_message": "Values in botData.json changed!",
+                        "log_date": Date.now(),
+                        "log_action": "Changed property values: maintenance, status, bot_game"
+                    });
+                }, 80);
             })
         });
 
         // Output the notification
 
         console.log("\n>> Bot > Maintenance are now " + chalk.greenBright.bold("disabled!"));
+
+        let t1 = now();
+        setTimeout(function() {
+            app.addLog({
+                "log_type": "maintenance",
+                "log_message": "Maintenance was disabled!",
+                "log_date": Date.now(),
+                "log_action": "Disabling maintenance took " + (t1 - t0).toFixed(3) + "ms"
+            });
+        }, 100)
     }
 };
 

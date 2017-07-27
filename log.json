@@ -10,11 +10,5 @@
       "log_message": "Test Message",
       "log_date": 1501015698756,
       "log_action": "server action on server: Discord Server"
-   },
-   {
-      "log_type": "info",
-      "log_message": "Output the Client object",
-      "log_date": 1501189304674,
-      "log_action": "executed by function bot.sendClientObject"
    }
 ]

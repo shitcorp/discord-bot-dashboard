@@ -196,4 +196,6 @@ body{
 .logContainer ul li.log_maintenance{
     border-left: 6px solid #C0392B;
     background: #E74C3C;
+    font-weight: bold;
+    color: white;
 }

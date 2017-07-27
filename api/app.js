@@ -6,6 +6,7 @@ const bot = require("./../discord-bot-sourcefiles/main");
 const log = require("./../log.json");
 const fs = require("fs");
 const bodyParser = require('body-parser');
+const now = require("performance-now");
 
 const chalk = require('chalk');
 const ctx = new chalk.constructor({level: 3});
@@ -63,12 +64,13 @@ exports.startApp = function (/**Object*/ client) {
     });
 
     app.get("/outputClient", (req, res) => {
-        console.log(bot.sendClientObject());
+        let t0 = now();
+        console.log(bot.sendClientObject(t0));
         res.redirect("/dashboard");
     });
 
     app.get("/outputGuilds", (req, res) => {
-        let t0 = Performance.now();
+        let t0 = now();
         console.log(bot.sendGuildsObject(t0));
         res.redirect("/dashboard");
     });
@@ -90,13 +92,15 @@ exports.startApp = function (/**Object*/ client) {
     });
 
     app.get("/activateMaintenance", (req, res) => {
-        bot.maintenance(true);
+        let t0 = now();
+        bot.maintenance(true, t0);
         maintenanceStatus = true;
         res.redirect("/dashboard");
     });
 
     app.get("/deactivateMaintenance", (req, res) => {
-        bot.maintenance(false);
+        let t0 = now();
+        bot.maintenance(false, t0);
         maintenanceStatus = false;
         res.redirect("/dashboard");
     });
@@ -243,15 +247,10 @@ exports.addLog = (/**Object*/logData) => {
 
         if (err) { throw err; }
         let log = JSON.parse(data);
-        console.log(data);
 
         log.push(logData);
-
         fs.writeFile("./log.json", JSON.stringify(log, null, 3), (err) => {
             if(err) throw err;
-            console.log(log);
         })
-
     })
-
 };
