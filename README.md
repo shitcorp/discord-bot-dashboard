@@ -68,4 +68,6 @@ For more information: _Read the comments above the client.login function in main
 - body-parser
 - chalk
 - express-session
+- performance-now
+- socket.io
 ```

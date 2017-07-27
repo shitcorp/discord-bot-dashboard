@@ -99,7 +99,7 @@ exports.setGameStatus = function (/**String*/ game,/**boolean*/maintenanceChange
 
             botData.bot_game = game;
 
-            fs.writeFile('./botData.json', JSON.stringify(botData), 'utf-8', function (err) {
+            fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function (err) {
                 if (err) throw err;
                 console.log(chalk.greenBright(">> Successfully edited botData.json. Followed values were changed in botData.json:"));
                 console.log(chalk.yellowBright(">> game: ") + chalk.redBright(gameBeforeChanging) + " -> " + chalk.greenBright.bold(game));
@@ -145,7 +145,7 @@ exports.setBotStatus = function (/**String*/ status,/**boolean*/maintenanceChang
                 botData.bot_status = status;
 
                 // Writing new value into the json file
-                fs.writeFile('./botData.json', JSON.stringify(botData), 'utf-8', function (err) {
+                fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function (err) {
                     if (err) throw err;
                     console.log(chalk.greenBright(">> Successfully edited botData.json. Followed values were changed in botData.json:"));
                     console.log(chalk.yellowBright(">> status: ") + chalk.redBright(statusBeforeChanging) + " -> " + chalk.greenBright.bold(status));
@@ -286,7 +286,7 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
 
             // Writing new property values into botData.json
 
-            fs.writeFile('./botData.json', JSON.stringify(botData), 'utf-8', function(err) {
+            fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function(err) {
                 if (err) throw err;
 
                 // Output the changes
@@ -357,7 +357,7 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
 
             // Writing new property values into botData.json
 
-            fs.writeFile('./botData.json', JSON.stringify(botData), 'utf-8', function(err) {
+            fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function(err) {
                 if (err) throw err;
 
                 // Output the changes in the files

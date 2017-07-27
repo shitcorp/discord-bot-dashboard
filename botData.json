@@ -1,1 +1,9 @@
-{"maintenance":false,"statusNotification":false,"statusNotificationText":"Change this text in the botData.json","bot_version":"0.0.6.1","bot_name":"On Development","bot_game":"Monkeys are finished!","bot_status":"online"}
+{
+  "maintenance":false,
+  "statusNotification":false,
+  "statusNotificationText": "Change this text in the botData.json",
+  "bot_version":"0.0.6.1",
+  "bot_name":"On Development",
+  "bot_game":"Monkeys are finished!",
+  "bot_status":"online"
+}
