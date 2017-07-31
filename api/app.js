@@ -7,6 +7,7 @@ const log = require("./../log.json");
 const fs = require("fs");
 const bodyParser = require('body-parser');
 const now = require("performance-now");
+const commands = require("./../discord-bot-sourcefiles/bot-commands.json");
 
 const chalk = require('chalk');
 const ctx = new chalk.constructor({level: 3});
@@ -80,6 +81,15 @@ exports.startApp = function (/**Object*/ client) {
             data: client,
             maintenanceStatus: maintenanceStatus,
             log: log
+        })
+    });
+
+    app.get("/manage", (req, res) => {
+        res.render("manage", {
+            data: client,
+            maintenanceStatus: maintenanceStatus,
+            log: log,
+            commands: commands
         })
     });
 

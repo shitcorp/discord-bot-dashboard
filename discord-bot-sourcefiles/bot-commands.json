@@ -1,11 +1,13 @@
-{
-  "help":{
+[
+  {
+    "commandName" : "help",
     "content": "Test-Content",
     "availableInMaintenance":true
   },
-  "test-command":{
+  {
+    "commandName" : "test",
     "content": "This is a test command. This command is not available in maintenance!",
     "availableInMaintenance":false,
     "sendType": "embed"
   }
-}
+]
