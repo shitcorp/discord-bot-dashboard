@@ -20,16 +20,13 @@
             <span class="mdl-layout-title">Discord Bot Dashboard &raquo; Messages <span class="maintenanceActive">Maintenance is active!</span></span>
             <% } %>
             <div class="mdl-layout-spacer"></div>
-            <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <a class="mdl-navigation__link" href="/">Home</a>
-                <a class="mdl-navigation__link" href="/messages"><b><u>Messages</u></b></a>
-            </nav>
+                <%- include('./templates/nav'); %>
         </div>
     </header>
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Dashboard</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Home</a>
+            <%- include('./templates/nav'); %>
         </nav>
     </div>
     <main class="mdl-layout__content">
