@@ -20,6 +20,7 @@
     "body-parser": "^1.17.2",
     "chalk": "latest",
     "discord.js": "^11.1.0",
+    "ejs": "^2.5.7",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "jquery": "^3.2.1",

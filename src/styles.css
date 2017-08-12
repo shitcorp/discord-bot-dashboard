@@ -199,3 +199,60 @@ body{
     font-weight: bold;
     color: white;
 }
+
+/* ===== Manage Page ===== */
+
+.management_commandsContainer{
+    width: 70%;
+    padding: 1%;
+    border: 3px solid black;
+    border-radius: 8px;
+}
+.management_commandsContainer h3{
+    border-left: 6px solid #3498db;
+    padding-left: 8px;
+}
+.commandInputSection{
+    padding: 2%;
+    border: 1px solid grey;
+    border-radius: 4px;
+    width: 96%;
+}
+.commandSubmitButton{
+    margin: 0 auto;
+    display: block;
+    width: 30%;
+}
+.commandList{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.commandListItem{
+    padding: 2%;
+    margin-bottom: 1%;
+    background-color: whitesmoke;
+}
+.commandName{
+    font-weight: bold;
+    font-size: large;
+}
+.commandFunctionHeadline{
+    font-weight: bold;
+    text-decoration: underline;
+}
+.commandAvailableInMaintenance{
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-weight: bold;
+    width: 40px;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+}
+.commandAvailableInMaintenanceFalse{
+    background-color: #E74C3C;
+}
+.commandAvailableInMaintenanceTrue{
+    background-color: #2ECC71;
+}

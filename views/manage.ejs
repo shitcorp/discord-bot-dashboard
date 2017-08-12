@@ -37,12 +37,33 @@
                     <hr>
                     <div class="manageContainer management_commandsContainer">
                         <h3><b>All commands: </b><br><small>I highly recommend to add here all commands you´re using for better management</small></h3>
+                        <p>Add Commands here or in the bot-commands.json</p>
+                        <hr>
+                        <h4><b>Adding a command:</b></h4>
+                        <form method="post" action="/addCommand">
+                            <input class="commandInputSection" placeholder="Type here your command" name="commandName">
+                            <br><br>
+                            <button class="commandSubmitButton mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Add command</button>
+                        </form>
                         <hr>
                         <ul class="commandList">
                             <% commands.forEach((command) => {  %>
-                                <li class="commandListItem"><%= command %></li>
+                                <li class="commandListItem">
+                                    <p class="commandName"><%= command.commandName %></p>
+                                    <hr>
+                                    <p class="commandFunctionHeadline">Function / Content:</p>
+                                    <div class="commandFunction"></div>
+                                    <hr>
+                                    <p>
+                                        Available in maintenance:
+                                        <% if(command.availableInMaintenance === false){ %>
+                                            <span class="commandAvailableInMaintenance commandAvailableInMaintenanceFalse">No</span>
+                                        <% }else{ %>
+                                            <span class="commandAvailableInMaintenance commandAvailableInMaintenanceTrue">Yes</span>
+                                        <% } %>
+                                    </p>
+                                </li>
                             <% }) %>
-                            <%= commands %>
                         </ul>
                     </div>
                 </div>

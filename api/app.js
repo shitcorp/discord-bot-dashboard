@@ -89,7 +89,8 @@ exports.startApp = function (/**Object*/ client) {
             data: client,
             maintenanceStatus: maintenanceStatus,
             log: log,
-            commands: commands
+            commands: commands,
+            botData: botData
         })
     });
 
