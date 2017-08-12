@@ -25,7 +25,7 @@ var exports = module.exports = {};
  * Check out and contribute to the project {@link https://goo.gl/DVJQem on GitHub}.
  *
  * @param client - Discord.js Client Object
- * @version 0.0.6.2
+ * @version 0.0.6.3
  * @public
  */
 exports.startApp = function (/**Object*/ client) {
@@ -90,7 +90,8 @@ exports.startApp = function (/**Object*/ client) {
             maintenanceStatus: maintenanceStatus,
             log: log,
             commands: commands,
-            botData: botData
+            botData: botData,
+            prefix: config.prefix
         })
     });
 
@@ -188,6 +189,7 @@ exports.startApp = function (/**Object*/ client) {
  * @param timestamp - Timestamp when the message was sent.
  * @since 0.0.5
  * @public
+ * @deprecated
  */
 exports.dmNotification = function (/**String*/user,/**String*/content,/**Integer*/timestamp) {
     console.log(chalk.yellowBright('>> Bot: You´ve got a DM by ' +  user + " with following content:"));

@@ -37,6 +37,7 @@
                     <hr>
                     <div class="manageContainer management_commandsContainer">
                         <h3><b>All commands: </b><br><small>I highly recommend to add here all commands you´re using for better management</small></h3>
+                        <h3><b>Your current command prefix: <%= prefix %></b></h3>
                         <p>Add Commands here or in the bot-commands.json</p>
                         <hr>
                         <h4><b>Adding a command:</b></h4>
@@ -49,7 +50,7 @@
                         <ul class="commandList">
                             <% commands.forEach((command) => {  %>
                                 <li class="commandListItem">
-                                    <p class="commandName"><%= command.commandName %></p>
+                                    <p class="commandName"><%= prefix %><%= command.commandName %></p>
                                     <hr>
                                     <p class="commandFunctionHeadline">Function / Content:</p>
                                     <div class="commandFunction"></div>
