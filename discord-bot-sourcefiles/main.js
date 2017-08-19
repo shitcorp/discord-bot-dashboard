@@ -58,7 +58,23 @@ client.on('message', (message) => {
     let args = message.content.split(" ").slice(1);
 
     if(command === "help"){
+        app.addLog({
+            "log_type": "info",
+            "log_message": "Command help executed!",
+            "log_date": Date.now(),
+            "log_action": commandPrefix + "help executed"
+        });
+        message.channel.sendMessage("This is the help command!");
+    }
 
+    if(command === "test"){
+        app.addLog({
+            "log_type": "info",
+            "log_message": "Command test executed!",
+            "log_date": Date.now(),
+            "log_action": commandPrefix + "test executed"
+        });
+        message.channel.sendMessage("This is the test command for something you want to test (I think)!");
     }
 });
 
