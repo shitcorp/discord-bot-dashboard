@@ -25,7 +25,7 @@ It will automatically listening to the _port 3000_.
 When you want to change the port for listening, you can change it in the `config.json`.
 
 Write your bot token from [**the Discord Applications Page**](https://discordapp.com/developers/applications/me) into the 
-`config.json` inside the property value of `token`. Before you´re doing this, look at the **Important Information** section.
+`config.json` inside the property value of `token`. Before you do this, look at the **Important Information** section.
 
 ## Important Information:
 
@@ -43,7 +43,7 @@ You must create the file private_config.json in the main directory (same as conf
 
 private_config.json will be blocked by .gitignore from commiting and pushing.
 
-Warning: When you´re making a pull request, check that you didn´t wrote your token 
+Warning: When you´re making a pull request, check that you didn't put your token 
          inside the config.json.
 
 --------------------------------
