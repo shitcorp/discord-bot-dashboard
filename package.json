@@ -10,21 +10,24 @@
     "type": "git",
     "url": "git+https://github.com/julianYaman/discord-bot-dashboard.git"
   },
-  "author": "Julian Yaman <julianyaman@gmx.de>",
+  "author": "Julian Yaman <mail@julianyaman.de>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/julianYaman/discord-bot-dashboard/issues"
   },
+  "contributors": [
+    "Biagio Santoro (GitHub: sleme, Twitter: @slemeee_), http://pineappledoesnotgoonpizza.com/"
+  ],
   "homepage": "https://github.com/julianYaman/discord-bot-dashboard#readme",
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.1",
     "chalk": "latest",
-    "discord.js": "^11.1.0",
+    "discord.js": "^11.2.1",
     "ejs": "^2.5.7",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "jquery": "^3.2.1",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.12.1",
     "performance-now": "^2.1.0",
     "socket.io": "^2.0.3"
   }

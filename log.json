@@ -10,5 +10,11 @@
       "log_message": "Test Message for error",
       "log_date": 1501015698756,
       "log_action": "server action on server: Discord Server"
+   },
+   {
+      "log_type": "info",
+      "log_message": "Command test executed!",
+      "log_date": 1505428534632,
+      "log_action": "!test executed"
    }
 ]

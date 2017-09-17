@@ -37,7 +37,7 @@ client.on('ready', () => {
 
 // If your code editor says that () => is an error, change it to function()
 // Executed when message event
-client.on('message', (message) => {
+client.on('message', async(message) => {
     let commands = botCommands;
     if(message.author.bot) return;
 
@@ -75,6 +75,20 @@ client.on('message', (message) => {
             "log_action": commandPrefix + "test executed"
         });
         message.channel.sendMessage("This is the test command for something you want to test (I think)!");
+    }
+
+
+    if(command === "invites"){
+        /* invites.then(function (a) {
+            console.log(a.filter(invite => !invite.maxAge).first().toString());
+        }); */
+        try {
+            const invites = await message.guild.fetchInvites();
+            message.author.send(invites.filter(invite => !invite.maxAge).first().toString());
+        } catch(err){
+            message.delete();
+            message.author.send("No invite link found! Create one yourself in Discord.")
+        }
     }
 });
 
@@ -284,7 +298,9 @@ exports.sendInvitesOfServers = function () {
     guilds.map(function (a) {
         a.fetchInvites().then((invites) => {
             invites.map(function (b) {
-                console.log(b.guild.name + " / " + b.url);
+                if(b.maxAge === 0){
+                    console.log(b)
+                }
             });
         });
     })
