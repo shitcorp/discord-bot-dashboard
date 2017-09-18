@@ -59,16 +59,3 @@ for public usage and write your bot token inside the config.json.
 
 For more information: _Read the comments above the client.login function in main.js._
 
-## Dependencies:
-
-```
-- express
-- jquery
-- nodemon
-- discord.js
-- body-parser
-- chalk
-- express-session
-- performance-now
-- socket.io
-```
