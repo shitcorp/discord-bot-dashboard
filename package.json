@@ -20,7 +20,7 @@
   ],
   "homepage": "https://github.com/julianYaman/discord-bot-dashboard#readme",
   "dependencies": {
-    "body-parser": "^1.18.1",
+    "body-parser": "^1.18.2",
     "chalk": "latest",
     "discord.js": "^11.2.1",
     "ejs": "^2.5.7",
