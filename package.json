@@ -22,7 +22,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "chalk": "latest",
-    "discord.js": "^11.3.2",
+    "discord.js": "^11.4.0",
     "ejs": "^2.6.1",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
