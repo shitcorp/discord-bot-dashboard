@@ -24,7 +24,7 @@
     "chalk": "latest",
     "discord.js": "^11.4.2",
     "ejs": "^2.6.1",
-    "express": "^4.15.3",
+    "express": "^4.16.4",
     "express-session": "^1.15.3",
     "jquery": "^3.2.1",
     "nodemon": "^1.18.4",
