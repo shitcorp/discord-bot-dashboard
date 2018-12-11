@@ -27,7 +27,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.3",
     "jquery": "^3.2.1",
-    "nodemon": "^1.18.7",
+    "nodemon": "^1.18.8",
     "performance-now": "^2.1.0",
     "socket.io": "^2.2.0"
   }
