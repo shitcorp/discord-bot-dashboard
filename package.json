@@ -23,7 +23,7 @@
     "body-parser": "^1.18.3",
     "chalk": "latest",
     "discord.js": "^11.4.2",
-    "ejs": "^2.6.1",
+    "ejs": "^2.6.2",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "nodemon": "^1.19.0",
