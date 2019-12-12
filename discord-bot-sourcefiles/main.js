@@ -27,9 +27,16 @@ client.on('ready', () => {
     console.log('>> Current status: ' + botDataJson.bot_status);
 
     // Optional start options when you´re starting the bot.
-    client.user.setActivity(botDataJson.bot_game, { type: botDataJson.bot_game_type });
 
-    client.user.setStatus(botDataJson.bot_status);
+    client.user.setPresence({
+        game: {
+            name: botDataJson.bot_game,
+            type: botDataJson.bot_game_type
+        },
+        status: botDataJson.bot_status
+    });
+
+    //console.log(client.user.presence);
 
     // This is starting the app.
     app.startApp(client);
@@ -134,7 +141,14 @@ exports.setGameStatus = function (/**String*/ game, /**String*/ activity, /**boo
             "\n>> Sent value: " + activity);
     }else{
         let gameBeforeChanging = client.user.localPresence.game.name;
-        client.user.setActivity(game, { type: activity });
+
+        client.user.setPresence({
+            game: {
+                name: game,
+                type: activity
+            },
+            //status: botDataJson.bot_status
+        });
 
         console.log("\n>> Bot Change > Game status set to: " + game);
 
@@ -207,7 +221,14 @@ exports.setBotStatus = function (/**String*/ status,/**boolean*/maintenanceChang
             "\n>> Sent value: " + status);
     }else{
         // Setting the new value
-        client.user.setStatus(status);
+        client.user.setPresence({
+            /*game: {
+                name: botDataJson.bot_game,
+                type: botDataJson.bot_game_type
+            },*/
+            status: status
+        });
+        
         // Output successful notification
         console.log(">> Bot Change > Status set to: " + status);
 
