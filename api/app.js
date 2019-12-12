@@ -135,7 +135,7 @@ exports.startApp = function (/**Object*/ client) {
     app.post("/change-game-status" ,(req, res) => {
 
         // Using the exports function from the required "./main" module to set the game
-        bot.setGameStatus(req.body.gameStatus, false, now());
+        bot.setGameStatus(req.body.gameStatus, req.body.activity, false, now());
 
         // TODO: Updating the config.json with the new bot_game value to get the new game value when restarting the bot.
 
