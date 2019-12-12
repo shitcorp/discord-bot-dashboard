@@ -10,7 +10,7 @@ const now = require("performance-now");
 const commands = require("./../discord-bot-sourcefiles/bot-commands.json");
 
 const chalk = require('chalk');
-const ctx = new chalk.constructor({level: 3});
+const ctx = new chalk.Instance({level: 3});
 
 const app = express();
 
