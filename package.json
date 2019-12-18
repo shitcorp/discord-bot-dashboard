@@ -29,6 +29,6 @@
     "express-session": "^1.16.2",
     "jquery": "^3.4.1",
     "performance-now": "^2.1.0",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.3.0"
   }
 }
