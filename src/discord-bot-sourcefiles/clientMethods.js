@@ -39,7 +39,6 @@ exports.setGameStatus = function (client, config, /**String*/ game, /**String*/ 
             "\n>> PresenceStatus: https://discord.js.org/#/docs/main/stable/typedef/ActivityType" +
             "\n>> Sent value: " + activity);
     }else{
-        console.log(client.user)
         let gameBeforeChanging = client.user.localPresence.game.name;
 
         client.user.setPresence({
