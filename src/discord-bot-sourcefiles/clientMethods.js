@@ -1,16 +1,12 @@
 var exports = module.exports = {};
 
 const fs = require("fs");
-const Discord = require("discord.js");
-const client = new Discord.Client();
+
 // Delete this line when you´re using this project for public usages.
-const prv_config = require("../private_config.json");
 const now = require("performance-now");
 const chalk = require('chalk');
 
 const app = require("../api/app");
-
-exports.client = client;
 
 /**
  * Set a game status for the bot.
@@ -22,7 +18,7 @@ exports.client = client;
  *
  * @public
  */
-exports.setGameStatus = function (/**String*/ game, /**String*/ activity, /**boolean*/maintenanceChange,/**Number*/ t0) {
+exports.setGameStatus = function (client, config, /**String*/ game, /**String*/ activity, /**boolean*/maintenanceChange,/**Number*/ t0) {
 
     // Short explanation why I´m using this boolean maintenanceChange
     // Currently we´re saving all data from the bot into the file botData.json
@@ -113,7 +109,7 @@ exports.setGameStatus = function (/**String*/ game, /**String*/ activity, /**boo
  *
  * @public
  */
-exports.setBotStatus = function (/**String*/ status,/**boolean*/maintenanceChange) {
+exports.setBotStatus = function (client, config, /**String*/ status,/**boolean*/maintenanceChange) {
 
     // Store status in a let before the change
     let statusBeforeChanging = client.user.localPresence.status;
@@ -166,7 +162,7 @@ exports.setBotStatus = function (/**String*/ status,/**boolean*/maintenanceChang
  *
  * @public
  */
-exports.sendAdminMessage = function (/**String*/ message) {
+exports.sendAdminMessage = function (client, config, /**String*/ message) {
     let guilds = client.guilds;
 
     guilds.map(function (a) {
@@ -185,7 +181,7 @@ exports.sendAdminMessage = function (/**String*/ message) {
  * @param t0 - Number of milliseconds of the process is running. Use for that the function now() (npm module performance-now, added in 0.0.6.1)
  * @public
  */
-exports.sendClientObject = (/**Number*/t0) => {
+exports.sendClientObject = (client, config, /**Number*/t0) => {
     let t1 = now();
     app.addLog({
         "log_type" : "info",
@@ -203,7 +199,7 @@ exports.sendClientObject = (/**Number*/t0) => {
  * @param t0 - Number of milliseconds of the process is running. Use for that the function now() (npm module performance-now, added in 0.0.6.1)
  * @public
  */
-exports.sendGuildsObject = (/**Number*/t0) => {
+exports.sendGuildsObject = (client, config, /**Number*/t0) => {
     let guilds = client.guilds;
     // guilds.map(function (a) {
     //     console.log(a.name);
@@ -224,7 +220,7 @@ exports.sendGuildsObject = (/**Number*/t0) => {
  *
  * @public
  */
-exports.sendInvitesOfServers = function () {
+exports.sendInvitesOfServers = function (client, config) {
     let guilds = client.guilds;
 
     guilds.map(function (a) {
@@ -248,7 +244,7 @@ exports.sendInvitesOfServers = function () {
  *
  * @public
  */
-exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
+exports.maintenance = function (client, config, /**boolean*/ maintenanceBool, /**Number*/t0) {
     if(maintenanceBool === true){
         // localPresence values before the maintenance starts
         let statusBeforeChanging  = client.user.localPresence.status;
@@ -257,7 +253,7 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
         // Set new values to the bot user
         this.setBotStatus("dnd", true);
         this.setGameStatus("Monkeys are working!", true);
-        if (prv_config.maintenanceNotification === true) {
+        if (config.maintenanceNotification === true) {
             this.sendAdminMessage("Hello dear server admin, currently I´m currently in maintenance so don´t wonder why you may not can access all functions. We will inform you when we finished our maintenance!");
             app.addLog({
                 "log_type" : "info",
@@ -286,8 +282,8 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
             // Setting new values for properties.
 
             botData.maintenance = true;
-            botData.bot_game = prv_config.maintenanceGame;
-            botData.bot_status = prv_config.maintenanceBot_status;
+            botData.bot_game = config.maintenanceGame;
+            botData.bot_status = config.maintenanceBot_status;
 
             // Writing new property values into botData.json
 
@@ -337,8 +333,8 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
         let gameBeforeChanging    = client.user.localPresence.game.name;
 
         // Set new values to the bot user
-        this.setBotStatus(prv_config.baseBot_status, true);
-        this.setGameStatus(prv_config.baseGame, true);
+        this.setBotStatus(config.baseBot_status, true);
+        this.setGameStatus(config.baseGame, true);
 
         setTimeout(function(){
             app.addLog({
@@ -357,8 +353,8 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
             // Setting new values for properties.
 
             botData.maintenance = false;
-            botData.bot_game = prv_config.baseGame;
-            botData.bot_status = prv_config.baseBot_status;
+            botData.bot_game = config.baseGame;
+            botData.bot_status = config.baseBot_status;
 
             // Writing new property values into botData.json
 

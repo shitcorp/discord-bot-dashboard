@@ -2,10 +2,9 @@
   "name": "discord-bot-dashboard",
   "version": "0.0.1",
   "description": "A tool for Discord.js bot developers to manage their bot for development and final release usages.",
-  "main": "discord-bot-sourcefiles/main.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node discord-bot-sourcefiles/main.js",
-    "dev": "nodemon discord-bot-sourcefiles/main.js"
+    "test": "node test"
   },
   "repository": {
     "type": "git",

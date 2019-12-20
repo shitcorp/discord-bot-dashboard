@@ -1,7 +1,6 @@
-# discord-bot-dashboard
+# discord-bot-dashboard, package edition
 
 ###
-* Downloading (coming soon)
 * [Welcome](https://github.com/julianYaman/discord-bot-dashboard#welcome)
 * [**Important Information**](https://github.com/julianYaman/discord-bot-dashboard#important-information)
 * [Dependencies](https://github.com/julianYaman/discord-bot-dashboard#dependencies)
@@ -15,47 +14,44 @@ In this project, I develop a Dashboard Tool for developers which are using Disco
 
 You can use this for projects where you are releasing new bots for public and want to manage them, for example, to give the Discord server administrators a status update on the game status like when you're down for maintenance.
 
-**Important: Install all dependencies with ``npm install``!**
+## Documentation
+**Run the dashboard**
+```js
+const dashboard = require('packageName');
+const Discord = require('discord.js');
 
-To run this project, run the command `npm start`.
-It will automatically listen to the _port 3000_.
+// Create an instance of a Discord client
+const client = new Discord.Client();
 
-**In the `main.js` file, you can develop your bot or paste your current code!**
+dashboard(client, {
+    port:8080
+});
 
-When you want to change the port for listening, you can change it in the `config.json`.
-
-Write your bot token from [**the Discord Applications Page**](https://discordapp.com/developers/applications/me) into 
-`config.json` inside the property value of `token`. Before you do this, look at the **Important Information** section.
-
-## Important Information:
-
-**api/main.js:**
-
+// Log inro the bot using the token from https://discordapp.com/developers/applications/me
+client.login('Your token here');
 ```
-Currently:
+A logged in client is required to be passed to the package. (Basicly just use the `.login` method on the same client var passed at some point.)
 
-client.login(prv_config.token);
+**Settings**
+```js
+const dashboard = require('packageName');
+const Discord = require('discord.js');
 
---------------------------------
+// Create an instance of a Discord client
+const client = new Discord.Client();
 
-Use this when you fork this project and want to make a pull request.
-You must create the file private_config.json in the main directory (same as config.json).
+dashboard(client, {
+    port: 3000, //Number
+    maintenanceNotification: false, //Boolean
 
-private_config.json will be blocked by .gitignore from committing and pushing.
+    baseGame: "!help | v0.0.6.3", //String
+    baseBot_status: "online", //String
 
+    maintenanceGame: "Bot is in maintenance", //String
+    maintenanceBot_status: "dnd" //String
+});
 
-When you're making a pull request, check that you didn't write your token 
-inside config.json.
-
---------------------------------
-
-Change it to:
-
-client.login(config.token);
-
-for public usage and write your bot token inside config.json.
-
+// Log inro the bot using the token from https://discordapp.com/developers/applications/me
+client.login('Your token here');
 ```
-
-For more information: _Read the comments above the client.login function in main.js_
-
+Each setting displayed above is the default setting. No, setting is required to be entered by the user, each has a default setting.
