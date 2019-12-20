@@ -272,6 +272,6 @@ exports.addLog = (/**Object*/logData) => {
         log.push(logData);
         fs.writeFile("./log.json", JSON.stringify(log, null, 3), (err) => {
             if(err) throw err;
-        });
-    });
+        })
+    })
 };
