@@ -2,7 +2,7 @@ const config = require("./../config.json");
 const botData = require("./../botData.json");
 const express = require('express');
 const session = require('express-session');
-const bot = require("./../discord-bot-sourcefiles/main");
+const bot = require("./../discord-bot-sourcefiles/clientMethods");
 const log = require("./../log.json");
 const fs = require("fs");
 const bodyParser = require('body-parser');
@@ -81,6 +81,14 @@ exports.startApp = function (/**Object*/ client) {
             data: client,
             maintenanceStatus: maintenanceStatus,
             log: log
+        })
+    });
+
+    app.get("/console", (req, res) => {
+        res.render("log", {
+            data: client,
+            maintenanceStatus: maintenanceStatus,
+            logs: require('../discord-bot-sourcefiles/utils').log
         })
     });
 
@@ -264,6 +272,6 @@ exports.addLog = (/**Object*/logData) => {
         log.push(logData);
         fs.writeFile("./log.json", JSON.stringify(log, null, 3), (err) => {
             if(err) throw err;
-        })
-    })
+        });
+    });
 };
