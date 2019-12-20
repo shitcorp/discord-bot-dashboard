@@ -5,6 +5,7 @@ const fs = require("fs");
 // Delete this line when you´re using this project for public usages.
 const now = require("performance-now");
 const chalk = require('chalk');
+const path = require("path");
 
 const app = require("../api/app");
 
@@ -53,14 +54,14 @@ exports.setGameStatus = function (client, config, /**String*/ game, /**String*/ 
 
         if(maintenanceChange === false) {
 
-            fs.readFile("./botData.json", "utf-8", function (err, data) {
+            fs.readFile(path.join(__dirname, "../botData.json"), "utf-8", function (err, data) {
                 if (err) throw err;
                 let botData = JSON.parse(data);
 
                 botData.bot_game = game;
                 botData.bot_game_type = activity;
 
-                fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function (err) {
+                fs.writeFile(path.join(__dirname, "../botData.json"), JSON.stringify(botData, null, 3), 'utf-8', function (err) {
                     if (err) throw err;
                     console.log(chalk.greenBright(">> Successfully edited botData.json. Followed values were changed in botData.json:"));
                     console.log(chalk.yellowBright(">> game: ") + chalk.redBright(gameBeforeChanging) + " -> " + chalk.greenBright.bold(game));
@@ -134,7 +135,7 @@ exports.setBotStatus = function (client, config, /**String*/ status,/**boolean*/
         if(maintenanceChange === false) {
 
             // Change value in botData.json
-            fs.readFile("./botData.json", "utf-8", function (err, data) {
+            fs.readFile(path.join(__dirname, "../botData.json"), "utf-8", function (err, data) {
                 if (err) throw err;
                 let botData = JSON.parse(data);
 
@@ -142,7 +143,7 @@ exports.setBotStatus = function (client, config, /**String*/ status,/**boolean*/
                 botData.bot_status = status;
 
                 // Writing new value into the json file
-                fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function (err) {
+                fs.writeFile(path.join(__dirname, "../botData.json"), JSON.stringify(botData, null, 3), 'utf-8', function (err) {
                     if (err) throw err;
                     console.log(chalk.greenBright(">> Successfully edited botData.json. Followed values were changed in botData.json:"));
                     console.log(chalk.yellowBright(">> status: ") + chalk.redBright(statusBeforeChanging) + " -> " + chalk.greenBright.bold(status));
@@ -275,7 +276,7 @@ exports.maintenance = function (client, config, /**boolean*/ maintenanceBool, /*
 
         // Reading the file and replace property values to new ones
 
-        fs.readFile("./botData.json", "utf-8", function (err, data) {
+        fs.readFile(path.join(__dirname, "../botData.json"), "utf-8", function (err, data) {
             if (err) throw err;
             let botData = JSON.parse(data);
 
@@ -287,7 +288,7 @@ exports.maintenance = function (client, config, /**boolean*/ maintenanceBool, /*
 
             // Writing new property values into botData.json
 
-            fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function(err) {
+            fs.writeFile(path.join(__dirname, "../botData.json"), JSON.stringify(botData, null, 3), 'utf-8', function(err) {
                 if (err) throw err;
 
                 // Output the changes
@@ -346,7 +347,7 @@ exports.maintenance = function (client, config, /**boolean*/ maintenanceBool, /*
         }, 60);
 
         // Reading the file and replace property values to new ones
-        fs.readFile("./botData.json", "utf-8", function (err, data) {
+        fs.readFile(path.join(__dirname, "../botData.json"), "utf-8", function (err, data) {
             if (err) throw err;
             let botData = JSON.parse(data);
 
@@ -358,7 +359,7 @@ exports.maintenance = function (client, config, /**boolean*/ maintenanceBool, /*
 
             // Writing new property values into botData.json
 
-            fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function(err) {
+            fs.writeFile(path.join(__dirname, "../botData.json"), JSON.stringify(botData, null, 3), 'utf-8', function(err) {
                 if (err) throw err;
 
                 // Output the changes in the files
