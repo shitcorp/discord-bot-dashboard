@@ -2,9 +2,10 @@
   "name": "discord-bot-dashboard",
   "version": "0.0.1",
   "description": "A tool for Discord.js bot developers to manage their bot for development and final release usages.",
-  "main": "index.js",
+  "main": "discord-bot-sourcefiles/main.js",
   "scripts": {
-    "start": "nodemon discord-bot-sourcefiles/main.js"
+    "start": "node discord-bot-sourcefiles/main.js",
+    "dev": "nodemon discord-bot-sourcefiles/main.js"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,12 @@
   "homepage": "https://github.com/julianYaman/discord-bot-dashboard#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "capture-console": "^1.0.1",
     "chalk": "latest",
     "discord.js": "^11.4.2",
-    "express": "^4.17.1",
     "ejs": "^2.7.1",
-    "nodemon": "^2.0.1",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
     "express-session": "^1.16.2",
     "jquery": "^3.4.1",
     "performance-now": "^2.1.0",
