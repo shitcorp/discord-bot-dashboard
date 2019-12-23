@@ -27,9 +27,16 @@ client.on('ready', () => {
     console.log('>> Current status: ' + botDataJson.bot_status);
 
     // Optional start options when you´re starting the bot.
-    client.user.setGame(botDataJson.bot_game);
 
-    client.user.setStatus(botDataJson.bot_status);
+    client.user.setPresence({
+        game: {
+            name: botDataJson.bot_game,
+            type: botDataJson.bot_game_type
+        },
+        status: botDataJson.bot_status
+    });
+
+    //console.log(client.user.presence);
 
     // This is starting the app.
     app.startApp(client);
@@ -113,7 +120,7 @@ client.login(prv_config.token);
  *
  * @public
  */
-exports.setGameStatus = function (/**String*/ game,/**boolean*/maintenanceChange,/**Number*/ t0) {
+exports.setGameStatus = function (/**String*/ game, /**String*/ activity, /**boolean*/maintenanceChange,/**Number*/ t0) {
 
     // Short explanation why I´m using this boolean maintenanceChange
     // Currently we´re saving all data from the bot into the file botData.json
@@ -127,54 +134,69 @@ exports.setGameStatus = function (/**String*/ game,/**boolean*/maintenanceChange
 
     // You have another idea how to store this values? Then make a Pull Request in GitHub! :)
 
-    let gameBeforeChanging = client.user.localPresence.game.name;
-    client.user.setGame(game);
 
-    console.log("\n>> Bot Change > Game status set to: " + game);
+    if(activity != "PLAYING" && activity != "STREAMING" && activity != "LISTENING" && activity != "WATCHING" ){
+        console.error("\n>> Bot Error: Invalid activity to set! Use only the 4 vaild ones!" +
+            "\n>> PresenceStatus: https://discord.js.org/#/docs/main/stable/typedef/ActivityType" +
+            "\n>> Sent value: " + activity);
+    }else{
+        let gameBeforeChanging = client.user.localPresence.game.name;
 
-    if(maintenanceChange === false) {
-
-        fs.readFile("./botData.json", "utf-8", function (err, data) {
-            if (err) throw err;
-            let botData = JSON.parse(data);
-
-            botData.bot_game = game;
-
-            fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function (err) {
-                if (err) throw err;
-                console.log(chalk.greenBright(">> Successfully edited botData.json. Followed values were changed in botData.json:"));
-                console.log(chalk.yellowBright(">> game: ") + chalk.redBright(gameBeforeChanging) + " -> " + chalk.greenBright.bold(game));
-
-                setTimeout(() =>{
-                    app.addLog({
-                        "log_type" : "info",
-                        "log_message" : "Successfully edited botData.json.",
-                        "log_date" : Date.now(),
-                        "log_action" : "Changed value: game"
-                    });
-                }, 50);
-
-            })
+        client.user.setPresence({
+            game: {
+                name: game,
+                type: activity
+            },
+            //status: botDataJson.bot_status
         });
 
-        let t1 = now();
-        setTimeout(() =>{
-            app.addLog({
-                "log_type" : "info",
-                "log_message" : "Changed game status value",
-                "log_date" : Date.now(),
-                "log_action" : "function call took " + (t1-t0).toFixed(3) + "ms"
-            });
-        }, 70);
-        setTimeout(() =>{
-            app.addLog({
-                "log_type" : "success",
-                "log_message" : "Successfully changed game status of bot.",
-                "log_date" : Date.now(),
-                "log_action" : "Changed it from " + gameBeforeChanging + " to " + game + "."
-            });
-        }, 90);
+        console.log("\n>> Bot Change > Game status set to: " + game);
 
+        if(maintenanceChange === false) {
+
+            fs.readFile("./botData.json", "utf-8", function (err, data) {
+                if (err) throw err;
+                let botData = JSON.parse(data);
+
+                botData.bot_game = game;
+                botData.bot_game_type = activity;
+
+                fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function (err) {
+                    if (err) throw err;
+                    console.log(chalk.greenBright(">> Successfully edited botData.json. Followed values were changed in botData.json:"));
+                    console.log(chalk.yellowBright(">> game: ") + chalk.redBright(gameBeforeChanging) + " -> " + chalk.greenBright.bold(game));
+
+                    setTimeout(() =>{
+                        app.addLog({
+                            "log_type" : "info",
+                            "log_message" : "Successfully edited botData.json.",
+                            "log_date" : Date.now(),
+                            "log_action" : "Changed value: game"
+                        });
+                    }, 50);
+
+                })
+            });
+
+            let t1 = now();
+            setTimeout(() =>{
+                app.addLog({
+                    "log_type" : "info",
+                    "log_message" : "Changed game status value",
+                    "log_date" : Date.now(),
+                    "log_action" : "function call took " + (t1-t0).toFixed(3) + "ms"
+                });
+            }, 70);
+            setTimeout(() =>{
+                app.addLog({
+                    "log_type" : "success",
+                    "log_message" : "Successfully changed game status of bot.",
+                    "log_date" : Date.now(),
+                    "log_action" : "Changed it from " + gameBeforeChanging + " to " + game + "."
+                });
+            }, 90);
+
+        }
     }
 };
 
@@ -199,7 +221,14 @@ exports.setBotStatus = function (/**String*/ status,/**boolean*/maintenanceChang
             "\n>> Sent value: " + status);
     }else{
         // Setting the new value
-        client.user.setStatus(status);
+        client.user.setPresence({
+            /*game: {
+                name: botDataJson.bot_game,
+                type: botDataJson.bot_game_type
+            },*/
+            status: status
+        });
+        
         // Output successful notification
         console.log(">> Bot Change > Status set to: " + status);
 
