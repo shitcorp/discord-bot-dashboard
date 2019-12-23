@@ -23,9 +23,7 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
-dashboard(client, {
-    port:8080
-});
+dashboard.run(client);
 
 // Log inro the bot using the token from https://discordapp.com/developers/applications/me
 client.login('Your token here');
@@ -40,7 +38,7 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
-dashboard(client, {
+dashboard.run(client, {
     port: 3000, //Number
     maintenanceNotification: false, //Boolean
 
