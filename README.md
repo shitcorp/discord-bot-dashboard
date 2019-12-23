@@ -1,61 +1,62 @@
-# discord-bot-dashboard
+<h1 align="center">Discord Bot Dashboard</h1>
+<p>
+  <a href="https://discord.gg/yAUmDNb">
+      <img src="https://discordapp.com/api/guilds/358751806697897984/embed.png" alt="Discord Server Shield"/>
+  </a>
+  <a href="https://github.com/julianYaman/discord-bot-dashboard/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+  </a>
+  <a href="https://twitter.com/julianYaman">
+    <img alt="Twitter: julianYaman" src="https://img.shields.io/twitter/follow/julianYaman.svg?style=social" target="_blank" />
+  </a>
+</p>
 
-###
-* Downloading (coming soon)
-* [Welcome](https://github.com/julianYaman/discord-bot-dashboard#welcome)
-* [**Important Information**](https://github.com/julianYaman/discord-bot-dashboard#important-information)
-* [Dependencies](https://github.com/julianYaman/discord-bot-dashboard#dependencies)
-##
+> The control dashboard every bot developer searched for! Control your bot and get detailed analytics 
+> by using Discord Bot Dashboard (name not final)
 
-## Welcome
+### 🏠 [Homepage](https://github.com/julianYaman/discord-bot-dashboard)
 
-Welcome to this new project.
+## About the project
 
-In this project, I develop a Dashboard Tool for developers which are using Discord.js for their bots. 
+coming soon...
 
-You can use this for projects where you are releasing new bots for public and want to manage them, for example, to give the discord server administrators a status update on the game status like when you´re having a maintenance.
+# Show your support
 
-**Important: Install all dependencies with ``npm install``!**
+Give a ⭐️ if you like this project!
 
-To run this project, run the command `npm start`.
-It will automatically listen to the _port 3000_.
+<a href="https://www.patreon.com/user?u=23070184">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
 
-**In the `main.js` file, you can develop your bot or paste your current code!**
+## Author & Contributors
 
-When you want to change the port for listening, you can change it in the `config.json`.
+👤 **Julian Yaman <julianyaman@posteo.eu>**
 
-Write your bot token from [**the Discord Applications Page**](https://discordapp.com/developers/applications/me) into the 
-`config.json` inside the property value of `token`. Before you do this, look at the **Important Information** section.
+* Twitter: [@julianYaman](https://twitter.com/julianYaman)
+* Support Discord Server: [join here](https://discord.gg/yAUmDNb)
 
-## Important Information:
+*- contributors will be listed here -*
 
-**api/main.js:**
+You also want to help us? Look below.
 
-```
-Currently:
+## 🤝 Contributing
 
-client.login(prv_config.token);
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/julianYaman/discord-bot-dashboard/issues) 
+and join the [Support Discord Server](https://discord.gg/yAUmDNb).
 
---------------------------------
+Also you can support the work financially on [Patreon](https://www.patreon.com/user?u=23070184).
 
-Use this when you fork this project and want to make a pull request.
-You must create the file private_config.json in the main directory (same as config.json).
+**If you want to contribute to the codebase of this project, please follow the 
+[contributing guidelines](https://github.com/julianYaman/discord-bot-dashboard/blob/master/docs/CONTRIBUTING.md).**
 
-private_config.json will be blocked by .gitignore from committing and pushing.
+### Setup the project
 
+#### Coming soon...
 
-When you're making a pull request, check that you didn't write your token 
-inside the config.json.
+## 📝 License
 
---------------------------------
+Copyright © 2019 [Julian Yaman <julianyaman@posteo.eu>](https://github.com/julianYaman).<br />
+This project is [MIT](https://github.com/julianYaman/discord-bot-dashboard/blob/master/LICENSE) licensed.
 
-Change it to:
-
-client.login(config.token);
-
-for public usage and write your bot token inside the config.json.
-
-```
-
-For more information: _Read the comments above the client.login function in main.js._
-
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator) with some edits_ 
