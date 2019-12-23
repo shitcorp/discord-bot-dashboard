@@ -1,12 +1,12 @@
-const config = require("./../config.json");
 const botData = require("./../botData.json");
 const express = require('express');
 const session = require('express-session');
-const bot = require("./../discord-bot-sourcefiles/main");
+const bot = require("./../discord-bot-sourcefiles/clientMethods");
 const log = require("./../log.json");
 const fs = require("fs");
 const bodyParser = require('body-parser');
 const now = require("performance-now");
+const path = require('path')
 const commands = require("./../discord-bot-sourcefiles/bot-commands.json");
 
 const chalk = require('chalk');
@@ -28,16 +28,17 @@ var exports = module.exports = {};
  * @version 0.0.6.3
  * @public
  */
-exports.startApp = function (/**Object*/ client) {
+exports.startApp = function (/**Object*/ client, config) {
 
     let maintenanceStatus = botData.maintenance;
 
     app.set('view engine', 'ejs');
+    app.set('views', path.join(__dirname, '../views'))
 
-    app.use('/lib', express.static('lib', { redirect : false }));
-    app.use('/styles', express.static('src', { redirect : false }));
-    app.use('/scripts', express.static('src', { redirect : false }));
-    app.use('/src', express.static('src', { redirect : false }));
+    app.use('/lib', express.static(path.join(__dirname, '../lib'), { redirect : false }));
+    app.use('/styles', express.static(path.join(__dirname, '../scripts'), { redirect : false }));
+    app.use('/scripts', express.static(path.join(__dirname, '../scripts'), { redirect : false }));
+    app.use('/src', express.static(path.join(__dirname, '../scripts'), { redirect : false }));
 
     app.use(session({secret: 'ssshhhhh'}));
 
@@ -66,13 +67,13 @@ exports.startApp = function (/**Object*/ client) {
 
     app.get("/outputClient", (req, res) => {
         let t0 = now();
-        console.log(bot.sendClientObject(t0));
+        console.log(bot.sendClientObject(client, config, t0));
         res.redirect("/dashboard");
     });
 
     app.get("/outputGuilds", (req, res) => {
         let t0 = now();
-        console.log(bot.sendGuildsObject(t0));
+        console.log(bot.sendGuildsObject(client, config, t0));
         res.redirect("/dashboard");
     });
 
@@ -81,6 +82,14 @@ exports.startApp = function (/**Object*/ client) {
             data: client,
             maintenanceStatus: maintenanceStatus,
             log: log
+        })
+    });
+
+    app.get("/console", (req, res) => {
+        res.render("log", {
+            data: client,
+            maintenanceStatus: maintenanceStatus,
+            logs: require('../discord-bot-sourcefiles/utils').log
         })
     });
 
@@ -105,14 +114,14 @@ exports.startApp = function (/**Object*/ client) {
 
     app.get("/activateMaintenance", (req, res) => {
         let t0 = now();
-        bot.maintenance(true, t0);
+        bot.maintenance(client, config, true, t0);
         maintenanceStatus = true;
         res.redirect("/dashboard");
     });
 
     app.get("/deactivateMaintenance", (req, res) => {
         let t0 = now();
-        bot.maintenance(false, t0);
+        bot.maintenance(client, false, t0);
         maintenanceStatus = false;
         res.redirect("/dashboard");
     });
@@ -135,7 +144,7 @@ exports.startApp = function (/**Object*/ client) {
     app.post("/change-game-status" ,(req, res) => {
 
         // Using the exports function from the required "./main" module to set the game
-        bot.setGameStatus(req.body.gameStatus, req.body.activity, false, now());
+        bot.setGameStatus(client, config, req.body.gameStatus, req.body.activity, false, now());
 
         // TODO: Updating the config.json with the new bot_game value to get the new game value when restarting the bot.
 
@@ -145,7 +154,7 @@ exports.startApp = function (/**Object*/ client) {
 
     app.post("/change-status", (req, res) => {
 
-        bot.setBotStatus(req.body.status, false);
+        bot.setBotStatus(client, req.body.status, false);
 
         res.redirect("/");
         console.log("\n>> Redirecting to /");
@@ -153,7 +162,7 @@ exports.startApp = function (/**Object*/ client) {
 
     app.post("/send-serveradmin-dm-message", (req, res) => {
 
-        bot.sendAdminMessage(req.body.message);
+        bot.sendAdminMessage(client, config, req.body.message);
 
         res.redirect("/messages");
         console.log("\n>> Redirecting to /messages");
@@ -172,8 +181,8 @@ exports.startApp = function (/**Object*/ client) {
     // You can look inside the repository of chalk to understand how it works and how to use it.
     // Repository: https://goo.gl/qfQ4Pv
 
-    app.listen(config.LISTENING_PORT, function () {
-        console.log(chalk.cyanBright('>> Dashboard is online and running on port ' + config.LISTENING_PORT + '!\n'));
+    app.listen(config.port, function () {
+        console.log(chalk.cyanBright('>> Dashboard is online and running on port ' + config.port + '!\n'));
     });
 
 };

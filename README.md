@@ -1,3 +1,9 @@
+###
+* [Welcome](https://github.com/julianYaman/discord-bot-dashboard#welcome)
+* [**Important Information**](https://github.com/julianYaman/discord-bot-dashboard#important-information)
+* [Dependencies](https://github.com/julianYaman/discord-bot-dashboard#dependencies)
+##
+
 <h1 align="center">Discord Bot Dashboard</h1>
 <p>
   <a href="https://discord.gg/yAUmDNb">
@@ -14,6 +20,7 @@
 > The control dashboard every bot developer searched for! Control your bot and get detailed analytics 
 > by using Discord Bot Dashboard (name not final)
 
+
 ### 🏠 [Homepage](https://github.com/julianYaman/discord-bot-dashboard)
 
 ## About the project
@@ -21,7 +28,6 @@
 coming soon...
 
 # Show your support
-
 Give a ⭐️ if you like this project!
 
 <a href="https://www.patreon.com/user?u=23070184">
@@ -60,3 +66,4 @@ This project is [MIT](https://github.com/julianYaman/discord-bot-dashboard/blob/
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator) with some edits_ 
+

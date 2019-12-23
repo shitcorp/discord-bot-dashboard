@@ -1,114 +1,13 @@
 var exports = module.exports = {};
 
 const fs = require("fs");
-const Discord = require("discord.js");
-const client = new Discord.Client();
-const config = require("../config.json");
-const botDataJson = require("./../botData.json");
-const botCommands = require("./bot-commands.json");
+
 // Delete this line when you´re using this project for public usages.
-const prv_config = require("../private_config.json");
 const now = require("performance-now");
-
-
 const chalk = require('chalk');
+const path = require("path");
 
-const app = require("./../api/app");
-
-const commandPrefix = config.prefix;
-
-// Executed when the bot is ready!
-client.on('ready', () => {
-    // Console output for showing that the bot is running.
-    console.log(chalk.greenBright('\n>> Bot is ready!'));
-    console.log('>> Logged in as ' + client.user.username);
-    console.log('>> Running on version ' + botDataJson.bot_version);
-    console.log('>> Current game: ' + botDataJson.bot_game);
-    console.log('>> Current status: ' + botDataJson.bot_status);
-
-    // Optional start options when you´re starting the bot.
-
-    client.user.setPresence({
-        game: {
-            name: botDataJson.bot_game,
-            type: botDataJson.bot_game_type
-        },
-        status: botDataJson.bot_status
-    });
-
-    //console.log(client.user.presence);
-
-    // This is starting the app.
-    app.startApp(client);
-});
-
-// If your code editor says that () => is an error, change it to function()
-// Executed when message event
-client.on('message', async(message) => {
-    let commands = botCommands;
-    if(message.author.bot) return;
-
-    let sender = message.author;
-    let senderUsername = sender.username;
-    let senderID = sender.id;
-    let content = message.content;
-
-    if(message.channel.type === "dm"){
-        let time = Date.now();
-        app.dmNotification(senderUsername, content, time);
-    }
-
-    if(!message.content.startsWith(commandPrefix)) return;
-    let command = message.content.toLowerCase().split(" ")[0];
-    command = command.slice(commandPrefix.length);
-
-    let args = message.content.split(" ").slice(1);
-
-    if(command === "help"){
-        app.addLog({
-            "log_type": "info",
-            "log_message": "Command help executed!",
-            "log_date": Date.now(),
-            "log_action": commandPrefix + "help executed"
-        });
-        message.channel.sendMessage("This is the help command!");
-    }
-
-    if(command === "test"){
-        app.addLog({
-            "log_type": "info",
-            "log_message": "Command test executed!",
-            "log_date": Date.now(),
-            "log_action": commandPrefix + "test executed"
-        });
-        message.channel.sendMessage("This is the test command for something you want to test (I think)!");
-    }
-
-
-    if(command === "invites"){
-        /* invites.then(function (a) {
-            console.log(a.filter(invite => !invite.maxAge).first().toString());
-        }); */
-        try {
-            const invites = await message.guild.fetchInvites();
-            message.author.send(invites.filter(invite => !invite.maxAge).first().toString());
-        } catch(err){
-            message.delete();
-            message.author.send("No invite link found! Create one yourself in Discord.")
-        }
-    }
-});
-
-// Change it to config.token when you want to use this project for public usages.
-//
-// prv_config is only for personal usage or when youre forking this project,
-// testing some functions with the and make a pull request to the repo.
-// Warning: When you´re making a pull request, check that you didn´t wrote your token inside the config.json.
-//
-// To use prv_config, create a file called "private_config.json" inside the main directory.
-// .gitignore will ignore this file when you want to commit and push.
-// So nobody can get your bot token.
-client.login(prv_config.token);
+const app = require("../api/app");
 
 /**
  * Set a game status for the bot.
@@ -120,7 +19,7 @@ client.login(prv_config.token);
  *
  * @public
  */
-exports.setGameStatus = function (/**String*/ game, /**String*/ activity, /**boolean*/maintenanceChange,/**Number*/ t0) {
+exports.setGameStatus = function (client, config, /**String*/ game, /**String*/ activity, /**boolean*/maintenanceChange,/**Number*/ t0) {
 
     // Short explanation why I´m using this boolean maintenanceChange
     // Currently we´re saving all data from the bot into the file botData.json
@@ -154,14 +53,14 @@ exports.setGameStatus = function (/**String*/ game, /**String*/ activity, /**boo
 
         if(maintenanceChange === false) {
 
-            fs.readFile("./botData.json", "utf-8", function (err, data) {
+            fs.readFile(path.join(__dirname, "../botData.json"), "utf-8", function (err, data) {
                 if (err) throw err;
                 let botData = JSON.parse(data);
 
                 botData.bot_game = game;
                 botData.bot_game_type = activity;
 
-                fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function (err) {
+                fs.writeFile(path.join(__dirname, "../botData.json"), JSON.stringify(botData, null, 3), 'utf-8', function (err) {
                     if (err) throw err;
                     console.log(chalk.greenBright(">> Successfully edited botData.json. Followed values were changed in botData.json:"));
                     console.log(chalk.yellowBright(">> game: ") + chalk.redBright(gameBeforeChanging) + " -> " + chalk.greenBright.bold(game));
@@ -210,7 +109,7 @@ exports.setGameStatus = function (/**String*/ game, /**String*/ activity, /**boo
  *
  * @public
  */
-exports.setBotStatus = function (/**String*/ status,/**boolean*/maintenanceChange) {
+exports.setBotStatus = function (client, config, /**String*/ status,/**boolean*/maintenanceChange) {
 
     // Store status in a let before the change
     let statusBeforeChanging = client.user.localPresence.status;
@@ -235,7 +134,7 @@ exports.setBotStatus = function (/**String*/ status,/**boolean*/maintenanceChang
         if(maintenanceChange === false) {
 
             // Change value in botData.json
-            fs.readFile("./botData.json", "utf-8", function (err, data) {
+            fs.readFile(path.join(__dirname, "../botData.json"), "utf-8", function (err, data) {
                 if (err) throw err;
                 let botData = JSON.parse(data);
 
@@ -243,7 +142,7 @@ exports.setBotStatus = function (/**String*/ status,/**boolean*/maintenanceChang
                 botData.bot_status = status;
 
                 // Writing new value into the json file
-                fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function (err) {
+                fs.writeFile(path.join(__dirname, "../botData.json"), JSON.stringify(botData, null, 3), 'utf-8', function (err) {
                     if (err) throw err;
                     console.log(chalk.greenBright(">> Successfully edited botData.json. Followed values were changed in botData.json:"));
                     console.log(chalk.yellowBright(">> status: ") + chalk.redBright(statusBeforeChanging) + " -> " + chalk.greenBright.bold(status));
@@ -263,7 +162,7 @@ exports.setBotStatus = function (/**String*/ status,/**boolean*/maintenanceChang
  *
  * @public
  */
-exports.sendAdminMessage = function (/**String*/ message) {
+exports.sendAdminMessage = function (client, config, /**String*/ message) {
     let guilds = client.guilds;
 
     guilds.map(function (a) {
@@ -282,7 +181,7 @@ exports.sendAdminMessage = function (/**String*/ message) {
  * @param t0 - Number of milliseconds of the process is running. Use for that the function now() (npm module performance-now, added in 0.0.6.1)
  * @public
  */
-exports.sendClientObject = (/**Number*/t0) => {
+exports.sendClientObject = (client, config, /**Number*/t0) => {
     let t1 = now();
     app.addLog({
         "log_type" : "info",
@@ -300,7 +199,7 @@ exports.sendClientObject = (/**Number*/t0) => {
  * @param t0 - Number of milliseconds of the process is running. Use for that the function now() (npm module performance-now, added in 0.0.6.1)
  * @public
  */
-exports.sendGuildsObject = (/**Number*/t0) => {
+exports.sendGuildsObject = (client, config, /**Number*/t0) => {
     let guilds = client.guilds;
     // guilds.map(function (a) {
     //     console.log(a.name);
@@ -321,7 +220,7 @@ exports.sendGuildsObject = (/**Number*/t0) => {
  *
  * @public
  */
-exports.sendInvitesOfServers = function () {
+exports.sendInvitesOfServers = function (client, config) {
     let guilds = client.guilds;
 
     guilds.map(function (a) {
@@ -345,7 +244,7 @@ exports.sendInvitesOfServers = function () {
  *
  * @public
  */
-exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
+exports.maintenance = function (client, config, /**boolean*/ maintenanceBool, /**Number*/t0) {
     if(maintenanceBool === true){
         // localPresence values before the maintenance starts
         let statusBeforeChanging  = client.user.localPresence.status;
@@ -354,14 +253,16 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
         // Set new values to the bot user
         this.setBotStatus("dnd", true);
         this.setGameStatus("Monkeys are working!", true);
-        this.sendAdminMessage("Hello dear server admin, currently I´m currently in maintenance so don´t wonder why you may not can access all functions. We will inform you when we finished our maintenance!");
+        if (config.maintenanceNotification === true) {
+            this.sendAdminMessage("Hello dear server admin, currently I´m currently in maintenance so don´t wonder why you may not can access all functions. We will inform you when we finished our maintenance!");
+            app.addLog({
+                "log_type" : "info",
+                "log_message" : "Server admins got an message which contains information that maintenance was enabled!",
+                "log_date" : Date.now(),
+                "log_action" : ""
+            });
+        };
 
-        app.addLog({
-            "log_type" : "info",
-            "log_message" : "Server admins got an message which contains information that maintenance was enabled!",
-            "log_date" : Date.now(),
-            "log_action" : ""
-        });
 
         setTimeout(function(){
             app.addLog({
@@ -374,19 +275,19 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
 
         // Reading the file and replace property values to new ones
 
-        fs.readFile("./botData.json", "utf-8", function (err, data) {
+        fs.readFile(path.join(__dirname, "../botData.json"), "utf-8", function (err, data) {
             if (err) throw err;
             let botData = JSON.parse(data);
 
             // Setting new values for properties.
 
             botData.maintenance = true;
-            botData.bot_game = "Monkeys are working!";
-            botData.bot_status = "dnd";
+            botData.bot_game = config.maintenanceGame;
+            botData.bot_status = config.maintenanceBot_status;
 
             // Writing new property values into botData.json
 
-            fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function(err) {
+            fs.writeFile(path.join(__dirname, "../botData.json"), JSON.stringify(botData, null, 3), 'utf-8', function(err) {
                 if (err) throw err;
 
                 // Output the changes
@@ -426,14 +327,14 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
 
 
 
-    }else{
+    } else{
         // localPresence values before the maintenance ends
         let statusBeforeChanging  = client.user.localPresence.status;
         let gameBeforeChanging    = client.user.localPresence.game.name;
 
         // Set new values to the bot user
-        this.setBotStatus("online", true);
-        this.setGameStatus("Monkeys are finished!", true);
+        this.setBotStatus(config.baseBot_status, true);
+        this.setGameStatus(config.baseGame, true);
 
         setTimeout(function(){
             app.addLog({
@@ -445,19 +346,19 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
         }, 60);
 
         // Reading the file and replace property values to new ones
-        fs.readFile("./botData.json", "utf-8", function (err, data) {
+        fs.readFile(path.join(__dirname, "../botData.json"), "utf-8", function (err, data) {
             if (err) throw err;
             let botData = JSON.parse(data);
 
             // Setting new values for properties.
 
             botData.maintenance = false;
-            botData.bot_game = "Monkeys are finished!";
-            botData.bot_status = "online";
+            botData.bot_game = config.baseGame;
+            botData.bot_status = config.baseBot_status;
 
             // Writing new property values into botData.json
 
-            fs.writeFile('./botData.json', JSON.stringify(botData, null, 3), 'utf-8', function(err) {
+            fs.writeFile(path.join(__dirname, "../botData.json"), JSON.stringify(botData, null, 3), 'utf-8', function(err) {
                 if (err) throw err;
 
                 // Output the changes in the files
@@ -492,4 +393,3 @@ exports.maintenance = function (/**boolean*/ maintenanceBool, /**Number*/t0) {
         }, 100)
     }
 };
-
