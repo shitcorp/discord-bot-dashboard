@@ -1,55 +1,69 @@
-# discord-bot-dashboard, package edition
-
 ###
 * [Welcome](https://github.com/julianYaman/discord-bot-dashboard#welcome)
 * [**Important Information**](https://github.com/julianYaman/discord-bot-dashboard#important-information)
 * [Dependencies](https://github.com/julianYaman/discord-bot-dashboard#dependencies)
 ##
 
-## Welcome
+<h1 align="center">Discord Bot Dashboard</h1>
+<p>
+  <a href="https://discord.gg/yAUmDNb">
+      <img src="https://discordapp.com/api/guilds/358751806697897984/embed.png" alt="Discord Server Shield"/>
+  </a>
+  <a href="https://github.com/julianYaman/discord-bot-dashboard/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+  </a>
+  <a href="https://twitter.com/julianYaman">
+    <img alt="Twitter: julianYaman" src="https://img.shields.io/twitter/follow/julianYaman.svg?style=social" target="_blank" />
+  </a>
+</p>
 
-Welcome to this new project.
+> The control dashboard every bot developer searched for! Control your bot and get detailed analytics 
+> by using Discord Bot Dashboard (name not final)
 
-In this project, I develop a Dashboard Tool for developers which are using Discord.js for their bots. 
 
-You can use this for projects where you are releasing new bots for public and want to manage them, for example, to give the Discord server administrators a status update on the game status like when you're down for maintenance.
+### 🏠 [Homepage](https://github.com/julianYaman/discord-bot-dashboard)
 
-## Documentation
-**Run the dashboard**
-```js
-const dashboard = require('packageName');
-const Discord = require('discord.js');
+## About the project
 
-// Create an instance of a Discord client
-const client = new Discord.Client();
+coming soon...
 
-dashboard.run(client);
+# Show your support
+Give a ⭐️ if you like this project!
 
-// Log inro the bot using the token from https://discordapp.com/developers/applications/me
-client.login('Your token here');
-```
-A logged in client is required to be passed to the package. (Basicly just use the `.login` method on the same client var passed at some point.)
+<a href="https://www.patreon.com/user?u=23070184">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
 
-**Settings**
-```js
-const dashboard = require('packageName');
-const Discord = require('discord.js');
+## Author & Contributors
 
-// Create an instance of a Discord client
-const client = new Discord.Client();
+👤 **Julian Yaman <julianyaman@posteo.eu>**
 
-dashboard.run(client, {
-    port: 3000, //Number
-    maintenanceNotification: false, //Boolean
+* Twitter: [@julianYaman](https://twitter.com/julianYaman)
+* Support Discord Server: [join here](https://discord.gg/yAUmDNb)
 
-    baseGame: "!help | v0.0.6.3", //String
-    baseBot_status: "online", //String
+*- contributors will be listed here -*
 
-    maintenanceGame: "Bot is in maintenance", //String
-    maintenanceBot_status: "dnd" //String
-});
+You also want to help us? Look below.
 
-// Log inro the bot using the token from https://discordapp.com/developers/applications/me
-client.login('Your token here');
-```
-Each setting displayed above is the default setting. No, setting is required to be entered by the user, each has a default setting.
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/julianYaman/discord-bot-dashboard/issues) 
+and join the [Support Discord Server](https://discord.gg/yAUmDNb).
+
+Also you can support the work financially on [Patreon](https://www.patreon.com/user?u=23070184).
+
+**If you want to contribute to the codebase of this project, please follow the 
+[contributing guidelines](https://github.com/julianYaman/discord-bot-dashboard/blob/master/docs/CONTRIBUTING.md).**
+
+### Setup the project
+
+#### Coming soon...
+
+## 📝 License
+
+Copyright © 2019 [Julian Yaman <julianyaman@posteo.eu>](https://github.com/julianYaman).<br />
+This project is [MIT](https://github.com/julianYaman/discord-bot-dashboard/blob/master/LICENSE) licensed.
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator) with some edits_ 
+

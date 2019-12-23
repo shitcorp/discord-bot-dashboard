@@ -2,7 +2,7 @@
   "name": "discord-bot-dashboard",
   "version": "0.0.1",
   "description": "A tool for Discord.js bot developers to manage their bot for development and final release usages.",
-  "main": "index.js",
+  "main": "discord-bot-sourcefiles/main.js",
   "scripts": {
     "test": "node test"
   },
@@ -24,7 +24,7 @@
     "capture-console": "^1.0.1",
     "chalk": "latest",
     "discord.js": "^11.4.2",
-    "ejs": "^2.7.1",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.2",
     "express-session": "^1.16.2",
