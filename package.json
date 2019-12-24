@@ -1,8 +1,8 @@
 {
   "name": "discord-bot-dashboard",
-  "version": "0.0.1",
+  "version": "recode-v1.0.0",
   "description": "A tool for Discord.js bot developers to manage their bot for development and final release usages.",
-  "main": "discord-bot-sourcefiles/main.js",
+  "main": "index.js",
   "scripts": {
     "test": "node test"
   },
@@ -24,6 +24,7 @@
     "capture-console": "^1.0.1",
     "chalk": "^3.0.0",
     "discord.js": "^11.4.2",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
