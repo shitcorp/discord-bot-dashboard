@@ -13,6 +13,7 @@ module.exports.run = (client, config) => {
         maintenanceBot_status: config.maintenanceBot_status || "dnd"
     };
 
-    app.run(config.port)
+    // Required: Discord.client, port (default: 3000)
+    app.run(client, config.port)
 
 }

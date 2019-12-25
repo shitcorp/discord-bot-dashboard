@@ -4,7 +4,7 @@
   "description": "A package for bot developers (using Discord.js) to have a nice looking dashboard with the possibility to control and analyse the bot's behaviour.",
   "main": "index.js",
   "scripts": {
-    "test": "node test"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "jquery": "^3.4.1",
     "nodemon": "^2.0.2",
     "performance-now": "^2.1.0",
+    "pug": "^2.0.4",
     "socket.io": "^2.3.0"
   }
 }
