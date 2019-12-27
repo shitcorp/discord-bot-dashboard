@@ -5,7 +5,12 @@ const express = require('express');
 const DiscordOauth2 = require("discord-oauth2");
 
 const oauth = new DiscordOauth2();
+const express = require('express');
 const app = express();
+
+// Util modules
+const chalk = require('chalk');
+const log = console.log;
 
 // TODO: Check for security measure which need to be done before
 // TODO: express-session
@@ -56,6 +61,6 @@ exports.run = (client, config) => {
 
   // Listener
   app.listen(config.port, () => {
-    console.log('Application is running on port ' + config.port)
-  });
-};
+    log('INFO >> ' + chalk.green('Dashboard is running on port ' + config.port))
+  })
+}

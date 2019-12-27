@@ -4,6 +4,7 @@
  */
 const dashboard = require("./index");
 const Discord = require('discord.js');
+const chalk = require('chalk');
 require('dotenv').config(); // Create a .env file or include your own config file
 
 // Create an instance of a Discord client
@@ -14,9 +15,9 @@ const { OAuth2Application } = require('discord.js');
 
 // Ready event of the Client
 client.on('ready', () => {
-
-  dashboard.run(client, { port: 4000 }, oAuth)
-  console.log('Bot is online')
+  
+  dashboard.run(client, { port: 4000 }, oAuth);
+  console.log('INFO >> ' + chalk.green('Bot is online'));
 
 });
 
