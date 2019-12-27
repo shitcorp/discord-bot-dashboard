@@ -3,7 +3,11 @@
  */
 
 const express = require('express')
-const app = express();
+const app = express()
+
+// Util modules
+const chalk = require('chalk')
+const log = console.log
 
 // TODO: Check for security measure which need to be done before
 // TODO: express-session
@@ -43,6 +47,6 @@ exports.run = (client, port=3000) => {
 
   // Listener
   app.listen(port, () => {
-    console.log('Application is running on port ' + port)
+    log('INFO >> ' + chalk.green('Dashboard is running on port ' + port))
   })
 }
