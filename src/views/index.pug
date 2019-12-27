@@ -67,27 +67,12 @@ head
           //
             Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library
-          li.nav-item.has-treeview.menu-open
-            a.nav-link.active(href='#')
-              i.nav-icon.fas.fa-tachometer-alt
-              p
-                | Starter Pages
-                i.right.fas.fa-angle-left
-            ul.nav.nav-treeview
-              li.nav-item
-                a.nav-link.active(href='#')
-                  i.far.fa-circle.nav-icon
-                  p Active Page
-              li.nav-item
-                a.nav-link(href='#')
-                  i.far.fa-circle.nav-icon
-                  p Inactive Page
           li.nav-item
-            a.nav-link(href='#')
+            a.nav-link.active(href='/')
               i.nav-icon.fas.fa-th
               p
-                | Simple Link
-                span.right.badge.badge-danger New
+                | Dashboard
+                span.right.badge.badge-success New
       // /.sidebar-menu
     // /.sidebar
   // Content Wrapper. Contains page content
@@ -97,13 +82,13 @@ head
       .container-fluid
         .row.mb-2
           .col-sm-6
-            h1.m-0.text-dark Starter Page
+            h1.m-0.text-dark Dashboard
           // /.col
           .col-sm-6
             ol.breadcrumb.float-sm-right
               li.breadcrumb-item
-                a(href='#') Home
-              li.breadcrumb-item.active Starter Page
+                a(href='/') Home
+              li.breadcrumb-item.active Dashboard
           // /.col
         // /.row
       // /.container-fluid
@@ -112,26 +97,21 @@ head
     .content
       .container-fluid
         .row
-          .col-lg-6
-            .card
-              .card-body
-                h5.card-title Card title
-                p.card-text
-                  | Some quick example text to build on the card title and make up the bulk of the card&apos;s
-                  | content.
-                a.card-link(href='#') Card link
-                a.card-link(href='#') Another link
+          .col-lg-3
             .card.card-primary.card-outline
               .card-body
-                h5.card-title Card title
-                p.card-text
-                  | Some quick example text to build on the card title and make up the bulk of the card&apos;s
-                  | content.
-                a.card-link(href='#') Card link
-                a.card-link(href='#') Another link
+                h3= botInfo.username + ' is ' + botInfo.status
             // /.card
           // /.col-md-6
-          .col-lg-6
+          .col-lg-3
+            .card.bg-primary
+              .card-body
+                h3 Serving for #{botInfo.users} user
+          .col-lg-3
+            .card.bg-dark
+              .card-body
+                h3 Used on #{botInfo.guilds} server
+          .col-lg-3
             .card
               .card-header
                 h5.m-0 Featured

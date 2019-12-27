@@ -13,9 +13,12 @@ const app = express();
 // Run
 exports.run = (client, port=3000) => {
 
+  // (only-read) Basic information about the bot
   const botInfo = {
     username: client.user.username,
-    status: client.user.presence.status
+    status: client.user.presence.status,
+    users: client.users.size,
+    guilds: client.guilds.size
   }
 
   /*
