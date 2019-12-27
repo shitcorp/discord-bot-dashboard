@@ -1,6 +1,6 @@
 {
   "name": "discord-bot-dashboard",
-  "version": "recode-v1.0.0",
+  "version": "1.0.0",
   "description": "A package for bot developers (using Discord.js) to have a nice looking dashboard with the possibility to control and analyse the bot's behaviour.",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "body-parser": "^1.19.0",
     "capture-console": "^1.0.1",
     "chalk": "^3.0.0",
+    "discord-oauth2": "^2.0.2",
     "discord.js": "^11.4.2",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",

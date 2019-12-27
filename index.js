@@ -1,6 +1,6 @@
-const app = require('./modules/app')
+const app = require('./modules/app');
 
-module.exports.run = (client, config) => {
+module.exports.run = (client, config, oAuth) => {
 
     config = {
         port: config.port || 3000,
@@ -10,10 +10,13 @@ module.exports.run = (client, config) => {
         baseBot_status: config.baseBot_status || "online",
 
         maintenanceGame: config.maintenanceGame || "Bot is in maintenance",
-        maintenanceBot_status: config.maintenanceBot_status || "dnd"
+        maintenanceBot_status: config.maintenanceBot_status || "dnd",
+
+        clientSecret: oAuth.secret || config.clientSecret,
+        redirectURI: config.redirectURI || "http://localhost/callback"
     };
 
     // Required: Discord.client, port (default: 3000)
-    app.run(client, config.port)
+    app.run(client, config);
 
 }
