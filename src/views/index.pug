@@ -18,10 +18,6 @@ head
       li.nav-item
         a.nav-link(data-widget='pushmenu' href='#')
           i.fas.fa-bars
-      li.nav-item.d-none.d-sm-inline-block
-        a.nav-link(href='/') Home
-      li.nav-item.d-none.d-sm-inline-block
-        a.nav-link(href='#') Contact
     // SEARCH FORM
     form.form-inline.ml-3
       .input-group.input-group-sm
@@ -104,28 +100,29 @@ head
             // /.card
           // /.col-md-6
           .col-lg-3
-            .card.bg-primary
-              .card-body
-                h3 Serving for #{botInfo.users} user
+            .small-box.bg-primary
+              .inner
+                h3= botInfo.users
+                p users
+              .icon
+                i.fas.fa-users
           .col-lg-3
-            .card.bg-dark
-              .card-body
-                h3 Used on #{botInfo.guilds} server
+            .small-box.bg-dark
+              .inner
+                h3= botInfo.guilds
+                p guild
+              .icon
+                i.fas.fa-server
           .col-lg-3
-            .card
-              .card-header
-                h5.m-0 Featured
-              .card-body
-                h6.card-title Special title treatment
-                p.card-text With supporting text below as a natural lead-in to additional content.
-                a.btn.btn-primary(href='#') Go somewhere
             .card.card-primary.card-outline
               .card-header
-                h5.m-0 Featured
+                h5.m-0 Discord Bot Dashboard on GitHub
               .card-body
-                h6.card-title Special title treatment
-                p.card-text With supporting text below as a natural lead-in to additional content.
-                a.btn.btn-primary(href='#') Go somewhere
+                p.card-text You can find the repository of the dashboard on GitHub.
+                | Feel free to contribute and to give feedback.
+                | If you like the dashboard for your bot, please give a ⭐ on GitHub :)
+                br
+                a.btn.btn-primary(href='https://github.com/julianYaman/discord-bot-dashboard' target='_blank') GitHub Repository
           // /.col-md-6
         // /.row
       // /.container-fluid
