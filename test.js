@@ -16,7 +16,7 @@ const { OAuth2Application } = require('discord.js');
 // Ready event of the Client
 client.on('ready', () => {
   
-  dashboard.run(client, { port: 4000 }, oAuth);
+  dashboard.run(client, { port: 4000, clientSecret: process.env.clientSecret, redirectURI: "http://localhost:4000/auth/discord/callback"}, oAuth);
   console.log('INFO >> ' + chalk.green('Bot is online'));
 
 });

@@ -13,7 +13,7 @@ module.exports.run = (client, config, oAuth) => {
         maintenanceBot_status: config.maintenanceBot_status || "dnd",
 
         clientSecret: oAuth.secret || config.clientSecret,
-        redirectURI: config.redirectURI || "http://localhost/callback"
+        redirectURI: config.redirectURI || "http://localhost:3000/auth/discord/callback"
     };
 
     // Required: Discord.client, port (default: 3000)

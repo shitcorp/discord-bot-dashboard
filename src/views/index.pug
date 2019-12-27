@@ -56,7 +56,8 @@ head
       // Sidebar user panel (optional)
       .user-panel.mt-3.pb-3.mb-3.d-flex
         .info
-          a.d-block(href='#') User placeholder
+          img(src="https://cdn.discordapp.com/avatars/" + userInfo.id + "/" + userInfo.avatar + ".png")
+          a.d-block(href='#')= userInfo.username
       // Sidebar Menu
       nav.mt-2
         ul.nav.nav-pills.nav-sidebar.flex-column(data-widget='treeview' role='menu' data-accordion='false')
