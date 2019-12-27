@@ -26,3 +26,6 @@ package-lock.json
 
 # JetBrains folder
 .idea
+
+# AdminLTE example folder
+AdminLTE

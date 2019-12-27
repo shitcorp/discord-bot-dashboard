@@ -1,0 +1,181 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  meta(http-equiv='x-ua-compatible' content='ie=edge')
+  title AdminLTE 3 | Starter
+  // Font Awesome Icons
+  link(rel='stylesheet' href='/static/fontawesome-free/css/all.min.css')
+  // Theme style
+  link(rel='stylesheet' href='/static/css/adminlte.min.css')
+  // Google Font: Source Sans Pro
+  link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700' rel='stylesheet')
+.wrapper
+  // Navbar
+  nav.main-header.navbar.navbar-expand.navbar-white.navbar-light
+    // Left navbar links
+    ul.navbar-nav
+      li.nav-item
+        a.nav-link(data-widget='pushmenu' href='#')
+          i.fas.fa-bars
+      li.nav-item.d-none.d-sm-inline-block
+        a.nav-link(href='/') Home
+      li.nav-item.d-none.d-sm-inline-block
+        a.nav-link(href='#') Contact
+    // SEARCH FORM
+    form.form-inline.ml-3
+      .input-group.input-group-sm
+        input.form-control.form-control-navbar(type='search' placeholder='Search' aria-label='Search')
+        .input-group-append
+          button.btn.btn-navbar(type='submit')
+            i.fas.fa-search
+    // Right navbar links
+    ul.navbar-nav.ml-auto
+      // Notifications Dropdown Menu
+      li.nav-item.dropdown
+        a.nav-link(data-toggle='dropdown' href='#')
+          i.far.fa-bell
+          span.badge.badge-success.navbar-badge 0
+        .dropdown-menu.dropdown-menu-lg.dropdown-menu-right
+          span.dropdown-header 0 Notifications
+          .dropdown-divider
+          a.dropdown-item(href='#')
+            i.fas.fa-envelope.mr-2
+            |  Placeholder
+            span.float-right.text-muted.text-sm 0 mins
+          .dropdown-divider
+          .dropdown-divider
+          a.dropdown-item.dropdown-footer(href='#') See All Notifications
+      li.nav-item
+        a.nav-link(data-widget='control-sidebar' data-slide='true' href='#')
+          i.fas.fa-th-large
+  // /.navbar
+  // Main Sidebar Container
+  aside.main-sidebar.sidebar-dark-primary.elevation-4
+    // Brand Logo
+    a.brand-link(href='/')
+      span.brand-text.font-weight-light= botInfo.username + ' Dashboard'
+    // Sidebar
+    .sidebar
+      // Sidebar user panel (optional)
+      .user-panel.mt-3.pb-3.mb-3.d-flex
+        .info
+          a.d-block(href='#') User placeholder
+      // Sidebar Menu
+      nav.mt-2
+        ul.nav.nav-pills.nav-sidebar.flex-column(data-widget='treeview' role='menu' data-accordion='false')
+          //
+            Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library
+          li.nav-item.has-treeview.menu-open
+            a.nav-link.active(href='#')
+              i.nav-icon.fas.fa-tachometer-alt
+              p
+                | Starter Pages
+                i.right.fas.fa-angle-left
+            ul.nav.nav-treeview
+              li.nav-item
+                a.nav-link.active(href='#')
+                  i.far.fa-circle.nav-icon
+                  p Active Page
+              li.nav-item
+                a.nav-link(href='#')
+                  i.far.fa-circle.nav-icon
+                  p Inactive Page
+          li.nav-item
+            a.nav-link(href='#')
+              i.nav-icon.fas.fa-th
+              p
+                | Simple Link
+                span.right.badge.badge-danger New
+      // /.sidebar-menu
+    // /.sidebar
+  // Content Wrapper. Contains page content
+  .content-wrapper
+    // Content Header (Page header)
+    .content-header
+      .container-fluid
+        .row.mb-2
+          .col-sm-6
+            h1.m-0.text-dark Starter Page
+          // /.col
+          .col-sm-6
+            ol.breadcrumb.float-sm-right
+              li.breadcrumb-item
+                a(href='#') Home
+              li.breadcrumb-item.active Starter Page
+          // /.col
+        // /.row
+      // /.container-fluid
+    // /.content-header
+    // Main content
+    .content
+      .container-fluid
+        .row
+          .col-lg-6
+            .card
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk of the card&apos;s
+                  | content.
+                a.card-link(href='#') Card link
+                a.card-link(href='#') Another link
+            .card.card-primary.card-outline
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk of the card&apos;s
+                  | content.
+                a.card-link(href='#') Card link
+                a.card-link(href='#') Another link
+            // /.card
+          // /.col-md-6
+          .col-lg-6
+            .card
+              .card-header
+                h5.m-0 Featured
+              .card-body
+                h6.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                a.btn.btn-primary(href='#') Go somewhere
+            .card.card-primary.card-outline
+              .card-header
+                h5.m-0 Featured
+              .card-body
+                h6.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                a.btn.btn-primary(href='#') Go somewhere
+          // /.col-md-6
+        // /.row
+      // /.container-fluid
+    // /.content
+  // /.content-wrapper
+  // Control Sidebar
+  aside.control-sidebar.control-sidebar-dark
+    // Control sidebar content goes here
+    .p-3
+      h5 Title
+      p Sidebar content
+  // /.control-sidebar
+  // Main Footer
+  footer.main-footer
+    // To the right
+    .float-right.d-none.d-sm-inline
+      | Star the repository on GitHub :)
+    // Default to the left
+    strong
+      | #{botInfo.username} Dashboard -&nbsp;
+      a(href='https://github.com/julianYaman/discord-bot-dashboard') Bot Dashboard on GitHub
+      | &nbsp;-&nbsp;Design provided by&nbsp;
+      a(href='https://adminlte.io') AdminLTE.io
+      | .
+    |  All rights reserved.
+// ./wrapper
+// REQUIRED SCRIPTS
+// jQuery
+script(src='/static/jquery/jquery.min.js')
+// Bootstrap 4
+script(src='/static/bootstrap/js/bootstrap.bundle.min.js')
+// AdminLTE App
+script(src='/static/js/adminlte.min.js')
