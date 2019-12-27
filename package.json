@@ -1,10 +1,10 @@
 {
-  "name": "discord-bot-dashboard",
-  "version": "recode-v1.0.0",
+  "name": "@julianyaman/discord-bot-dashboard",
+  "version": "0.1.0",
   "description": "A package for bot developers (using Discord.js) to have a nice looking dashboard with the possibility to control and analyse the bot's behaviour.",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "nodemon test.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,8 @@
     "url": "https://github.com/julianYaman/discord-bot-dashboard/issues"
   },
   "contributors": [
-    "Biagio Santoro (GitHub: sleme, Twitter: @slemeee_), https://sleme.github.io/"
+    "Biagio Santoro (GitHub: sleme)",
+    "Huskydog9988 (GitHub: Huskydog9988)"
   ],
   "homepage": "https://github.com/julianYaman/discord-bot-dashboard#readme",
   "dependencies": {
