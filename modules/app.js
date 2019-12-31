@@ -25,7 +25,7 @@ exports.run = (client, config) => {
 */
 
   // App view
-  app.set('view engine', 'pug');
+  app.set('view engine', 'ejs'); //pug ejs
   app.set('views', './src/views');
 
   // Asset directories
@@ -42,6 +42,7 @@ exports.run = (client, config) => {
     }
   }));
 
+  // passport login strategy
   passport.use(new DiscordStrategy({
         clientID: client.user.id,
         clientSecret: config.clientSecret,
@@ -70,6 +71,10 @@ exports.run = (client, config) => {
     guilds: client.guilds.size
   };
 
+  function accountImage (user, bot) {
+    this.user = `<img src="${"https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + ".png"}" class="img-circle elevation-2" alt="User Image"></img>`
+  }
+
   /*
   * Routing
   */
@@ -78,7 +83,7 @@ exports.run = (client, config) => {
     if (!req.session.user) {
       res.redirect('/auth/discord');
     } else {
-      res.render('index', {botInfo: botInfo, userInfo: req.session.user});
+      res.render('index', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: new accountImage(req.session.user)});
       //res.send(`Hello ${req.session.user.username}`);
     }
   });
