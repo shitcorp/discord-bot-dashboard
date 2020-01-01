@@ -12,17 +12,12 @@ const app = express();
 const chalk = require('chalk');
 const log = console.log;
 
-// TODO: Check for security measure which need to be done before
-// TODO: express-session
-// TODO: better frontend lmao
-// TODO: Add routing system
-
 // Run
 exports.run = (client, config) => {
 
   /*
-* App setup
-*/
+  * App setup
+  */
 
   // App view
   app.set('view engine', 'pug');
@@ -31,8 +26,10 @@ exports.run = (client, config) => {
   // Asset directories
   app.use('/static', express.static('./src/dist'));
   app.use('/static', express.static('./src/plugins'));
+  // Initializing Passport
   app.use(passport.initialize());
   app.use(passport.session());
+  // Creating a new session in express
   app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
@@ -41,7 +38,7 @@ exports.run = (client, config) => {
       secure: false
     }
   }));
-
+  // Using the Passport strategy for logging in with a Discord account
   passport.use(new DiscordStrategy({
         clientID: client.user.id,
         clientSecret: config.clientSecret,
@@ -83,16 +80,14 @@ exports.run = (client, config) => {
     }
   });
 
+  // Authorizing pages
   app.get("/auth/discord", passport.authenticate("discord.js"));
+  // Callback for the Discord login
   app.get("/auth/discord/callback", passport.authenticate("discord.js", { failureRedirect: "/auth/discord/error" }), function(req, res) {
-    //console.log(req.session.passport);
+    // Accessing the user object easier
     req.session.user = req.session.passport.user;
-
     // Successful authentication, redirect home.
     res.redirect("/");
-  });
-  app.get('/test', (req, res) => {
-    res.send(encodeURI(config.redirectURI));
   });
 
   // Listener
