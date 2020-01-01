@@ -21,7 +21,10 @@
 
 coming soon...
 
-# Show your support
+## Using the dashboard
+To use the dashboard, we recommend to follow the [starters guide](https://github.com/julianYaman/discord-bot-dashboard/blob/master/docs/GET_STARTED.md).
+
+## Show your support
 Give a ⭐️ if you like this project!
 
 <a href="https://www.patreon.com/user?u=23070184">
@@ -48,8 +51,6 @@ Also you can support the work financially on [Patreon](https://www.patreon.com/u
 
 **If you want to contribute to the codebase of this project, please follow the 
 [contributing guidelines](https://github.com/julianYaman/discord-bot-dashboard/blob/master/docs/CONTRIBUTING.md).**
-
-### Setup the project
 
 #### Coming soon...
 
