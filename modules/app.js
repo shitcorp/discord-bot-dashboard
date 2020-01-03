@@ -16,20 +16,18 @@ const log = console.log;
 exports.run = (client, config) => {
 
   /*
-  * App setup
-  */
+* App setup
+*/
 
   // App view
-  app.set('view engine', 'pug');
+  app.set('view engine', 'ejs');
   app.set('views', './src/views');
 
   // Asset directories
   app.use('/static', express.static('./src/dist'));
   app.use('/static', express.static('./src/plugins'));
-  // Initializing Passport
   app.use(passport.initialize());
   app.use(passport.session());
-  // Creating a new session in express
   app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
@@ -38,7 +36,8 @@ exports.run = (client, config) => {
       secure: false
     }
   }));
-  // Using the Passport strategy for logging in with a Discord account
+
+  // passport login strategy
   passport.use(new DiscordStrategy({
         clientID: client.user.id,
         clientSecret: config.clientSecret,
@@ -67,6 +66,10 @@ exports.run = (client, config) => {
     guilds: client.guilds.size
   };
 
+  function accountImage (user) {
+    return `<img src="${"https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + ".png"}" class="img-circle elevation-2" alt="User Image"></img>`
+  }
+
   /*
   * Routing
   */
@@ -75,7 +78,7 @@ exports.run = (client, config) => {
     if (!req.session.user) {
       res.redirect('/auth/discord');
     } else {
-      res.render('index', {botInfo: botInfo, userInfo: req.session.user});
+      res.render('index', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: accountImage(req.session.passport.user)});
       //res.send(`Hello ${req.session.user.username}`);
     }
   });
