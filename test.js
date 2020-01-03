@@ -19,7 +19,7 @@ client.on('ready', () => {
   dashboard.run(client, { port: 4000, clientSecret: process.env.CLIENT_SECRET, redirectURI: process.env.REDIRECT_URI}, oAuth);
   console.log('INFO >> ' + chalk.green('Bot is online'));
 
-});
+})
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
 client.login(process.env.TOKEN);
