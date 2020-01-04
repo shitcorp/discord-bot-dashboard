@@ -1,6 +1,6 @@
 const app = require('./modules/app')
 
-module.exports.run = (client, config) => {
+module.exports.run = (client, config, oAuth) => {
 
     config = {
         port: config.port || 3000,
@@ -17,6 +17,6 @@ module.exports.run = (client, config) => {
     };
 
     // Required: Discord.client, port (default: 3000)
-    app.run(client, config.port)
+    app.run(client, config)
 
 }
