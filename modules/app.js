@@ -78,7 +78,7 @@ exports.run = (client, config) => {
     if (!req.session.user) {
       res.redirect('/auth/discord');
     } else {
-      res.render('index', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: accountImage(req.session.passport.user)});
+      res.render('index', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: accountImage(req.session.user)});
       //res.send(`Hello ${req.session.user.username}`);
     }
   });
