@@ -44,17 +44,17 @@ exports.run = (client, config) => {
 
   // passport login strategy
   passport.use(new DiscordStrategy({
-        clientID: client.user.id,
-        clientSecret: config.clientSecret,
-        callbackURL: config.redirectURI,
-        scope: ["identify"]
-      },
-      function(accessToken, refreshToken, profile, done) {
-        //Handle Database Query Addition Here.
-        //console.log(profile);
-        return done(null, profile);
-      }
-  ));
+      clientID: client.user.id,
+      clientSecret: config.clientSecret,
+      callbackURL: config.redirectURI,
+      scope: ["identify"]
+    },
+    function(accessToken, refreshToken, profile, done) {
+      //Handle Database Query Addition Here.
+      //console.log(profile);
+      return done(null, profile);
+    })
+  );
 
   passport.serializeUser(function(u, d) {
     d(null, u);
@@ -73,6 +73,7 @@ exports.run = (client, config) => {
 
   function accountImage (user, bot) {
     this.user = `<img src="${"https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + ".png"}" class="img-circle elevation-2" alt="User Image"></img>`
+    this.bot = `<link rel="shortcut icon" href="${"https://cdn.discordapp.com/avatars/" + bot.id + "/" + bot.avatar + ".png"}" type="image/icon type">`
   }
 
   /*
@@ -83,8 +84,15 @@ exports.run = (client, config) => {
     if (!req.session.user) {
       res.redirect('/auth/discord');
     } else {
-      res.render('index', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: new accountImage(req.session.user)});
+      res.render('index', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: new accountImage(req.session.user, client.user)});
       //res.send(`Hello ${req.session.user.username}`);
+    }
+  });
+  app.get('/log', (req, res) => {
+    if (!req.session.user) {
+      res.redirect('/auth/discord');
+    } else {
+      res.render('log', {page: "log", botInfo: botInfo, userInfo: req.session.user, image: new accountImage(req.session.user, client.user)});
     }
   });
 
@@ -97,7 +105,7 @@ exports.run = (client, config) => {
     res.redirect("/");
   });
   app.get('/test', (req, res) => {
-    res.send(encodeURI(config.redirectURI));
+    res.render('log', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: new accountImage(req.session.user)});
   });
 
   // Listener

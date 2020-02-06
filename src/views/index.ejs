@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%- include ("parts/header.ejs", {botInfo: botInfo}) %>
+    <%- include ("parts/header.ejs", {botInfo: botInfo, image: image}) %>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -37,12 +37,12 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3><%= botInfo.guilds %></h3>
 
-                <p>New Orders</p>
+                <p>Guilds</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="fas fa-server"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -52,12 +52,12 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3><%= botInfo.users %></h3>
 
-                <p>Bounce Rate</p>
+                <p>Users</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fas fa-users"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -67,12 +67,12 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3><%= botInfo.status %></h3>
 
-                <p>User Registrations</p>
+                <p>Status</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fas fa-chart-bar"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -635,39 +635,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="/static/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="/static/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="/static/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="/static/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="/static/jqvmap/jquery.vmap.min.js"></script>
-<script src="/static/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="/static/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="/static/moment/moment.min.js"></script>
-<script src="/static/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="/static/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="/static/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="/static/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/static/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/static/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/static/js/demo.js"></script>
+<%- include ("parts/footer.ejs", {page: page, botInfo: botInfo, userInfo: userInfo, image: image}) %>
+
 </body>
 </html>
