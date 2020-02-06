@@ -12,11 +12,6 @@ const app = express();
 const chalk = require('chalk');
 const log = console.log;
 
-// TODO: Check for security measure which need to be done before
-// TODO: express-session
-// TODO: better frontend lmao
-// TODO: Add routing system
-
 // Run
 exports.run = (client, config) => {
 
@@ -25,7 +20,7 @@ exports.run = (client, config) => {
 */
 
   // App view
-  app.set('view engine', 'ejs'); //pug ejs
+  app.set('view engine', 'ejs');
   app.set('views', './src/views');
 
   // Asset directories
@@ -71,9 +66,8 @@ exports.run = (client, config) => {
     guilds: client.guilds.size
   };
 
-  function accountImage (user, bot) {
-    this.user = `<img src="${"https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + ".png"}" class="img-circle elevation-2" alt="User Image"></img>`
-    this.bot = `<link rel="shortcut icon" href="${"https://cdn.discordapp.com/avatars/" + bot.id + "/" + bot.avatar + ".png"}" type="image/icon type">`
+  function accountImage (user) {
+    return `<img src="${"https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + ".png"}" class="img-circle elevation-2" alt="User Image"></img>`
   }
 
   /*
@@ -84,7 +78,7 @@ exports.run = (client, config) => {
     if (!req.session.user) {
       res.redirect('/auth/discord');
     } else {
-      res.render('index', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: new accountImage(req.session.user, client.user)});
+      res.render('index', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: accountImage(req.session.user)});
       //res.send(`Hello ${req.session.user.username}`);
     }
   });
@@ -96,16 +90,14 @@ exports.run = (client, config) => {
     }
   });
 
+  // Authorizing pages
   app.get("/auth/discord", passport.authenticate("discord.js"));
+  // Callback for the Discord login
   app.get("/auth/discord/callback", passport.authenticate("discord.js", { failureRedirect: "/auth/discord/error" }), function(req, res) {
-    //console.log(req.session.passport);
+    // Accessing the user object easier
     req.session.user = req.session.passport.user;
-
     // Successful authentication, redirect home.
     res.redirect("/");
-  });
-  app.get('/test', (req, res) => {
-    res.render('log', {page: "dashboard", botInfo: botInfo, userInfo: req.session.user, image: new accountImage(req.session.user)});
   });
 
   // Listener
