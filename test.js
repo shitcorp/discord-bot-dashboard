@@ -28,7 +28,7 @@ client.on('ready', () => {
   //run(client, {port: 4000, clientSecret: process.env.clientSecret, redirectURI: "http://localhost:4000/auth/discord/callback"});
   console.log('INFO >> ' + chalk.green('Bot is online'));
 
-});
+})
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
 client.login(process.env.TOKEN);
