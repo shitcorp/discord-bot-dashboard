@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<link rel="shortcut icon" type="image/png" href="https://cdn.discordapp.com/attachments/541587472828727317/670340869282594876/fydne.png" />    <meta charset="UTF-8">
+    <title>Статус</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <meta name="author" content="fydne">
+    <meta name="description" content="Инструмент для разработчиков ботов Discord.js, позволяющий управлять своим ботом для разработки и использования финального релиза.">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <% if(maintenanceStatus == false){ %>
+            <span class="mdl-layout-title">Управление Discord ботом &raquo; Панель управления</span>
+            <% }else{ %>
+            <span class="mdl-layout-title">Управление Discord ботом &raquo; Панель управления <span class="maintenanceActive">Активное обслуживание!</span></span>
+            <% } %>
+            <div class="mdl-layout-spacer"></div>
+            <%- include('./templates/nav'); %>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Панель управления</span>
+    </div>
+    <main class="mdl-layout__content">
+        <!-- page content -->
+        <div class="page-content">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--3-col"></div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <h1><b>Страница состояния</b></h1>
+                    <h3><i>Это будет добавлено позже, здесь вы можете изменить статус или добавить уведомления на странице статуса.</i></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col">
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../scripts/dashboard.js"></script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+</html>

@@ -8,10 +8,10 @@
     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-    <a href="/" class="nav-link">Home</a>
+    <a href="/" class="nav-link">Главная</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-    <a href="#" class="nav-link">Contact</a>
+    <a href="#" class="nav-link">Контакты</a>
     </li>
 </ul>
 
@@ -44,7 +44,7 @@
 <a href="/" class="brand-link">
     <!--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
         style="opacity: .8">-->
-    <span class="brand-text font-weight-light"><%= botInfo.username %> Dashboard</span>
+    <span class="brand-text font-weight-light"><%= botInfo.username %> Панель управления</span>
 </a>
 
 <!-- Sidebar -->
@@ -66,14 +66,50 @@
             with font-awesome or any other icon font library -->
         </li>
         <li class="nav-item">
-        <a href="/" id="sidebar-dashboard" class="nav-link">
+        <a href="/dashboard" id="sidebar-dashboard" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
-            Dashboard
+            Панель управления
+            <!--<span class="right badge badge-danger">New</span>-->
+            </p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="/messages" id="sidebar-dashboard" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+            Сообщения
             <!--<span class="right badge badge-danger">New</span>-->
             </p>
         </a>
         </li>
+        <li class="nav-item">
+            <a href="/log" id="sidebar-dashboard" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                Логи
+                <!--<span class="right badge badge-danger">New</span>-->
+                </p>
+            </a>
+            </li>
+            <li class="nav-item">
+                <a href="/manage" id="sidebar-dashboard" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                    Управление
+                    <!--<span class="right badge badge-danger">New</span>-->
+                    </p>
+            </a>
+            </li>
+            <li class="nav-item">
+                <a href="/status" id="sidebar-dashboard" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                    Статус
+                    <!--<span class="right badge badge-danger">New</span>-->
+                    </p>
+            </a>
+            </li>
     </ul>
     </nav>
     <!-- /.sidebar-menu -->

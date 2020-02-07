@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" type="image/png" href="https://cdn.discordapp.com/attachments/541587472828727317/670340869282594876/fydne.png" />
+    <%- include ("templates/head.ejs") %>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <%- include ("templates/navigation.ejs") %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Панель управления</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Главная</a></li>
+              <li class="breadcrumb-item active">Панель управления v1</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="card card-primary card-outline">
+              <div class="card-body">
+                <h3><%- botInfo.username %> <%- botInfo.status %></h3>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3><%- botInfo.users %></h3>
+                <p>Людей</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-users"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-dark">
+              <div class="inner">
+                <h3><%- botInfo.guilds %></h3>
+                <p>Серверов</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-server"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>Продолжение следует!</h3>
+
+                <p>Не стесняйтесь вносить свой вклад на GitHub.</p>
+              </div>
+              <a href="https://github.com/fydne/fydne" target="_blank" class="small-box-footer">Больше информации <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <main class="mdl-layout__content">
+          <!-- page content -->
+          <div class="page-content">
+              <div class="mdl-grid">
+                  <div class="mdl-cell mdl-cell--2-col"></div>
+                  <div class="mdl-cell mdl-cell--8-col">
+                      <h1><b>Приборная панель</b></h1>
+                      <hr>
+                      <div class="botFunctionWidget botFunctionWidget_quickFunctions">
+                          <h4><b>Игровой статус:</b><br><small>Измените здесь игру своего бота.</small></h4>
+                          <form method="post" class="changeGame" action="/change-game-status">
+                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                  <input class="mdl-textfield__input " type="text" name="gameStatus" id="gameChangeInput">
+                                  <label class="mdl-textfield__label" for="gameChangeInput">Изменение статуса игры..</label>
+                              </div>
+                              <button style="vertical-align: super;" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                  Сохранить статус игры
+                              </button>
+                          </form>
+                          <hr>
+                          <h4><b>Изменить статус:</b><br><small>Изменить статус вашего бота.</small></h4>
+                          <form method="post" action="/change-status">
+                              <select name="status" class="botStatusSelection">
+                                  <option value="<%= botInfo.status %>">Текущий статус: <%= botInfo.status %></option>
+                                  <option value="online">Онлайн</option>
+                                  <option value="idle">Не активен</option>
+                                  <option value="dnd">Не беспокоить</option>
+                                  <option value="invisible">Невидимый</option>
+                              </select>
+                              <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                  Изменить статус
+                              </button>
+                          </form>
+                          <hr>
+                          <h4><b>Разработка:</b><br><small>Здесь вы можете добавить некоторые тестовые функции для вашего собственного проекта. Я добавил некоторые функции, которые могут быть полезны для вас!</small></h4>
+                          <a href="/outputClient"><button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Выходной клиентский объект</button></a>
+                          <a href="/outputGuilds"><button id="outputClientObjBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Выходной объект сервера</button></a>
+                          <a href="/testingNewFunction"><button id="testNewFunctionBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Тестирование новой функции</button></a>
+                      </div>
+                      <div class="botWidget botWidget_botStatus">
+                          <h4><b>Статус</b></h4>
+                          <hr>
+                          <p class="bot_username"><b>Имя:</b> <%- botInfo.username %></p>
+                          <p class="bot_game"><b>Игра:</b> <%= botInfo.game %></p>
+                          <span class="bot_status"><b>Статус:</b>
+                              <% if(botInfo.status === "online"){ %>
+                                  <div class="statusSymbol statusSymbolOnline"></div> Онлайн
+                              <% }else if(botInfo.status === "idle"){ %>
+                                  <div class="statusSymbol statusSymbolIdle"></div> Не активен
+                              <% }else if(botInfo.status === "dnd"){ %>
+                                  <div class="statusSymbol statusSymbolDND"></div> Не беспокоить
+                              <% }else if(botInfo.status === "invisible"){ %>
+                                  <div class="statusSymbol statusSymbolInvisible"></div> Невидимый
+                              <% }%>
+                          </span>
+                          <hr>
+                      </div>
+                      <br>
+                  </div>
+                  <div class="mdl-cell mdl-cell--2-col">
+                  </div>
+              </div>
+          </div>
+      </main>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+
+        </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="/static/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/static/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/static/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="/static/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="/static/jqvmap/jquery.vmap.min.js"></script>
+<script src="/static/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="/static/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="/static/moment/moment.min.js"></script>
+<script src="/static/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/static/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="/static/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/static/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="/static/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/static/js/demo.js"></script>
+</body>
+</html>

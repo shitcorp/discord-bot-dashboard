@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru"></html>
+<html>
+  <head>
+    <link rel="shortcut icon" type="image/png" href="https://cdn.discordapp.com/attachments/541587472828727317/670340869282594876/fydne.png" />
+    <title><%- data.user.username %> | Сообщения</title>
+    <%- include ("templates/head.ejs") %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <meta name="author" content="fydne">
+    <meta name="description" content="Инструмент для разработчиков ботов Discord.js, позволяющий управлять своим ботом для разработки и использования финального релиза.">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<style>    
+.columns .bot-img {
+    box-shadow: 1px 1px 1px 1px transparent !important;
+    animation: pulse 2s infinite;
+    border-radius: 50%;
+    }
+    ::-moz-selection { /* Code for Firefox */
+    color: #3191ff;
+    background: #00000040;
+    border-radius: 15px;
+    }
+    ::selection {
+    color: #3191ff;
+    background: #00000040;
+    }
+    ::-webkit-scrollbar {
+    width: 9px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background-color: #18191c;
+    border-radius: 8px;
+    }
+    ::-webkit-scrollbar-track {
+    background-color: #18191c00;
+    }
+  </style>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <%- include ("templates/navigation.ejs") %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <% if(maintenanceStatus == false){ %>
+                <h1 class="m-0 text-dark">Сообщения</h1>
+                <% }else{ %>
+                    <h1 class="m-0 text-dark">Сообщения <span class="maintenanceActive">Активно обслуживание!</span></h1>
+                <% } %>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <main class="mdl-layout__content">
+        <!-- page content -->
+        <div class="page-content">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--3-col"></div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <h1><b>Сообщения</b></h1>
+                    <hr>
+                    <div class="messageWidget sendAdminMessage">
+                        <h5>Отправить сообщение администраторам сервера:</h5>
+                        <div class="messageWidgetContent">
+                            <form class="serverAdministratorMessageForm" method="post" action="/send-serveradmin-dm-message">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+                                    <b>Напишите здесь свое сообщение администраторам сервера, у которых есть бот на своем сервере. (<i>ВНИМАНИЕ:</i> Используйте эту функцию только для важных вопросов (например, журналов изменений, уведомлений о техническом обслуживании и другой важной информации) или для собственных целей!)</b>
+                                    <hr color="white">
+                                    <textarea class="mdl-textfield__input" name="message" rows="4" id="serveradmin_message" placeholder="Напишите сюда ваше сообщение..."></textarea>
+                                </div>
+                                <button type="button" class="sendServerAdminMessageToActivateButton mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    Отправить сообщение
+                                </button>
+                                <button type="submit" disabled class="sendServerAdminMessageConfirmButton mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    Подтвердите отправку
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col">
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="mdl-cell mdl-cell--2-col">
+</div>
+    <!-- /.content -->
+  </div>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+</div>
+</div>
+</main>
+<div class="row">
+
+</div>
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+<!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="/static/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/static/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+$.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- jQuery -->
+<script src="/static/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/static/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/static/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="/static/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="/static/jqvmap/jquery.vmap.min.js"></script>
+<script src="/static/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="/static/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="/static/moment/moment.min.js"></script>
+<script src="/static/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/static/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="/static/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/static/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="/static/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/static/js/demo.js"></script>
+<script src="../scripts/dashboard.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../scripts/dashboard.js?v=dev_0_0_2-beta"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+</html>

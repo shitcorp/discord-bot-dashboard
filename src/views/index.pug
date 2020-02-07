@@ -33,15 +33,15 @@ head
           i.far.fa-bell
           span.badge.badge-success.navbar-badge 0
         .dropdown-menu.dropdown-menu-lg.dropdown-menu-right
-          span.dropdown-header 0 Notifications
+          span.dropdown-header 0 Уведомлений
           .dropdown-divider
           a.dropdown-item(href='#')
             i.fas.fa-envelope.mr-2
-            |  Placeholder
-            span.float-right.text-muted.text-sm 0 mins
+            |  Заполнитель
+            span.float-right.text-muted.text-sm 0 минут
           .dropdown-divider
           .dropdown-divider
-          a.dropdown-item.dropdown-footer(href='#') See All Notifications
+          a.dropdown-item.dropdown-footer(href='#') Посмотреть все уведомления
       li.nav-item
         a.nav-link(data-widget='control-sidebar' data-slide='true' href='#')
           i.fas.fa-th-large
@@ -51,6 +51,8 @@ head
     // Brand Logo
     a.brand-link(href='/')
       span.brand-text.font-weight-light= botInfo.username + ' Dashboard'
+    a.brand-link(href='/messages')
+      span.brand-text.font-weight-light= botInfo.username + ' message'
     // Sidebar
     .sidebar
       // Sidebar user panel (optional)
@@ -68,8 +70,8 @@ head
             a.nav-link.active(href='/')
               i.nav-icon.fas.fa-th
               p
-                | Dashboard
-                span.right.badge.badge-success New
+                | Панель управления
+                span.right.badge.badge-success Новинка
       // /.sidebar-menu
     // /.sidebar
   // Content Wrapper. Contains page content
@@ -79,13 +81,15 @@ head
       .container-fluid
         .row.mb-2
           .col-sm-6
-            h1.m-0.text-dark Dashboard
+            h1.m-0.text-dark Панель управления
           // /.col
           .col-sm-6
             ol.breadcrumb.float-sm-right
               li.breadcrumb-item
-                a(href='/') Home
-              li.breadcrumb-item.active Dashboard
+                a(href='/') Главная
+              li.breadcrumb-item
+                a(href='/messages') Сообщения
+              li.breadcrumb-item.active Панель управления
           // /.col
         // /.row
       // /.container-fluid
@@ -104,26 +108,26 @@ head
             .small-box.bg-primary
               .inner
                 h3= botInfo.users
-                p users
+                p Людей
               .icon
                 i.fas.fa-users
           .col-lg-3
             .small-box.bg-dark
               .inner
                 h3= botInfo.guilds
-                p guild
+                p Серверов
               .icon
                 i.fas.fa-server
           .col-lg-3
             .card.card-primary.card-outline
               .card-header
-                h5.m-0 Discord Bot Dashboard on GitHub
+                h5.m-0 fydne на GitHub
               .card-body
-                p.card-text You can find the repository of the dashboard on GitHub.
-                | Feel free to contribute and to give feedback.
-                | If you like the dashboard for your bot, please give a ⭐ on GitHub :)
+                p.card-text Вы можете найти репозиторий fydne на GitHub.
+                | Не стесняйтесь вносить свой вклад и дать отзыв.
+                | Если вам нравится бот fydne, пожалуйста, дайте ⭐ на GitHub :)
                 br
-                a.btn.btn-primary(href='https://github.com/julianYaman/discord-bot-dashboard' target='_blank') GitHub Repository
+                a.btn.btn-primary(href='https://github.com/fydne/fydne' target='_blank') GitHub репозиторий
           // /.col-md-6
         // /.row
       // /.container-fluid
@@ -133,22 +137,20 @@ head
   aside.control-sidebar.control-sidebar-dark
     // Control sidebar content goes here
     .p-3
-      h5 Title
-      p Sidebar content
+      h5 Заголовок
+      p Содержание боковой панели
   // /.control-sidebar
   // Main Footer
   footer.main-footer
     // To the right
     .float-right.d-none.d-sm-inline
-      | Star the repository on GitHub :)
+      | Поместите репозиторий на GitHub :)
     // Default to the left
     strong
-      | #{botInfo.username} Dashboard -&nbsp;
-      a(href='https://github.com/julianYaman/discord-bot-dashboard') Bot Dashboard on GitHub
-      | &nbsp;-&nbsp;Design provided by&nbsp;
-      a(href='https://adminlte.io') AdminLTE.io
+      | #{botInfo.username} Панель управления -&nbsp;
+      a(href='https://github.com/fydne/fydne') fydne на GitHub
       | .
-    |  All rights reserved.
+    |  Все права защищены.
 // ./wrapper
 // REQUIRED SCRIPTS
 // jQuery

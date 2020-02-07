@@ -1,0 +1,258 @@
+body{
+    font-family: "Roboto", sans-serif;
+}
+.maintenanceActive{
+    background: #E74C3C;
+    padding: 4px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+.botWidget{
+    width: 30%;
+    padding: 2% 1.5%;
+    margin-right: 1%;
+    border: 4px solid #003780;
+    border-radius: 8px;
+    background: #0057A0;
+    color: white;
+}
+.botWidget h4{
+    margin: 10px 0;
+    border-left: 3px solid #3498DB;
+    padding-left: 7px;
+}
+.botFunctionWidget{
+    width: 60%;
+    padding: 1% 1%;
+    border: 4px solid;
+    border-radius: 8px;
+    float: right;
+}
+.botFunctionWidget h4{
+    margin: 10px 0;
+    border-left: 3px solid #E74C3C;
+    padding-left: 7px;
+}
+.botStatusSelection{
+    padding: 9px;
+    border-bottom: 2px solid #0077C0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+}
+.warning{
+    border-left: 3px solid #C72C1C;
+    padding: 6px 0 6px 7px;
+    background: #E74C3C;
+    border-radius: 0 4px 4px 0;
+}
+.botVersionWidget{
+    background: #C72C1C;
+    border: 4px solid #870000;
+}
+.botVersionWidget h4{
+    margin: 0;
+    border-left: 3px solid #E74C3C;
+    padding-left: 7px;
+}
+
+.statusSymbol{
+    width: 12px;
+    height: 12px;
+    border-radius: 100px;
+    float: left;
+    margin-top: 3px;
+    margin-right: 5px;
+}
+.statusSymbolOnline{
+     background: limegreen;
+}
+.statusSymbolIdle{
+    background: #F39C12;
+}
+.statusSymbolDND{
+    background: #E74C3C;
+}
+.statusSymbolInvisible{
+    background: dimgrey;
+}
+
+/* Message.ejs */
+.messageWidget h5{
+    padding: 2%;
+    color: white;
+    margin: 10px 0 5px 10px;
+}
+.messageWidgetContent label{
+    color: white !important;
+}
+.serverAdministratorMessageForm{
+    border: 2px solid;
+    padding: 1%;
+    background-color: #2ECC71;
+}
+.messageWidgetContent{
+    padding: 3%;
+}
+
+.respondToDM{
+    background: #004790;
+}
+.respondToDM h5{
+    background: #004790;
+}
+.respondToDM .messageWidgetContent{
+    background: #0057A0;
+}
+
+.sendAdminMessage{
+    background: #008C31;
+}
+.sendAdminMessage h5{
+    background: #008C31;
+}
+.sendAdminMessage .messageWidgetContent{
+    background: #0EAC51;
+    color: white;
+}
+
+/* ===== Status Page (public) ===== */
+.statusPageSection{
+    padding: 1%;
+    border: 1px solid;
+    width: 50%;
+    background: #f9f9f9;
+}
+.statusSymbolStatusPage{
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+    float: left;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.statusPage_botStatus{
+    padding: 2%;
+    margin-bottom: 1%;
+    font-weight: bold;
+    color: white;
+    font-size: large;
+}
+
+.botStatusOnline{
+    background: limegreen;
+    border-left: 5px solid green;
+}
+.botStatusIdle{
+    background: #F39C12;
+    border-left: 5px solid #D87400;
+}
+.botStatusDND{
+    background: #E74C3C;
+    border-left: 5px solid #C0392B;
+}
+.botStatusInvisible{
+    background: dimgrey;
+    border-left: 5px solid #3d3d3d;
+}
+.statusPageBotInforamtion_avatar{
+    border-radius: 400px;
+    box-shadow: 2px 2px 4px 2px rgba(0,0,0,.2);
+}
+
+.statusPage_botGuildsInformation{
+    float: right;
+    width: 44%;
+}
+
+/* ===== Log Page ===== */
+.logContainer{
+    background: #e3eaee;
+    padding: 2%;
+}
+.logContainer ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.logContainer ul li {
+    padding: 1%;
+    border-radius: 0 4px 4px 0;
+    background: #cbd2d6;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+.logContainer ul li.log_success{
+    border-left: 6px solid #2ECC71;
+}
+.logContainer ul li.log_info{
+    border-left: 6px solid #3498DB;
+}
+.logContainer ul li.log_error {
+    border-left: 6px solid #E74C3C;
+}
+.logContainer ul li.log_maintenance{
+    border-left: 6px solid #C0392B;
+    background: #E74C3C;
+    font-weight: bold;
+    color: white;
+}
+
+/* ===== Manage Page ===== */
+
+.management_commandsContainer{
+    width: 70%;
+    padding: 1%;
+    border: 3px solid black;
+    border-radius: 8px;
+}
+.management_commandsContainer h3{
+    border-left: 6px solid #3498db;
+    padding-left: 8px;
+}
+.commandInputSection{
+    padding: 2%;
+    border: 1px solid grey;
+    border-radius: 4px;
+    width: 96%;
+}
+.commandSubmitButton{
+    margin: 0 auto;
+    display: block;
+    width: 30%;
+}
+.commandList{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.commandListItem{
+    padding: 2%;
+    margin-bottom: 1%;
+    background-color: whitesmoke;
+}
+.commandName{
+    font-weight: bold;
+    font-size: x-large;
+}
+.commandFunctionHeadline{
+    font-weight: bold;
+    text-decoration: underline;
+}
+.commandAvailableInMaintenance{
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-weight: bold;
+    width: 40px;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+}
+.commandAvailableInMaintenanceFalse{
+    background-color: #E74C3C;
+}
+.commandAvailableInMaintenanceTrue{
+    background-color: #2ECC71;
+}
