@@ -7,13 +7,15 @@ const session = require('express-session');
 
 const DiscordStrategy = require("passport-discord.js").Strategy;
 const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
 // Util modules
 const chalk = require('chalk');
 const log = console.log;
 
 // Run
-exports.run = (client, config) => {
+module.exports.run = (client, config) => {
 
   /*
 * App setup
@@ -86,7 +88,7 @@ exports.run = (client, config) => {
     if (!req.session.user) {
       res.redirect('/auth/discord');
     } else {
-      res.render('log', {page: "log", botInfo: botInfo, userInfo: req.session.user, image: new accountImage(req.session.user, client.user)});
+      res.render('log', {page: "log", botInfo: botInfo, userInfo: req.session.user, image: accountImage(req.session.user)});
     }
   });
 
@@ -100,8 +102,35 @@ exports.run = (client, config) => {
     res.redirect("/");
   });
 
+  // 404 Error handler
+  app.use(function (req, res, next) {
+    if (!req.session.user) {
+      res.redirect('/auth/discord');
+    } else {
+      res.status(404).render('404', {page: "404", botInfo: botInfo, userInfo: req.session.user, image: accountImage(req.session.user)});
+    }
+  });
+  // 500 Error handler
+  app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).render('500', {page: "500", botInfo: botInfo, userInfo: req.session.user, image: accountImage(req.session.user)});
+  });
+
+  io.on('connection', (socket) => {
+    log(chalk.yellow('Socket') + ' >> A user has connected');
+
+  });
+
   // Listener
-  app.listen(config.port, () => {
+  http.listen(config.port, () => {
     log('INFO >> ' + chalk.green('Dashboard is running on port ' + config.port));
+  });
+  /*app.listen(config.port, () => {
+    log('INFO >> ' + chalk.green('Dashboard is running on port ' + config.port));
+  });*/
+}
+module.exports.event = (event, amount) => {
+  io.emit(event, {
+    amount: amount
   });
 }

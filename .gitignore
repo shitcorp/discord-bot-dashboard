@@ -29,3 +29,6 @@ package-lock.json
 
 # AdminLTE example folder
 AdminLTE
+
+# Databases
+*.db

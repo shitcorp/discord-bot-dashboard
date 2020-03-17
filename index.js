@@ -13,12 +13,15 @@ class dashboard {
             maintenanceBot_status: config.maintenanceBot_status || "dnd",
 
             clientSecret: /*oAuth.secret ||*/ config.clientSecret,
-            redirectURI: config.redirectURI || "http://localhost:3000/auth/discord/callback"
+            redirectURI: config.redirectURI || "http://localhost:3000/auth/discord/callback",
+
+            logs: config.logs || false
         };
     }
 
     run () {
         require('./modules/app').run(this.client, this.config);
+        require("./modules/events")(this.client);
     }
 }
 

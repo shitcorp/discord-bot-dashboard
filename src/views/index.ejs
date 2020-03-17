@@ -20,7 +20,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,7 +37,7 @@
             <!-- small box -->
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h3><%- botInfo.username %> is <%- botInfo.status %></h3>
+                <h3 id="status"><%- botInfo.username %> is <%- botInfo.status %></h3>
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h3><%- botInfo.users %></h3>
+                <h3 id="users"><%- botInfo.users %></h3>
                 <p>users</p>
               </div>
               <div class="icon">
@@ -59,7 +59,7 @@
             <!-- small box -->
             <div class="small-box bg-dark">
               <div class="inner">
-                <h3><%- botInfo.guilds %></h3>
+                <h3 id="guilds"><%- botInfo.guilds %></h3>
                 <p>guilds</p>
               </div>
               <div class="icon">
@@ -107,6 +107,8 @@
 </div>
 <!-- ./wrapper -->
 
+<!-- Socket.io -->
+<script src="/socket.io/socket.io.js"></script>
 <!-- jQuery -->
 <script src="/static/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -115,6 +117,8 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
+<!-- Live Bot Stats -->
+<script src="/static/js/stats.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
