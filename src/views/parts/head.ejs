@@ -1,4 +1,4 @@
-<!--parts/navigation-->
+<!--parts/head-->
 
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -52,7 +52,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
-        <%- image %>
+        <%- image.user %>
     </div>
     <div class="info">
         <a href="#" class="d-block"><%= userInfo.username %></a>
@@ -66,24 +66,16 @@
             with font-awesome or any other icon font library -->
         </li>
         <li class="nav-item">
-            <% if (page === "dashboard") { %>
-                <a href="/" id="sidebar-dashboard" class="nav-link active">
-            <% } else { %>
-                <a href="/" id="sidebar-dashboard" class="nav-link">
-            <% } %>
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                Dashboard
-                <!--<span class="right badge badge-danger">New</span>-->
-                </p>
-            </a>
+        <a href="/" id="sidebar-dashboard" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+            Dashboard
+            <!--<span class="right badge badge-danger">New</span>-->
+            </p>
+        </a>
         </li>
         <li class="nav-item">
-            <% if (page === "log") { %>
-                <a href="/log" id="sidebar-dashboard" class="nav-link active">
-            <% } else { %>
-                <a href="/log" id="sidebar-dashboard" class="nav-link">
-            <% } %>
+            <a href="/log" id="sidebar-dashboard" class="nav-link">
                 <i class="nav-icon far fa-sticky-note"></i>
                 <p>
                 Log
