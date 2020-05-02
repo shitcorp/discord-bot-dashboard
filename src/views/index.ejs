@@ -34,37 +34,45 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h3 id="status"><%- botInfo.username %> is <%- botInfo.status %></h3>
+            <div class="info-box">
+              <% if (botInfo.status === "online") { %>
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-plug"></i></span>
+              <% } else if (botInfo.status === "offline" || botInfo.status === "dnd") { %>
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-plug"></i></span>
+              <% } else { %>
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-plug"></i></span>
+              <% } %>
+              <div class="info-box-content">
+                <span class="info-box-text"><%- botInfo.username %> is:</span>
+                <span class="info-box-number">
+                  <%- botInfo.status %>
+                </span>
               </div>
+              <!-- /.info-box-content -->
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-primary">
-              <div class="inner">
-                <h3 id="users"><%- botInfo.users %></h3>
-                <p>users</p>
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Users</span>
+                <span class="info-box-number"><%- botInfo.users %></span>
               </div>
-              <div class="icon">
-                <i class="fas fa-users"></i>
-              </div>
+              <!-- /.info-box-content -->
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-dark">
-              <div class="inner">
-                <h3 id="guilds"><%- botInfo.guilds %></h3>
-                <p>guilds</p>
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-server"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Guilds</span>
+                <span class="info-box-number"><%- botInfo.guilds %></span>
               </div>
-              <div class="icon">
-                <i class="fas fa-server"></i>
-              </div>
+              <!-- /.info-box-content -->
             </div>
           </div>
           <!-- ./col -->
@@ -82,8 +90,51 @@
           <!-- ./col -->
         </div>
         <!-- /.row -->
+
         <!-- Main row -->
         <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Cpu Usage</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">000</span>
+                    <span>____</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 12.5%
+                    </span>
+                    <span class="text-muted">Since last week</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                  <canvas id="visitors-chart" height="500" width="787" class="chartjs-render-monitor" style="display: block; height: 200px; width: 315px;"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This Week
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square text-gray"></i> Last Week
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            
+          </div>
         </div>
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->

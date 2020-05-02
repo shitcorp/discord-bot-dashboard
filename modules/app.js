@@ -6,9 +6,9 @@ const passport = require("passport");
 const session = require('express-session');
 
 const DiscordStrategy = require("passport-discord.js").Strategy;
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 const app = express();
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
 
 // Util modules
 const chalk = require('chalk');
@@ -18,8 +18,8 @@ const log = console.log;
 module.exports.run = (client, config) => {
 
   /*
-* App setup
-*/
+  * App setup
+  */
 
   // App view
   app.set('view engine', 'ejs');
@@ -117,12 +117,11 @@ module.exports.run = (client, config) => {
   });
 
   io.on('connection', (socket) => {
-    log(chalk.yellow('Socket') + ' >> A user has connected');
-
+    //log(chalk.yellow('Socket') + ' >> A user has connected');
   });
 
   // Listener
-  http.listen(config.port, () => {
+  server.listen(config.port, () => {
     log('INFO >> ' + chalk.green('Dashboard is running on port ' + config.port));
   });
   /*app.listen(config.port, () => {
