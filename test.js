@@ -9,7 +9,7 @@ require('dotenv').config(); // Create a .env file or include your own config fil
 
 //import run from "./index.js"; //require dashboard
 // const { Dashboard, CreateRedirectURI } = require("./index");
-const Dashboard = require("./index");
+const Dashboard = require("./src/index");
 
 // Create an instance of a Discord client
 const client = new Client();

@@ -1,5 +1,9 @@
-const broadcast = require("./app").event;
+const broadcast = require("./server").event;
 
+/**
+ * Used to detect events and push the data to the dashboard
+ * @param {Object} client Disocrd.js Client object.
+ */
 module.exports = (client) => {
     //should probably have a system for sharded bots 
     client.on('guildCreate', guild => {
