@@ -117,5 +117,8 @@ dist
 out
 gen
 
+# vscode Files
+.vscode
+
 # Unnecessary project files
 AdminLTE

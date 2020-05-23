@@ -31,5 +31,8 @@ package-lock.json
 # JetBrains folder
 .idea
 
+# vscode Files
+.vscode
+
 # AdminLTE example folder
 AdminLTE
