@@ -24,7 +24,7 @@
   "devDependencies": {
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.2",
-    "better-sqlite3": "^6.0.1",
+    "better-sqlite3": "^7.0.1",
     "node-os-utils": "^1.2.2"
   },
   "dependencies": {
