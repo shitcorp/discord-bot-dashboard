@@ -5,7 +5,7 @@
 | ``ssl``                     	|  boolean  	|    no    	| false                 	| Whether to use SSL or not                                                              	|
 | ``port``                    	|   number  	|    no    	| 80                    	| Port of webserver. if SSL is true it is set to 443                                     	|
 | ``insecurePort``            	|   number  	|    no    	| 80                    	| Port of redirect webserver from http to https                                          	|
-| ``maintenanceNotification`` 	|  boolean  	|    no    	| false                 	| Whether to send notification that the bot in under maintenance                         	|
+| ``maintenanceNotification`` 	|  boolean  	|    no    	| false                 	| Whether to send a notification that the bot is under maintenance                         	|
 | ``baseGame``                	|   string  	|    no    	| !help | v0.0.6.3      	| The game the bot is playing                                                            	|
 | ``baseBotStatus``           	|   string  	|    no    	| online                	| The status of the bot. Ex: "online", "offline", "idle", "dnd"                          	|
 | ``maintenanceGame``         	|   string  	|    no    	| Bot is in maintenance 	| The game of the bot when set to "maintenance mode"                                     	|
