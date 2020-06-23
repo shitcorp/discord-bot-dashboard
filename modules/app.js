@@ -6,9 +6,10 @@ const passport = require("passport");
 const session = require('express-session');
 
 const DiscordStrategy = require("passport-discord.js").Strategy;
+const app = express();
+
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-const app = express();
 
 // Util modules
 const chalk = require('chalk');
