@@ -1,38 +1,34 @@
-# Databases
-*.db
-.data/
+.DS_Store
+node_modules
+/dist
+package-lock.json
 
-# Logs
-logs
-*.log
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
 
-# Dependency directories
-node_modules/
-jspm_packages/
-package-lock.json
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Yarn Integrity file
-.yarn-integrity
-
-# dotenv environment variables file
-.env
-.env.test
-
-# JetBrains folder
+# Editor directories and files
 .idea
+<<<<<<< Updated upstream
 
 # vscode Files
 .vscode
 
 # AdminLTE example folder
 AdminLTE
+=======
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+>>>>>>> Stashed changes

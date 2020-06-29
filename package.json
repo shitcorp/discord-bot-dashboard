@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
   "name": "@julianyaman/discord-bot-dashboard",
   "version": "0.2.0",
   "description": "A package for bot developers (using Discord.js) to have a nice looking dashboard with the possibility to control and analyse the bot's behaviour.",
@@ -59,5 +60,51 @@
   },
   "engines": {
     "node": ">=12.0.0"
+=======
+  "name": "vuetify-material-dashboard",
+  "version": "2.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve --open",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
+    "now-start": "vue-cli-service serve",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "core-js": "^3.6.2",
+    "vue": "^2.6.11",
+    "vue-i18n": "^8.15.3",
+    "vue-router": "^3.1.3",
+    "vuetify": "^2.2.11",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.1.2",
+    "@vue/cli-plugin-e2e-cypress": "^4.1.2",
+    "@vue/cli-plugin-eslint": "^4.1.2",
+    "@vue/cli-plugin-unit-jest": "^4.1.2",
+    "@vue/cli-service": "^4.1.2",
+    "@vue/eslint-config-standard": "^5.0.1",
+    "@vue/test-utils": "1.0.0-beta.30",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-vuetify": "^0.4.1",
+    "eslint-plugin-vue": "^6.1.2",
+    "sass": "^1.24.3",
+    "sass-loader": "^8.0.0",
+    "vee-validate": "^3.2.2",
+    "vue-chartist": "^2.2.1",
+    "vue-cli-plugin-i18n": "^0.6.0",
+    "vue-cli-plugin-vuetify": "^2.0.3",
+    "vue-template-compiler": "^2.6.11",
+    "vue-world-map": "^0.1.1",
+    "vuetify-loader": "^1.4.3"
+>>>>>>> Stashed changes
   }
 }
