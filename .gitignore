@@ -17,18 +17,9 @@ yarn-error.log*
 
 # Editor directories and files
 .idea
-<<<<<<< Updated upstream
-
-# vscode Files
-.vscode
-
-# AdminLTE example folder
-AdminLTE
-=======
 .vscode
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
->>>>>>> Stashed changes
