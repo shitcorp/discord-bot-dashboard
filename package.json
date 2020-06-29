@@ -12,7 +12,7 @@
     "url": "git+https://github.com/julianYaman/discord-bot-dashboard.git"
   },
   "author": "Julian Yaman <julianyaman@posteo.eu>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/julianYaman/discord-bot-dashboard/issues"
   },
