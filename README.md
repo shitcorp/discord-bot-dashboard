@@ -59,7 +59,7 @@ Give a ⭐️ if you like this project!
 
 All contributors of the project will be listed down here:
 
-- Julian Yaman (creator) ([GitHub](https://github.com/julianYaman/)) ([Twitter]((https://twitter.com/julianYaman)))
+- Julian Yaman (creator) ([GitHub](https://github.com/julianYaman/)) ([Twitter](https://twitter.com/julianYaman))
 - Huskydog9988 ([GitHub](https://github.com/Huskydog9988))
 - MeerBiene ([GitHub](https://github.com/MeerBiene))
 - XkijuX ([GitHub](https://github.com/XkijuX))
