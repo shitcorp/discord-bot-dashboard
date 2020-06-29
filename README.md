@@ -51,9 +51,11 @@ To use the dashboard, we recommend to look into the [starters guide](https://git
 ## Show your support
 Give a ⭐️ if you like this project!
 
+You can support the work financially with a donation via [PayPal](https://www.paypal.me/julianyaman)
+
 <a href="https://www.patreon.com/user?u=23070184">
   <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
+</a><br>
 
 ## Author & Contributors
 
@@ -75,12 +77,6 @@ You also want to help us? Look below.
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/julianYaman/discord-bot-dashboard/issues) 
 and join the [Discord Server](https://discord.gg/yAUmDNb).
-
-You can support the work financially with a donation via [PayPal](https://www.paypal.me/julianyaman)
-
-<a href="https://www.patreon.com/user?u=23070184">
-  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a><br>
 
 **If you want to contribute to the codebase of this project, please follow the 
 [contributing guidelines](https://github.com/julianYaman/discord-bot-dashboard/blob/master/docs/CONTRIBUTING.md).**
