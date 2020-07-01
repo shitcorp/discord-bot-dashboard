@@ -93,8 +93,7 @@ and join the [Discord Server](https://discord.gg/yAUmDNb).
 
 ## 📝 License
 
-Copyright © 2020 [Julian Yaman <julianyaman@posteo.eu>](https://github.com/julianYaman)
-
+Copyright © 2020 [Julian Yaman <julianyaman@posteo.eu>](https://github.com/julianYaman).<br />
 This project is [MIT](https://github.com/julianYaman/discord-bot-dashboard/blob/master/LICENSE) licensed.
 
 ***
