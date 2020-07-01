@@ -16,9 +16,9 @@ The control dashboard every bot developer searched for! Control your bot and get
 
 ### 🏠 [Homepage](https://github.com/julianYaman/discord-bot-dashboard)
 
-### Support Discord Server: [join here](https://discord.gg/yAUmDNb)
+### 💬 Support Discord Server: [join here](https://discord.gg/yAUmDNb)
 
-## About the project
+## 📃 About the project
 
 With the Discord Dashboard, you are able to track and monitor any relevant piece of your bot 
 to ensure the best quality for your users. You can monitor which command was the most used one and how 
@@ -45,10 +45,10 @@ In the future, you'll be able to change the presence data of your bot without ha
 of doing hard changes on the bot codebase.
 
 
-## Using the dashboard
+## 🖥️ Using the dashboard
 To use the dashboard, we recommend to look into the [starters guide](https://github.com/julianYaman/discord-bot-dashboard/blob/master/docs/GET_STARTED.md).
 
-## Show your support
+## 🙌 Show your support
 Give a ⭐️ if you like this project!
 
 You can support the work financially with a donation via [PayPal](https://www.paypal.me/julianyaman)
@@ -58,7 +58,7 @@ You can support the work financially with a donation via [PayPal](https://www.pa
 </a><br>
 
 
-## Sponsors & Partners
+## 👍 Sponsors & Partners
 There is now the possibility to sponsor this project on GitHub and Patreon or to donate via PayPal.
 
 Thank you very much to every sponsor and donors who help us to finance this project.
@@ -67,7 +67,7 @@ Thank you very much to every sponsor and donors who help us to finance this proj
 - Dali Bendhiab (Patreon)
 - Andrew V. 3C-444 (Donor)
 
-## Contributors
+## 👍 Contributors
 
 All contributors of the project will be listed down here:
 
