@@ -1,0 +1,18 @@
+body{
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+.dark{
+    background-color: #121212;
+    color: white !important;
+}
+.white-mode{
+    background-color: #FFFFFF;
+}
+.footer-link{
+    color: black;
+    font-weight: bold;
+}
+.dark .footer-link{
+    color: white !important;
+}

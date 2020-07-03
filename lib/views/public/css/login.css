@@ -1,0 +1,47 @@
+main{
+    width: 800px;
+    margin: 0 auto;
+}
+.login-panel{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+a {
+    text-decoration: none;
+}
+.login-button{
+    background: #7289DA;
+    border: 5px solid #5f72b6;
+    margin: 0;
+    padding: 15px 40px;
+    border-radius: 40px;
+    cursor: pointer;
+    color: white;
+    width: 100%;
+    font-weight: bold;
+    font-size: x-large;
+    transition: 0.3s background ease-in-out;
+}
+.login-button:hover{
+    background: #5f72b6;
+    transition: 0.3s background ease-in-out;
+}
+.login-button:active{
+    background: #465793;
+    transition: 0.3s background ease-in-out;
+}
+small{
+    color: darkgrey;
+}
+.github-support-link{
+    color: white !important;
+    font-weight: bold;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+}
