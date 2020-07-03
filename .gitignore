@@ -33,3 +33,6 @@ package-lock.json
 
 # AdminLTE example folder
 AdminLTE
+
+# FontAwesome unzipped
+lib/views/public/lib/fontawesome

@@ -1,0 +1,37 @@
+main{
+    width: 800px;
+    margin: 0 auto;
+}
+a {
+    text-decoration: none;
+}
+.login-button{
+    background: #7289DA;
+    border: 5px solid #5f72b6;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    padding: 15px 40px;
+    border-radius: 40px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: x-large;
+    transition: 0.3s background ease-in-out;
+}
+.login-button:hover{
+    background: #5f72b6;
+    transition: 0.3s background ease-in-out;
+}
+.login-button:active{
+    background: #465793;
+    transition: 0.3s background ease-in-out;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+}

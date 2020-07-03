@@ -1,0 +1,11 @@
+body{
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+.dark{
+    background-color: #121212;
+    color: white !important;
+}
+.white-mode{
+    background-color: #FFFFFF;
+}
