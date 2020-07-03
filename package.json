@@ -1,11 +1,11 @@
 {
   "name": "@julianyaman/discord-bot-dashboard",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "A package for bot developers (using Discord.js) to have a nice looking dashboard with the possibility to control and analyse the bot's behaviour.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon test.js",
-    "lint:eslint":"./node_modules/.bin/eslint \"lib/**\"",
+    "lint:eslint": "./node_modules/.bin/eslint \"lib/**\"",
     "lint:ejs": "ejslint lib/views/pages/dashboard.ejs"
   },
   "repository": {
@@ -39,9 +39,15 @@
     "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^3.2.0",
     "dotenv": "^8.2.0",
     "ejs-lint": "^1.1.0",
     "eslint": "^7.3.1",
     "nodemon": "^2.0.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
