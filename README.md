@@ -20,33 +20,31 @@ The control dashboard every bot developer searched for! Control your bot and get
 
 ## 📃 About the project
 
-With the Discord Dashboard, you are able to track and monitor any relevant piece of your bot 
-to ensure the best quality for your users. You can monitor which command was the most used one and how 
-many users currently are able to use the bot. 
+With the Discord Dashboard, you are able to track and monitor keen information of your bot 
+to ensure the best quality for your users. Things like, which commands were most used and how 
+many users are utilizing your bot. 
 
-The dashboard also offers to have your own customizable log system for tracking down bugs and
-finding more points to improve on.
+The dashboard also offers you to have your own customizable logging for tracking down bugs and
+finding where you can improve.
 
-You also have the ability to monitor your system data
-and see how much RAM your bot uses, and there are plenty more features waiting to be used:
+You'll also have the ability to monitor system data and see how much RAM your bot uses alongside plenty more features waiting to be used:
 
-- Online user stats
-- Server stats
-- Command usage (most / least used, argument used)
+- Online user statistics
+- Server statistics
+- Command usage (Most used, Least used and Arguments used)
 - System data (CPU, GPU and RAM usage)
 - Customizable logging system
 - Hourly usage of bot commands
-- more coming soon...
+- More to come in the future...
 
-All these statistics will be analyzed in a way, so you can understand where a problem
-might occur.
+All these statistics will be analyzed in a user friendly way that will allow you to see where an issue may occure.
 
-In the future, you'll be able to change the presence data of your bot without having the need
-of doing hard changes on the bot codebase.
+In the future, you'll be able to change the presence data without having the need
+of doing hard changes on the codebase.
 
 
 ## 🖥️ Using the dashboard
-To use the dashboard, we recommend to look into the [starters guide](https://github.com/julianYaman/discord-bot-dashboard/blob/master/docs/GET_STARTED.md).
+To use the dashboard, we recommend you look into the [starters guide](https://github.com/julianYaman/discord-bot-dashboard/blob/master/docs/GET_STARTED.md).
 
 ## 🙌 Show your support
 Give a ⭐️ if you like this project!
@@ -61,7 +59,7 @@ You can support the work financially with a donation via [PayPal](https://www.pa
 ## 👍 Sponsors & Partners
 There is now the possibility to sponsor this project on GitHub and Patreon or to donate via PayPal.
 
-Thank you very much to every sponsor and donors who help us to finance this project.
+Thank you very much to every supporter who's helped us to finance this project.
 
 - Gurkstavs (GitHub Sponsors & Patreon) ([GitHub](https://github.com/Gurkstavs))
 - Dali Bendhiab (Patreon)
@@ -76,17 +74,18 @@ All contributors of the project will be listed down here:
 - MeerBiene ([GitHub](https://github.com/MeerBiene))
 - XkijuX ([GitHub](https://github.com/XkijuX))
 - Biagio ([GitHub](https://github.com/biagios))
+- RILEY BROWN ([GitHub](https://github.com/X-Niter)) ([Twitter](https://twitter.com/X_Niter))
 - Aaron Meese ([GitHub](https://github.com/ajmeese7))
 - Androz ([GitHub](https://github.com/Androz2091))
 
 Missed someone? Please contact me.
 
-You also want to help us? Look below.
+Interested in contributing to the Daskboard? Look below for more information.
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/julianYaman/discord-bot-dashboard/issues) 
-and join the [Discord Server](https://discord.gg/yAUmDNb).
+Contributions, issues and feature requests are welcomed!<br />Feel free to check the [issues page](https://github.com/julianYaman/discord-bot-dashboard/issues) 
+and also join the [Discord Server](https://discord.gg/yAUmDNb).
 
 **If you want to contribute to the codebase of this project, please follow the 
 [contributing guidelines](https://github.com/julianYaman/discord-bot-dashboard/blob/master/docs/CONTRIBUTING.md).**
