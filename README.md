@@ -74,6 +74,7 @@ All contributors of the project will be listed down here:
 - MeerBiene ([GitHub](https://github.com/MeerBiene))
 - XkijuX ([GitHub](https://github.com/XkijuX))
 - Biagio ([GitHub](https://github.com/biagios))
+- RILEY BROWN ([GitHub](https://github.com/X-Niter)) ([Twitter](https://twitter.com/X_Niter))
 - Aaron Meese ([GitHub](https://github.com/ajmeese7))
 - Androz ([GitHub](https://github.com/Androz2091))
 
