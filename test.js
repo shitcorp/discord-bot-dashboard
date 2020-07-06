@@ -7,5 +7,6 @@ Dashboard({
     port: 5000,
     clientID: process.env.clientID,
     clientSecret: process.env.clientSecret,
-    //callbackURL: process.env.callbackURL
+    // callbackURL: process.env.callbackURL
+    // requestLogger: false
 });
