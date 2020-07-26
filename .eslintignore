@@ -1,4 +1,6 @@
-*.ejs
-*.json
-*.md
-LICENSE
+# Ignore all files with below extentions
+**/*.ejs
+**/*.json
+**/*.md
+**/*.css
+**/*.zip
