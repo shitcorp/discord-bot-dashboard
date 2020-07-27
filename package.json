@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon test.js",
     "test": "mocha",
+    "precheck": "npm run test && npm run lint:eslint",
     "lint:eslint": "eslint \"lib/**\"",
     "lint:ejs": "ejslint lib/views/pages/dashboard.ejs"
   },
