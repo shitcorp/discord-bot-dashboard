@@ -13,6 +13,7 @@
 
 The control dashboard every bot developer searched for! Control your bot and get detailed analytics by using Discord Bot Dashboard (name not final)
 
+### Current development branch: `the-epic-gamer-branch`
 
 ### 🏠 [Homepage](https://github.com/julianYaman/discord-bot-dashboard)
 
