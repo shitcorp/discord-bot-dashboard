@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include("templates/head.ejs") %>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+    <%- include("templates/navigation.ejs") %>
+    <div class="content-wrapper">
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% if(alert) { %>
+        <% if(alert === 'worked') { %>
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-check"></i>Alert!</h4>
+            Everything worked out! I sent the message...
+          </div>
+        <% } else { %>
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i>Alert!</h4>
+            Something went wrong! See if I have the permissions etc ...
+          </div>
+        <% } %>
+      <% } %>
+      <section class="content">
+        <div class="container-fluid">
+          <form method="POST" id="sendAMessageForm">
+            <div class="form-group">
+              <label>Message to send</label>
+              <% if(otherBody) { %>
+              <% if(otherBody.sendChannelMessage) { %>
+              <textarea id="sendChannelMessage" name="sendChannelMessage" class="form-control" rows="3" minlength="1"
+                placeholder="Please enter a message of at least 1 character"
+                required><%- otherBody.sendChannelMessage %></textarea>
+              <% } else { %>
+              <textarea id="sendChannelMessage" name="sendChannelMessage" class="form-control" rows="3" minlength="1"
+                placeholder="Please enter a message of at least 1 character" required></textarea>
+              <% } %>
+              <% } else { %>
+              <textarea id="sendChannelMessage" name="sendChannelMessage" class="form-control" rows="3" minlength="1"
+                placeholder="Please enter a message of at least 1 character" required></textarea>
+              <% } %>
+            </div>
+            <div class="form-group">
+              <label>Select a guild</label>
+              <select class="form-control" name="sendChannelGuild" id="sendChannelGuild">
+                <% if(guildID) { %>
+                <option value="<%= guildID %>"><%= bot.guilds.cache.get(guildID).name %></option>
+                <% } %>
+                <% bot.guilds.cache.forEach(g => { %>
+                <option value="<%= g.id %>"><%= g.name %></option>
+                <% }) %>
+              </select>
+            </div>
+            <% if(guildID) { %>
+            <div class="form-group">
+              <label>Select a channel</label>
+              <select class="form-control" name="sendChannelChannel" id="sendChannelChannel">
+                <% const g = bot.guilds.cache.get(guildID) %>
+                <% g.channels.cache.forEach(c => { %>
+                <option value="<%= c.id %>"><%= c.name %></option>
+                <% }) %>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-outline-success">Send Message</button>
+            <% } %>
+          </form>
+        </div>
+    </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.0.0
+    </div>
+  </footer>
+  <aside class="control-sidebar control-sidebar-dark">
+  </aside>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/static/jquery/jquery.min.js"></script>
+  <script src="/static/jquery-ui/jquery-ui.min.js"></script>
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <script src="/static/js/stats.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/chart.js/Chart.min.js"></script>
+  <script src="/static/sparklines/sparkline.js"></script>
+  <script src="/static/jqvmap/jquery.vmap.min.js"></script>
+  <script src="/static/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <script src="/static/jquery-knob/jquery.knob.min.js"></script>
+  <script src="/static/moment/moment.min.js"></script>
+  <script src="/static/daterangepicker/daterangepicker.js"></script>
+  <script src="/static/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="/static/summernote/summernote-bs4.min.js"></script>
+  <script src="/static/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="/static/js/adminlte.js"></script>
+  <script src="/static/js/pages/dashboard.js"></script>
+  <script src="/static/js/demo.js"></script>
+  <script>
+    $("#sendChannelGuild").on("change", function () {
+      document.getElementById("sendAMessageForm").submit();
+    });
+  </script>
+</body>
+
+</html>

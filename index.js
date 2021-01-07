@@ -11,6 +11,7 @@ class Dashboard {
              * Required Config Items:
              */
             clientSecret: config.clientSecret,
+            websiteDomain: config.websiteDomain,
             redirectURI: config.redirectURI,
             /**
              * Not required config items
@@ -61,6 +62,12 @@ class Dashboard {
             throw new Error("The config item 'clientSecret' must be specified");
         if (typeof config.clientSecret !== "string")
             throw new Error("The config item 'clientSecret' must be a string");
+        if (!config.websiteDomain)
+            throw new Error(
+                "The config item 'websiteDomain' must be specified"
+            );
+        if (typeof config.websiteDomain !== "string")
+            throw new Error("The config item 'websiteDomain' must be a string");
         //Check datatypes for rest of config items
         if (config.port && typeof config.port !== "number")
             throw new TypeError("The config item 'port' must be a number");

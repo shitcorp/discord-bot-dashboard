@@ -9,6 +9,7 @@ const app = express();
 const server = require("http").createServer(app);
 const path = require("path");
 const io = require("socket.io")(server);
+const bodyParser = require("body-parser");
 
 /**
  * Util modules
@@ -39,6 +40,8 @@ module.exports.run = (client, config) => {
     app.use("/static", express.static(path.join(__dirname, "../src/plugins")));
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
     app.use(
         session({
             secret: config.sessionSecret,
@@ -77,16 +80,6 @@ module.exports.run = (client, config) => {
         d(null, u);
     });
 
-    /**
-     * Basic Informations about bot
-     */
-    const botInfo = {
-        username: client.user.username,
-        status: client.user.presence.status,
-        users: client.users.cache.size,
-        guilds: client.guilds.cache.size,
-    };
-
     function accountImage(user) {
         return `<img src="${
             "https://cdn.discordapp.com/avatars/" +
@@ -110,7 +103,7 @@ module.exports.run = (client, config) => {
         } else {
             res.render("index", {
                 page: "dashboard",
-                botInfo,
+                bot: client,
                 userInfo: req.session.user,
                 image: accountImage(req.session.user),
             });
@@ -122,7 +115,59 @@ module.exports.run = (client, config) => {
         } else {
             res.render("log", {
                 page: "log",
-                botInfo,
+                bot: client,
+                userInfo: req.session.user,
+                image: accountImage(req.session.user),
+            });
+        }
+    });
+    app.get("/actions", (req, res) => {
+        if (!req.session.user) {
+            res.redirect("/auth/discord");
+        } else {
+            res.render("actions", {
+                page: "actions",
+                guildID: null,
+                otherBody: null,
+                alert: null,
+                bot: client,
+                userInfo: req.session.user,
+                image: accountImage(req.session.user),
+            });
+        }
+    });
+    app.post("/actions", (req, res) => {
+        if (!req.session.user) {
+            res.redirect("/auth/discord");
+        } else {
+            let alert;
+            console.log(req.body);
+            if (
+                req.body.sendChannelMessage &&
+                req.body.sendChannelGuild &&
+                req.body.sendChannelChannel
+            ) {
+                if (req.body.sendChannelMessage.length > 1) {
+                    const guild = client.guilds.cache.get(
+                        req.body.sendChannelGuild
+                    );
+                    const channel = guild.channels.cache.get(
+                        req.body.sendChannelChannel
+                    );
+                    try {
+                        channel.send(req.body.sendChannelMessage);
+                        alert = "worked";
+                    } catch {
+                        alert = "wrong";
+                    }
+                }
+            }
+            res.render("actions", {
+                page: "actions",
+                guildID: req.body.sendChannelGuild,
+                otherBody: req.body,
+                alert: alert,
+                bot: client,
                 userInfo: req.session.user,
                 image: accountImage(req.session.user),
             });
@@ -162,7 +207,7 @@ module.exports.run = (client, config) => {
         } else {
             res.status(404).render("404", {
                 page: "404",
-                botInfo,
+                bot: client,
                 userInfo: req.session.user,
                 image: accountImage(req.session.user),
             });
@@ -175,7 +220,7 @@ module.exports.run = (client, config) => {
         console.error(err.stack);
         res.status(500).render("500", {
             page: "500",
-            botInfo,
+            bot: client,
             userInfo: req.session.user,
             image: accountImage(req.session.user),
         });
