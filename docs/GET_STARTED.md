@@ -41,24 +41,28 @@ Now it is time to implement the dashboard into your bot project. It is very simp
 
 ````js
 // Discord client setup
+const Discord = require("discord.js");
 const client = new Discord.Client();
-// dotenv
-require('dotenv').config();
-// Dashboard package
-const dashboard = require("discord-bot-dashboard");
+const Dashboard = require("discord-bot-dashboard");
+const token = "Your awesome discord bot token";
 
-// ...
-client.on('ready', () => {
+client.on("ready", () => {
+    console.log("Hello world!");
+    const dashboard = new Dashboard(client, {
+        port: 8080, // Dashboard port? Number, default: 8080
+        clientSecret: "Your discord bot client secret", 
+        redirectURI: "http://localhost:8080/auth/discord/callback",
+        maintenanceNotification: false, // Maintenance notification? Boolean, default: false
+        baseGame: '', // Base game? String, default: !help | v0.0.6.3,
+        baseBotStatus: '', // Bot status? String, default: online
+        maintenanceGame: '', // Maintenance Game? String, default: Bot is in maintenance
+        maintenanceStatus: '', // Maintenance Status? String, default: dnd
+        sessionSecret: 'a random text (I recommend punching your keyboard))', // Session Secret? String, default: abcdefghijklmnopqrstuvwxyz1234567890!@#$%¨&*()_ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    });
+    dashboard.run();
+}); 
 
-  dashboard.run(client, {
-    port: your_open_port, 
-    clientSecret: your_client_secrect, 
-    redirectURI: your_redirect_uri
-  });
-  //...
-
-});
-//...
+client.login(token);
 ````
 Also if you would like to see a full a working implementation of ``discord-bot-dashboard`` please follow [this](https://github.com/julianYaman/discord-bot-dashboard/blob/master/test.js) link.
 

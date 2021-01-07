@@ -9,11 +9,9 @@ $(function(){
 
     //.html('New Text');
     socket.on('guild update', function(data){
-        //console.log('guildCreate');
         guilds.text(data.amount);
     });
     socket.on('user update', function(data){
-        //console.log('guildCreate');
         guilds.text(data.amount);
     });
 });
