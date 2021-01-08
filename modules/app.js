@@ -10,6 +10,8 @@ const server = require("http").createServer(app);
 const path = require("path");
 const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const guildSchema = require("./schemas/guildsSchema");
 
 /**
  * Util modules
@@ -25,8 +27,25 @@ const log = console.log;
 
 module.exports.run = (client, config) => {
     /**
-     * App setup
+     * Mongoose Connection
      */
+
+    mongoose.Promise = global.Promise;
+    mongoose.connect(
+        config.mongodbURI,
+        {
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            useUnifiedTopology: true,
+        },
+        (err) => {
+            if (!err) {
+                log("INFO >> " + chalk.green("MongoDB Connection Succeeded."));
+            } else {
+                log("INFO >> " + chalk.red("Error in DB connection: " + err));
+            }
+        }
+    );
 
     /**
      * App view
@@ -217,6 +236,53 @@ module.exports.run = (client, config) => {
     });
 
     /**
+     * Guilds Page
+     */
+    app.get("/guilds", async (req, res) => {
+        if (!req.session.user) {
+            res.redirect("/auth/discord");
+        } else {
+            let jsonArray = [];
+            await guildSchema.find().then((guild) => {
+                guild.forEach((guild_2) => {
+                    jsonArray.push(guild_2);
+                });
+            });
+            if (jsonArray.length < client.guilds.cache.size) {
+                jsonArray = [];
+                await client.guilds.cache.forEach(async (g) => {
+                    let clientMember = await g.members.fetch(client.user.id);
+                    const gInDb = await guildSchema.findById({
+                        _id: g.id,
+                    });
+                    if (!gInDb) {
+                        await new guildSchema({
+                            _id: g.id,
+                            name: g.name,
+                            memberCount: g.memberCount,
+                            iconURL: g.iconURL() ? g.iconURL({dynamic: true, size: 2048, format: "png" }) : client.user.displayAvatarURL({dynamic:true,format:'png',size:2048}),
+                            joinedTimeStamp: clientMember.joinedTimestamp,
+                            removedTimeStamp: "",
+                        }).save();
+                    }
+                });
+                await guildSchema.find().then((guild) => {
+                    guild.forEach((guild_2) => {
+                        jsonArray.push(guild_2);
+                    });
+                });
+            }
+            res.render("guilds", {
+                page: "guilds",
+                jsonArray,
+                bot: client,
+                userInfo: req.session.user,
+                image: accountImage(req.session.user),
+            });
+        }
+    });
+
+    /**
      * Authorizing pages
      */
     app.get("/auth/discord", passport.authenticate("discord.js"));
@@ -282,6 +348,7 @@ module.exports.run = (client, config) => {
         );
     });
 };
+
 module.exports.event = (event, amount) => {
     io.emit(event, {
         amount,

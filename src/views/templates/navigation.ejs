@@ -78,6 +78,16 @@
                             <p>Actions</p>
                         </a>
                 </li>
+                <li class="nav-item">
+                    <% if (page === "guilds") { %>
+                    <a href="/guilds" id="sidebar-dashboard" class="nav-link active">
+                        <% } else { %>
+                        <a href="/guilds" id="sidebar-dashboard" class="nav-link">
+                            <% } %>
+                            <i class="nav-icon fas fa-server"></i>
+                            <p>Guilds</p>
+                        </a>
+                </li>
             </ul>
         </nav>
     </div>

@@ -16,6 +16,7 @@ const dashboard = new Dashboard(client, {
     clientSecret: process.env.clientSecret,
     redirectURI: `http://localhost:8080/auth/discord/callback`,
     websiteDomain: "http://localhost:8080",
+    mongodbURI: process.env.mongoDBURL,
 });
 
 client.on("ready", () => {

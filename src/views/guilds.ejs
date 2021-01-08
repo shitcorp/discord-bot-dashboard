@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include("templates/head.ejs") %>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+    <%- include("templates/navigation.ejs") %>
+    <div class="content-wrapper">
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">Guilds</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Guilds</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="content">
+        <div class="row">
+          <% jsonArray.forEach(g => { %>
+          <div class="box box-primary">
+            <div class="box-body box-profile" style="background-color: white; padding: 10px; margin: 20px">
+              <img class="profile-user-img img-responsive img-circle" src="<%= g.iconURL %>" alt="<%= g.name %> icon">
+              <h3 class="profile-username text-center"><%= g.name %></h3>
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Added on</b> <a class="pull-right"><%= new Date(g.joinedTimeStamp*1000) %></a>
+                </li>
+                <li class="list-group-item">
+                  <b>Removed on</b> <a class="pull-right"><%= g.removedTimeStamp %></a>
+                </li>
+                <li class="list-group-item">
+                  <b>Total members</b> <a class="pull-right"><%= g.memberCount %></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </section>
+    </div>
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0.0
+      </div>
+    </footer>
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/static/jquery/jquery.min.js"></script>
+  <script src="/static/jquery-ui/jquery-ui.min.js"></script>
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <script src="/static/js/stats.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/chart.js/Chart.min.js"></script>
+  <script src="/static/sparklines/sparkline.js"></script>
+  <script src="/static/jqvmap/jquery.vmap.min.js"></script>
+  <script src="/static/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <script src="/static/jquery-knob/jquery.knob.min.js"></script>
+  <script src="/static/moment/moment.min.js"></script>
+  <script src="/static/daterangepicker/daterangepicker.js"></script>
+  <script src="/static/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="/static/summernote/summernote-bs4.min.js"></script>
+  <script src="/static/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="/static/js/adminlte.js"></script>
+  <script src="/static/js/pages/dashboard.js"></script>
+  <script src="/static/js/demo.js"></script>
+</body>
+
+</html>
