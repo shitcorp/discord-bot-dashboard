@@ -136,12 +136,14 @@ module.exports.run = (client, config) => {
             });
         }
     });
-    app.post("/actions", (req, res) => {
+    app.post("/actions", async (req, res) => {
         if (!req.session.user) {
             res.redirect("/auth/discord");
         } else {
+            /**
+             * Send Message
+             */
             let alert;
-            console.log(req.body);
             if (
                 req.body.sendChannelMessage &&
                 req.body.sendChannelGuild &&
@@ -157,10 +159,50 @@ module.exports.run = (client, config) => {
                     try {
                         channel.send(req.body.sendChannelMessage);
                         alert = "worked";
-                    } catch {
+                    } catch (err) {
+                        console.log(err);
                         alert = "wrong";
                     }
                 }
+            }
+
+            /**
+             * Bot Status
+             */
+            if (req.body.botStatus) {
+                await client.user.setStatus(`${req.body.botStatus}`);
+            }
+            if (req.body.botActivityText && req.body.botActivityType) {
+                if (req.body.botActivityURL) {
+                    try {
+                        await client.user.setActivity(
+                            `${req.body.botActivityText}`,
+                            {
+                                type: `${req.body.botActivityType}`,
+                                url: `${req.body.botActivityURL}`,
+                            }
+                        );
+                        alert = "worked";
+                    } catch (err) {
+                        console.log(err);
+                        alert = "wrong";
+                    }
+                } else {
+                    try {
+                        await client.user.setActivity(
+                            `${req.body.botActivityText}`,
+                            {
+                                type: `${req.body.botActivityType}`,
+                            }
+                        );
+                        alert = "worked";
+                    } catch (err) {
+                        console.log(err);
+                        alert = "wrong";
+                    }
+                }
+            } else {
+                alert = "wrong";
             }
             res.render("actions", {
                 page: "actions",

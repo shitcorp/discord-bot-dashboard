@@ -25,63 +25,121 @@
         </div>
       </div>
       <% if(alert) { %>
-        <% if(alert === 'worked') { %>
-          <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-check"></i>Alert!</h4>
-            Everything worked out! I sent the message...
-          </div>
-        <% } else { %>
-          <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-ban"></i>Alert!</h4>
-            Something went wrong! See if I have the permissions etc ...
-          </div>
-        <% } %>
+      <% if(alert === 'worked') { %>
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i>Alert!</h4>
+        Everything worked out!
+      </div>
+      <% } else { %>
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-ban"></i>Alert!</h4>
+        Something went wrong!
+      </div>
+      <% } %>
       <% } %>
       <section class="content">
-        <div class="container-fluid">
-          <form method="POST" id="sendAMessageForm">
-            <div class="form-group">
-              <label>Message to send</label>
-              <% if(otherBody) { %>
-              <% if(otherBody.sendChannelMessage) { %>
-              <textarea id="sendChannelMessage" name="sendChannelMessage" class="form-control" rows="3" minlength="1"
-                placeholder="Please enter a message of at least 1 character"
-                required><%- otherBody.sendChannelMessage %></textarea>
-              <% } else { %>
-              <textarea id="sendChannelMessage" name="sendChannelMessage" class="form-control" rows="3" minlength="1"
-                placeholder="Please enter a message of at least 1 character" required></textarea>
-              <% } %>
-              <% } else { %>
-              <textarea id="sendChannelMessage" name="sendChannelMessage" class="form-control" rows="3" minlength="1"
-                placeholder="Please enter a message of at least 1 character" required></textarea>
-              <% } %>
-            </div>
-            <div class="form-group">
-              <label>Select a guild</label>
-              <select class="form-control" name="sendChannelGuild" id="sendChannelGuild">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="box box-primary" style="background-color: white; padding: 20px; border-top: 4px solid #3c8dbc;">
+              <div class="box-header with-border">
+                <h3 class="box-title">Send a message in a channel</h3>
+              </div>
+              <form method="POST" id="sendAMessageForm">
+                <div class="form-group">
+                  <label>Message to send</label>
+                  <% if(otherBody) { %>
+                  <% if(otherBody.sendChannelMessage) { %>
+                  <textarea id="sendChannelMessage" name="sendChannelMessage" class="form-control" rows="3"
+                    minlength="1" placeholder="Please enter a message of at least 1 character"
+                    required><%- otherBody.sendChannelMessage %></textarea>
+                  <% } else { %>
+                  <textarea id="sendChannelMessage" name="sendChannelMessage" class="form-control" rows="3"
+                    minlength="1" placeholder="Please enter a message of at least 1 character" required></textarea>
+                  <% } %>
+                  <% } else { %>
+                  <textarea id="sendChannelMessage" name="sendChannelMessage" class="form-control" rows="3"
+                    minlength="1" placeholder="Please enter a message of at least 1 character" required></textarea>
+                  <% } %>
+                </div>
+                <div class="form-group">
+                  <label>Select a guild</label>
+                  <select class="form-control" name="sendChannelGuild" id="sendChannelGuild">
+                    <% if(guildID) { %>
+                    <option value="<%= guildID %>"><%= bot.guilds.cache.get(guildID).name %></option>
+                    <% } %>
+                    <% bot.guilds.cache.forEach(g => { %>
+                    <option value="<%= g.id %>"><%= g.name %></option>
+                    <% }) %>
+                  </select>
+                </div>
                 <% if(guildID) { %>
-                <option value="<%= guildID %>"><%= bot.guilds.cache.get(guildID).name %></option>
+                <div class="form-group">
+                  <label>Select a channel</label>
+                  <select class="form-control" name="sendChannelChannel" id="sendChannelChannel">
+                    <% const g = bot.guilds.cache.get(guildID) %>
+                    <% g.channels.cache.forEach(c => { %>
+                    <option value="<%= c.id %>"><%= c.name %></option>
+                    <% }) %>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-outline-success">Send Message</button>
                 <% } %>
-                <% bot.guilds.cache.forEach(g => { %>
-                <option value="<%= g.id %>"><%= g.name %></option>
-                <% }) %>
-              </select>
+              </form>
             </div>
-            <% if(guildID) { %>
-            <div class="form-group">
-              <label>Select a channel</label>
-              <select class="form-control" name="sendChannelChannel" id="sendChannelChannel">
-                <% const g = bot.guilds.cache.get(guildID) %>
-                <% g.channels.cache.forEach(c => { %>
-                <option value="<%= c.id %>"><%= c.name %></option>
-                <% }) %>
-              </select>
+          </div>
+          <div class="col-md-6">
+            <div class="box box-primary" style="background-color: white; padding: 20px; border-top: 4px solid #3c8dbc;">
+              <div class="box-header with-border">
+                <h3 class="box-title">Change bot status</h3>
+              </div>
+              <form method="POST" id="botChangeStatus">
+                <div class="form-group">
+                  <label>Status text</label>
+                  <% if (bot.user.presence.activities[0]) { %>
+                  <input id="botActivityText" name="botActivityText" class="form-control" minlength="1"
+                    placeholder="Please enter a status text" value="<%= bot.user.presence.activities[0].name %>"
+                    required>
+                  <% } else { %>
+                  <input id="botActivityText" name="botActivityText" class="form-control" minlength="1"
+                    placeholder="Please enter a status text" required>
+                  <% } %>
+                </div>
+                <div class="form-group">
+                  <label>Select the bot status</label>
+                  <select class="form-control" name="botStatus" id="botStatus" required>
+                    <option value="online">Online</option>
+                    <option value="idle">Idle</option>
+                    <option value="invisible">Invisible</option>
+                    <option value="dnd">Dnd</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Select a activity type</label>
+                  <select class="form-control" name="botActivityType" id="botActivityType" required>
+                    <option value="PLAYING">Playing</option>
+                    <option value="STREAMING">Streaming</option>
+                    <option value="LISTENING">Listening</option>
+                    <option value="WATCHING">Watching</option>
+                    <option value="CUSTOM_STATUS">Custom</option>
+                    <option value="COMPETING">Competing</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Type a activity URL</label>
+                  <% if (bot.user.presence.activities[0]) { %>
+                  <input type="url" class="form-control" name="botActivityURL" id="botActivityURL"
+                    placeholder="Type some activity URL" value="<%= bot.user.presence.activities[0].url %>">
+                  <% } else { %>
+                  <input type="url" class="form-control" name="botActivityURL" id="botActivityURL"
+                    placeholder="Type some activity URL">
+                  <% } %>
+                </div>
+                <button type="submit" class="btn btn-outline-success">Change Bot Status</button>
+              </form>
             </div>
-            <button type="submit" class="btn btn-outline-success">Send Message</button>
-            <% } %>
-          </form>
+          </div>
         </div>
     </div>
     </section>
