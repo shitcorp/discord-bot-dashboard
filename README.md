@@ -81,7 +81,7 @@ All contributors of the project will be listed down here:
 
 Missed someone? Please contact me.
 
-Interested in contributing to the Daskboard? Look below for more information.
+Interested in contributing to the Dashboard? Look below for more information.
 
 ## 🤝 Contributing
 
