@@ -12,7 +12,7 @@
   </a>
 </p>
 
-<h1>
+<h1 align="center">
 
 ⚠️ WARNING: The project is currently neither in a working state nor maintained ⚠️
 
