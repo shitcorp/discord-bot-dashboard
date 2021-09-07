@@ -1,6 +1,7 @@
 <h1 align="center">Discord Bot Dashboard</h1>
 <p>
-  <a href="https://discord.gg/yAUmDNb">
+<img alt="Maintenance" src="https://img.shields.io/maintenance/no/2021">
+<a href="https://discord.gg/yAUmDNb">
       <img src="https://discordapp.com/api/guilds/358751806697897984/embed.png" alt="Discord Server Shield"/>
   </a>
   <a href="https://github.com/julianYaman/discord-bot-dashboard/blob/master/LICENSE">
@@ -10,6 +11,12 @@
     <img alt="Twitter: julianYaman" src="https://img.shields.io/twitter/follow/julianYaman.svg?style=social" target="_blank" />
   </a>
 </p>
+
+<h1 align="center">
+
+⚠️ WARNING: The project is currently neither in a working state nor maintained ⚠️
+
+</h1>
 
 The control dashboard every bot developer searched for! Control your bot and get detailed analytics by using Discord Bot Dashboard (name not final)
 
