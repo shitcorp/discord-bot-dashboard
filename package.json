@@ -28,7 +28,7 @@
     "node-os-utils": "^1.2.2"
   },
   "dependencies": {
-    "chalk": "^4.0.0",
+    "chalk": "^5.0.0",
     "discord.js": "^12.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
