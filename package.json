@@ -22,7 +22,7 @@
   ],
   "homepage": "https://github.com/julianYaman/discord-bot-dashboard#readme",
   "devDependencies": {
-    "dotenv": "^8.2.0",
+    "dotenv": "^14.3.2",
     "nodemon": "^2.0.2",
     "better-sqlite3": "^7.0.1",
     "node-os-utils": "^1.2.2"
