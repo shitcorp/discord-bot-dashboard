@@ -1,0 +1,18 @@
+{
+  "name": "discord.js",
+  "version": "0.0.0",
+  "main": "./index.tsx",
+  "types": "./index.tsx",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@opentelemetry/sdk-metrics-base": "0.27.0"
+  },
+  "devDependencies": {
+    "config": "*",
+    "tsconfig": "*",
+    "typescript": "^4.5.3"
+  }
+}
